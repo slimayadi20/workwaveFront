@@ -43,7 +43,7 @@ export class AuthComponent implements OnInit {
           this.contact = (data as { [key: string]: any })["user"]['phoneNumber'];
           localStorage.setItem('data', this.encryptionService.encrypt({ id: this.id, email: this.email1, contact: this.contact, token: ((data as { [key: string]: any })['jwtToken']) }));
           // this.router.navigate(['/courses/displaycourse']);
-          this.router.navigate(["/courses/displaycourse"]).then(e=>{
+          this.router.navigate(["/"]).then(e=>{
             window.location.reload();}
 
           )

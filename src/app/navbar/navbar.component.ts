@@ -12,7 +12,6 @@ export class NavbarComponent {
 
   logout() {
     localStorage.removeItem('data');
-
     this.router.navigate(['/auth']).then(e => {
       window.location.reload();
     }

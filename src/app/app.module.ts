@@ -12,6 +12,8 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { MainComponent } from './main/main.component';
+import { DashboardComponentComponent } from './dashboard-component/dashboard-component.component';
 
  
 
@@ -24,7 +26,9 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
     ResetComponent,
     FooterComponent,
     NavbarComponent,
-    SidemenuComponent
+    SidemenuComponent,
+    MainComponent,
+    DashboardComponentComponent,
   ],
   imports: [
     BrowserModule,
