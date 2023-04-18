@@ -1,4 +1,4 @@
-import { Component,AfterViewInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { NgProgressComponent } from 'ngx-progressbar';
 
 @Component({

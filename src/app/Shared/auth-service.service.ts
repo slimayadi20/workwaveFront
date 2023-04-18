@@ -13,19 +13,31 @@ export class AuthServiceService {
   constructor(private encryptionService: EncryptionService,private http: HttpClient, private router: Router) { }
 
   register(body: any) {
-    return this.http.post("http://localhost:8091" + '/registerNewUser', body, {
+    return this.http.post("http://localhost:8090" + '/registerNewUser', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
 
   login(body: any) {
-    console.log("http://localhost:8091");
-    return this.http.post("http://localhost:8091"+ '/authenticate', body, {
+    return this.http.post("http://localhost:8090"+ '/authenticate', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
+  forget(body: any) {
+    return this.http.post("http://localhost:8090"+ '/reset', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+  reset(body: any) {
+    return this.http.post("http://localhost:8090"+ '/reset_password', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+
   loggedIn() {
     return !!localStorage.getItem('token')
   }
@@ -42,10 +54,20 @@ export class AuthServiceService {
     return null;
 
   }
-
+  public getusernames() {
+    return this.http.get("http://localhost:8090"+ "/usernames");
+  }
   logoutUser() {
     localStorage.removeItem('data');
 
     this.router.navigate(['/auth'])
+  }
+  otp(body: any) {
+console.log(body);
+
+    return this.http.post("http://localhost:8090"+ '/otp', body, {
+      observe: 'response',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
   }
 }

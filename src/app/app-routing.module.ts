@@ -6,6 +6,8 @@ import { ResetComponent } from './reset/reset.component';
 import { LoginguardGuard } from './Shared/loginguard.guard';
 import { MainComponent } from './main/main.component';
 import { DashboardComponentComponent } from './dashboard-component/dashboard-component.component';
+import { RegistersuccessComponent } from './registersuccess/registersuccess.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 const routes: Routes = [
   {
     path: '',
@@ -23,7 +25,9 @@ const routes: Routes = [
     ]
   },
   { path: 'auth', component: AuthComponent },
+  { path: 'registersuccess', component: RegistersuccessComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'reset', component: ResetComponent },
   {path: '**', redirectTo: ''}
 ];

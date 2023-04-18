@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AuthServiceService } from '../Shared/auth-service.service';
 import { EncryptionService } from '../Shared/encryption.service';
 import { NgProgressComponent } from 'ngx-progressbar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-auth',
@@ -18,7 +19,7 @@ export class AuthComponent implements OnInit {
   data: any;
   constructor(private router: Router, private authService: AuthServiceService, private encryptionService: EncryptionService) { }
   userLogin = new FormGroup({
-    userName: new FormControl('slimayadi', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
+    userName: new FormControl('slimayadi310', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
     password: new FormControl('slim', [Validators.required])
 
   })
@@ -41,17 +42,24 @@ export class AuthComponent implements OnInit {
           this.id = (data as { [key: string]: any })["user"]['userName'];
           this.email1 = (data as { [key: string]: any })["user"]['email'];
           this.contact = (data as { [key: string]: any })["user"]['phoneNumber'];
-          localStorage.setItem('data', this.encryptionService.encrypt({ id: this.id, email: this.email1, contact: this.contact, token: ((data as { [key: string]: any })['jwtToken']) }));
-          // this.router.navigate(['/courses/displaycourse']);
-          this.router.navigate(["/"]).then(e=>{
-            window.location.reload();}
+          console.log('aaaaaaaaaaaaaaa');
 
+          // console.log ((data as { [key: string]: any })["user"]["role"][0]["roleName"]);
+          localStorage.setItem('data', this.encryptionService.encrypt({ id: this.id, email: this.email1, contact: this.contact, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"] }));
+          this.router.navigate(['/courses/displaycourse']);
+          this.router.navigate(["/"]).then(e => {
+            window.location.reload();
+          }
           )
         }
       },
       error => {
         console.log(error.status);
-
+        Swal.fire(
+          'erreur!',
+          'Mot de passe ou username invalide!',
+          'error'
+        );
       }
     );
   }

@@ -14,6 +14,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { MainComponent } from './main/main.component';
 import { DashboardComponentComponent } from './dashboard-component/dashboard-component.component';
+import { RegistersuccessComponent } from './registersuccess/registersuccess.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
  
 
@@ -29,6 +31,8 @@ import { DashboardComponentComponent } from './dashboard-component/dashboard-com
     SidemenuComponent,
     MainComponent,
     DashboardComponentComponent,
+    RegistersuccessComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
