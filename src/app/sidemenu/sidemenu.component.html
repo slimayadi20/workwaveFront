@@ -18,103 +18,51 @@
                 <li class="nk-menu-heading">
                     <h6 class="overline-title text-primary-alt">APPLICATIONS</h6>
                 </li><!-- .nk-menu-item -->
-                <li style="cursor:pointer"  class="nk-menu-item has-sub">
+                <li style="cursor:pointer"  class="nk-menu-item has-sub" *ngFor="let m of menuapp">
                     <a  href="#" class="nk-menu-link nk-menu-toggle">
-                        <span class="nk-menu-icon"><em class="icon ni ni-book-fill"></em></span>
-                        <span class="nk-menu-text">Courses</span>
+                        <span class="nk-menu-icon"><em class="{{m.icon}}"></em></span>
+                        <span class="nk-menu-text">{{m.title}}</span>
                     </a>
                     <ul class="nk-menu-sub">
-                        <li class="nk-menu-item">
-                            <a routerLink="/courses/displaycourse"  class="nk-menu-link"><span class="nk-menu-text">Courses List</span></a>
+                        <li class="nk-menu-item" *ngFor="let s of m.subMenus">
+                            <a  [routerLink]=" s.link"  class="nk-menu-link"><span class="nk-menu-text">{{s.title}}</span></a>
                         </li>
-                        <li class="nk-menu-item">
-                            <a routerLink="/courses/enrollement"  class="nk-menu-link"><span class="nk-menu-text">Enroll History</span></a>
-                        </li>   
+                          
                     </ul><!-- .nk-menu-sub -->
                 </li><!-- .nk-menu-item -->
-                <li  style="cursor:pointer"  class="nk-menu-item has-sub">
-                    <a   href="#" class="nk-menu-link nk-menu-toggle">
-                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb-fill"></em></span>
-                        <span class="nk-menu-text">Projects</span>
-                    </a>
-                    <ul class="nk-menu-sub">
-                        <li class="nk-menu-item">
-                            <a  routerLink="/projects/displayprojects"  class="nk-menu-link"><span class="nk-menu-text">Project Cards</span></a>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a routerLink="/projects/kanban"  class="nk-menu-link"><span class="nk-menu-text">Project kanban</span></a>
-                        </li>   
-                    </ul><!-- .nk-menu-sub -->
-                </li><!-- .nk-menu-item -->
-                <li style="cursor:pointer"  class="nk-menu-item has-sub">
-                    <a  href="#"  class="nk-menu-link nk-menu-toggle">
-                        <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
-                        <span class="nk-menu-text">Products</span>
-                    </a>
-                    <ul class="nk-menu-sub">
-                        <li class="nk-menu-item">
-                            <a  routerLink="/products/displayproduct"  class="nk-menu-link"><span class="nk-menu-text">Product List</span></a>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a routerLink="/products/createproduct"  class="nk-menu-link"><span class="nk-menu-text">Product Create</span></a>
-                        </li>   
-                    </ul><!-- .nk-menu-sub -->
-                </li><!-- .nk-menu-item -->
-                <li  style="cursor:pointer" class="nk-menu-item has-sub">
-                    <a  href="#"  class="nk-menu-link nk-menu-toggle">
-                        <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
-                        <span class="nk-menu-text">Applications</span>
-                    </a>
-                    <ul class="nk-menu-sub">
-                        <li class="nk-menu-item">
-                            <a  routerLink="/chat/displaychat"  class="nk-menu-link"><span class="nk-menu-text">Chat list</span></a>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a routerLink="/chat/displaycalendar"  class="nk-menu-link"><span class="nk-menu-text">Calendar</span></a>
-                        </li>   
-                    </ul><!-- .nk-menu-sub -->
-                </li><!-- .nk-menu-item -->
-               
+             
+               <!-- end here apps -->
                 <li class="nk-menu-heading">
                     <h6 class="overline-title text-primary-alt">Dashboards</h6>
                 </li><!-- .nk-menu-item -->
 
-                <li style="cursor:pointer" class="nk-menu-item">
-                    <a class="nk-menu-link" routerLink="payements/displaypayements">
-                        <span class="nk-menu-icon"><em class="icon ni ni-activity-round-fill"></em></span>
-                        <span class="nk-menu-text">Sales</span>
+                <li style="cursor:pointer" class="nk-menu-item" *ngFor="let m of menudashboard">
+                    <a  href="#" class="nk-menu-link nk-menu-toggle">
+                        <span class="nk-menu-icon"><em class="{{m.icon}}"></em></span>
+                        <span class="nk-menu-text">{{m.title}}</span>
                     </a>
+                    <ul class="nk-menu-sub">
+                        <li class="nk-menu-item" *ngFor="let s of m.subMenus">
+                            <a  [routerLink]=" s.link"  class="nk-menu-link"><span class="nk-menu-text">{{s.title}}</span></a>
+                        </li>
+                          
+                    </ul><!-- .nk-menu-sub -->
                 </li><!-- .nk-menu-item -->
-               <!----> <li style="cursor:pointer" class="nk-menu-item">
-                    <a   href="#" class="nk-menu-link">
-                        <span class="nk-menu-icon"><em class="icon ni ni-bag"></em></span>
-                        <span class="nk-menu-text">Analytics</span><span class="nk-menu-badge">HOT</span>
-                    </a>
-                </li><!-- .nk-menu-item -->
-               
+            
+               <!-- dashends here  -->
                 <li class="nk-menu-heading">
                     <h6 class="overline-title text-primary-alt">Settings</h6>
                 </li><!-- .nk-menu-heading -->
-                <li style="cursor:pointer"  class="nk-menu-item has-sub">
-                    <a  href="#"  class="nk-menu-link nk-menu-toggle">
-                        <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
-                        <span class="nk-menu-text">User Manage</span>
+                <li style="cursor:pointer" class="nk-menu-item" *ngFor="let m of menusettings   ">
+                    <a  href="#" class="nk-menu-link nk-menu-toggle">
+                        <span class="nk-menu-icon"><em class="{{m.icon}}"></em></span>
+                        <span class="nk-menu-text">{{m.title}}</span>
                     </a>
                     <ul class="nk-menu-sub">
-                        <li class="nk-menu-item">
-                            <a   routerLink="/users/displayusers"  class="nk-menu-link"><span class="nk-menu-text">User List</span></a>
-                        </li>  
-                    </ul><!-- .nk-menu-sub -->
-                </li><!-- .nk-menu-item -->
-                <li  style="cursor:pointer"  class="nk-menu-item has-sub">
-                    <a  href="#"  class="nk-menu-link nk-menu-toggle">
-                        <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
-                        <span class="nk-menu-text">User Holidays</span>
-                    </a>
-                    <ul class="nk-menu-sub">
-                        <li class="nk-menu-item">
-                            <a   routerLink="/users/displayholiday"  class="nk-menu-link"><span class="nk-menu-text">Holidays List</span></a>
-                        </li>  
+                        <li class="nk-menu-item" *ngFor="let s of m.subMenus">
+                            <a  [routerLink]=" s.link"  class="nk-menu-link"><span class="nk-menu-text">{{s.title}}</span></a>
+                        </li>
+                          
                     </ul><!-- .nk-menu-sub -->
                 </li><!-- .nk-menu-item -->
             </ul>
