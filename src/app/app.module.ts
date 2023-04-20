@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { MainComponent } from './main/main.component';
 import { DashboardComponentComponent } from './dashboard-component/dashboard-component.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
  
 
@@ -34,6 +35,7 @@ import { DashboardComponentComponent } from './dashboard-component/dashboard-com
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    SweetAlert2Module,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,

@@ -13,15 +13,15 @@ export class AuthServiceService {
   constructor(private encryptionService: EncryptionService,private http: HttpClient, private router: Router) { }
 
   register(body: any) {
-    return this.http.post("http://localhost:8091" + '/registerNewUser', body, {
+    return this.http.post("http://localhost:8082" + '/registerNewUser', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
 
   login(body: any) {
-    console.log("http://localhost:8091");
-    return this.http.post("http://localhost:8091"+ '/authenticate', body, {
+    console.log("http://localhost:8082");
+    return this.http.post("http://localhost:8082"+ '/authenticate', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });

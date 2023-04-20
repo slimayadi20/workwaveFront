@@ -8,15 +8,22 @@
                             <div class="nk-block-head-content">
                                 <h3 class="nk-block-title page-title">Calendar</h3>
                             </div><!-- .nk-block-head-content -->
-                            <div class="nk-block-head-content">
-                                <a class="btn btn-primary" data-bs-toggle="modal" href="#addEventPopup"><em class="icon ni ni-plus"></em><span>Add Event</span></a>
-                            </div><!-- .nk-block-head-content -->
+                            <li class="nk-block-tools-opt d-none d-sm-block">
+                                <a class="btn btn-primary" data-bs-toggle="modal" href="#modalCreate"
+                                    data-bs-config={backdrop:true}><em
+                                        class="icon ni ni-plus"></em><span>Add
+                                        Event</span></a>
+                            </li>
+                            <li class="nk-block-tools-opt d-block d-sm-none">
+                                <a class="btn btn-icon btn-primary" data-bs-toggle="modal"
+                                    href="#modalCreate"><em class="icon ni ni-plus"></em></a>
+                            </li>
                         </div><!-- .nk-block-between -->
                     </div><!-- .nk-block-head -->
                     <div class="nk-block">
                         <div class="card">
                             <div class="card-inner">
-                                <div id="calendar" class="nk-calendar"></div>
+                                <div id="calendar" class="nk-calendar"> <full-calendar [options]="calendarOptions"></full-calendar> </div>
                             </div>
                         </div>
                     </div>
@@ -25,3 +32,4 @@
         </div>
     </div>
     <!-- content @e -->
+    <app-create-event></app-create-event>
