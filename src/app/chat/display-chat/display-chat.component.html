@@ -62,75 +62,16 @@
                         <div class="nk-chat-aside-panel nk-chat-fav">
                             <h6 class="title overline-title-alt">Favorites</h6>
                             <ul class="fav-list">
-                                <li>
-                                    <a href="#" class="btn btn-lg btn-icon btn-outline-light btn-white btn-round">
-                                        <em class="icon ni ni-plus"></em>
-                                    </a>
-                                </li>
-                                <li>
+                               <li *ngFor="let u of data ">
                                     <a href="#">
                                         <div class="user-avatar">
-                                            <img src="./images/avatar/b-sm.jpg" alt="">
+                                            <span>{{ u.userName[0] | uppercase }}{{ u.userName[1] | uppercase
+                                            }}</span>
                                             <span class="status dot dot-lg dot-success"></span>
                                         </div>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="user-avatar">
-                                            <span>AB</span>
-                                            <span class="status dot dot-lg dot-success"></span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="user-avatar bg-pink">
-                                            <span>KH</span>
-                                            <span class="status dot dot-lg dot-success"></span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="user-avatar bg-purple">
-                                            <span>VB</span>
-                                            <span class="status dot dot-lg dot-success"></span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="user-avatar">
-                                            <img src="./images/avatar/a-sm.jpg" alt="">
-                                            <span class="status dot dot-lg dot-success"></span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="user-avatar">
-                                            <img src="./images/avatar/c-sm.jpg" alt="">
-                                            <span class="status dot dot-lg dot-success"></span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="user-avatar">
-                                            <img src="./images/avatar/d-sm.jpg" alt="">
-                                            <span class="status dot dot-lg dot-success"></span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="user-avatar bg-info">
-                                            <span>SK</span>
-                                            <span class="status dot dot-lg dot-success"></span>
-                                        </div>
-                                    </a>
-                                </li>
+                               
                             </ul><!-- .fav-list -->
                         </div><!-- .nk-chat-fav -->
                         <div class="nk-chat-list">
@@ -699,17 +640,19 @@
                                 </ul>
                             </div>
                         </div>
+                        <form [formGroup]="MessageAdd" (ngSubmit)="MessageAdd">
                         <div class="nk-chat-editor-form">
                             <div class="form-control-wrap">
-                                <textarea class="form-control form-control-simple no-resize" rows="1" id="default-textarea" placeholder="Type your message..."></textarea>
+                                <textarea formControlName= "content" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" placeholder="Type your message..."></textarea>
                             </div>
                         </div>
+                    </form>
                         <ul class="nk-chat-editor-tools g-2">
                             <li>
                                 <a href="#" class="btn btn-sm btn-icon btn-trigger text-primary"><em class="icon ni ni-happyf-fill"></em></a>
                             </li>
                             <li>
-                                <button class="btn btn-round btn-primary btn-icon"><em class="icon ni ni-send-alt"></em></button>
+                                <button (click)="sendMessage()" class="btn btn-round btn-primary btn-icon"><em class="icon ni ni-send-alt"></em></button>
                             </li>
                         </ul>
                     </div>
@@ -718,4 +661,7 @@
         </div>
     </div>
 </div>
+<script>
+    global = globalThis // fix for "global not defined" error
+  </script>
 <!-- content @e -->
