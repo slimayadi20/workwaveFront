@@ -1,38 +1,46 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { EncryptionService } from './encryption.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
   public data: any;
-  constructor(private encryptionService: EncryptionService,private http: HttpClient, private router: Router) { }
+  PATH_OF_API = 'http://localhost:8090';
+
+  constructor(private encryptionService: EncryptionService, private http: HttpClient, private router: Router) { }
 
   register(body: any) {
-    return this.http.post("http://localhost:8090" + '/registerNewUser', body, {
+    return this.http.post(this.PATH_OF_API + '/registerNewUser', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+  update(body: any) {
+    return this.http.put(this.PATH_OF_API + '/updateUser', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
 
   login(body: any) {
-    return this.http.post("http://localhost:8090"+ '/authenticate', body, {
+    return this.http.post(this.PATH_OF_API + '/authenticate', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
   forget(body: any) {
-    return this.http.post("http://localhost:8090"+ '/reset', body, {
+    return this.http.post(this.PATH_OF_API + '/reset', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
   reset(body: any) {
-    return this.http.post("http://localhost:8090"+ '/reset_password', body, {
+    return this.http.post(this.PATH_OF_API + '/reset_password', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -42,7 +50,14 @@ export class AuthServiceService {
     return !!localStorage.getItem('token')
   }
 
- 
+  PaginationUsers(page: number, role?: string){
+    let params = new HttpParams().set('page', page.toString());
+    if (role) {
+      params = params.set('role', role);
+    }
+    return this.http.get(this.PATH_OF_API + '/list', {params: params});
+  }
+
   getToken() {
     console.log(localStorage.getItem('data')!);
     if (localStorage.getItem('data') != null) {
@@ -55,7 +70,13 @@ export class AuthServiceService {
 
   }
   public getusernames() {
-    return this.http.get("http://localhost:8090"+ "/usernames");
+    return this.http.get(this.PATH_OF_API + "/usernames");
+  }
+  public getuser(username: any) {
+    return this.http.get(this.PATH_OF_API + "/getUser/" + username);
+  }
+  public getcc() {
+    return this.http.get('https://api.ipgeolocation.io/ipgeo?apiKey=e3f347b989f34e239402188106fbdf4c')
   }
   logoutUser() {
     localStorage.removeItem('data');
@@ -63,11 +84,27 @@ export class AuthServiceService {
     this.router.navigate(['/auth'])
   }
   otp(body: any) {
-console.log(body);
+    console.log(body);
 
-    return this.http.post("http://localhost:8090"+ '/otp', body, {
+    return this.http.post(this.PATH_OF_API + '/otp', body, {
       observe: 'response',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
+  }
+  adduser(formData: FormData): Observable<any> {
+    return this.http.put(this.PATH_OF_API + '/updateimage', formData)
+  }
+  getphoto(username: any) {
+    return this.http.get(this.PATH_OF_API + "/ImgUsers/" + username);
+  }
+  getusers() {
+    return this.http.get(this.PATH_OF_API + "/users");
+  }
+  getroles() {
+    return this.http.get(this.PATH_OF_API + "/getallroles");
+  }
+  ban(body: any) {
+    return this.http.put(this.PATH_OF_API + '/banUser', body)
+
   }
 }

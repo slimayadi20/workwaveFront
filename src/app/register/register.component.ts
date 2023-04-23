@@ -11,17 +11,12 @@ import { NgProgressComponent } from 'ngx-progressbar';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit,AfterViewInit {
+export class RegisterComponent implements OnInit, AfterViewInit {
 
-    @ViewChild(NgProgressComponent) progressBar!: NgProgressComponent;
-  
-    ngAfterViewInit() {
-      this.progressBar.start();
-      setTimeout(() => {
-        this.progressBar.complete();
-      }, 1000); // stop progress after 5 seconds
-  
-    }
+  @ViewChild(NgProgressComponent) progressBar!: NgProgressComponent;
+  isLoading = false;
+
+
   usernames: string[] = [];
   userRegister: FormGroup = new FormGroup({
     nom: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
@@ -30,13 +25,25 @@ export class RegisterComponent implements OnInit,AfterViewInit {
     password: new FormControl('', [Validators.required]),
   })
   constructor(private router: Router, private authService: AuthServiceService, private encryptionService: EncryptionService) { }
+  ngAfterViewInit() {
+    this.progressBar.start();
+    setTimeout(() => {
+      this.progressBar.complete();
+    }, 1000); // stop progress after 5 seconds
+
+  }
   ngOnInit(): void {
+    // this.progressBar.start();
+    // setTimeout(() => {
+    //   this.progressBar.complete();
+    // }, 1000); // stop progress after 5 seconds
+
     this.loaddata();
     // Watch for changes to the first and last name form controls
     this.userRegister.get('nom')!.valueChanges.subscribe(() => {
       this.generateUsername();
     });
-   
+
 
   }
   generateUsername() {
@@ -50,7 +57,7 @@ export class RegisterComponent implements OnInit,AfterViewInit {
       while (this.usernames.includes(username) && numTries < 10) {
         // Username already exists, generate a new one
         const randomNumber = Math.floor(Math.random() * 1000);
-        username = firstName.toLowerCase()  + randomNumber;
+        username = firstName.toLowerCase() + randomNumber;
         numTries++;
       }
       if (this.usernames.includes(username)) {
@@ -74,8 +81,14 @@ export class RegisterComponent implements OnInit,AfterViewInit {
     } else {
       // Username is available, make the registration request
       console.log('Username is available');
-
+      this.isLoading = true;
+      this.progressBar.start();
+      setTimeout(() => {
+        this.progressBar.complete();
+      }, 1000); // stop progress after 5 seconds
+  
       this.authService.register(this.userRegister.value).subscribe((res: any) => {
+        // this.isLoading = false;
 
         Swal.fire({
           title: "Excellent ! ",
