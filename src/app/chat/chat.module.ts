@@ -8,6 +8,7 @@ import { DisplayChatComponent } from './display-chat/display-chat.component';
 import { DisplayCalendarComponent } from './display-calendar/display-calendar.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgPipesModule} from 'ngx-pipes';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ChatRoutingModule,
     FullCalendarModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgPipesModule
     
   ]
  

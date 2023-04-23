@@ -90,5 +90,13 @@ export class ChatService {
   public getuserActive() {
     return this.http.get(this.baseUrl + "/getUser");
   }
-
+  public getAllUsers() {
+    return this.http.get(this.baseUrl + "/users");
+  }
+  public getChatRooms(senderId:any) {
+    return this.http.get(`${this.baseUrl}/chatRooms/${senderId}`);
+  }
+  public getAllChatRooms() {
+    return this.http.get(this.baseUrl + "/chatRooms/{senderId}/{recipientId}");
+  }
 }
