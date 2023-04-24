@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs-websocket';
 import { EncryptionService } from './encryption.service';
 //import { Button, message } from "antd";
+
 
 
 //import { ChatMessage } from '../models/chat-message.model';
@@ -18,13 +19,14 @@ export class ChatService {
 
   private socket: any;
   data: any;
-  
+
+
 
   constructor(private http: HttpClient, private encryptionService: EncryptionService) {
     this.data = this.encryptionService.decrypt(localStorage.getItem('data')!);
     console.log(this.data);
     const socket = new SockJS('http://localhost:8082/ws');
-    this.connect();
+    //this.connect();
   }
   public stompClient: any;
   public msg: any;
@@ -52,24 +54,24 @@ export class ChatService {
   }
   public onMessageReceived(msg: any): void {
     const notification = JSON.parse(msg.body);
-    const active = JSON.parse(sessionStorage.getItem("recoil-persist") || "{}")
-      .chatActiveContact;
+    //const active = JSON.parse(sessionStorage.getItem("recoil-persist") || "{}")
+    //.chatActiveContact;
 
-    if (this.data['id'] === notification.senderId) {
+
+
+
+    if (this.data['id'] == notification.senderId) {
       console.log(this.findMessage(notification.id));
       this.findMessage(notification.id).subscribe((message: any) => {
-        const newMessages = JSON.parse(sessionStorage.getItem("recoil-persist") || "{}")
-          .chatMessages;
-        newMessages.push(message);
-        console.log(message);
-        
-        //setMessages(newMessages);
+
       });
     } else {
       alert("Received a new message from " + notification.senderName);
+
     }
     this.getuserActive();
-  };
+  }
+
   onError(error: any) {
     console.log(error);
   }
@@ -105,8 +107,7 @@ export class ChatService {
 
   sendMessage(message: any) {
 
-
-    this.stompClient.send("/app/chat", {}, JSON.stringify(message));
+   this.stompClient.send("/app/chat", {}, JSON.stringify(message));
 
   }
   public getuserActive() {

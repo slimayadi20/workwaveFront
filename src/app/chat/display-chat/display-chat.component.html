@@ -68,7 +68,7 @@
                             </div>
                         </div><!-- .nk-chat-aside-search -->
                         <div class="nk-chat-aside-panel nk-chat-fav">
-                            <h6 class="title overline-title-alt">Favorites</h6>
+                            <h6 class="title overline-title-alt">Contacts</h6>
                             <ul class="fav-list">
                                 <li *ngFor="let u of data ">
                                     <a (click)="findChatMessages(data1['id'],u.userName)">
@@ -202,7 +202,7 @@
                             </div>
                         </div><!-- .nk-chat-head-search -->
                     </div><!-- .nk-chat-head -->
-                    <div class="nk-chat-panel" data-simplebar>
+                    <div class="nk-chat-panel" #scrollMe>
                         <div *ngFor="let m of messages | orderBy: 'timestamp' ">
                         <div class="chat is-you" *ngIf="m.senderId!=data1.id">
                             <div class="chat-avatar">
@@ -316,7 +316,7 @@
                                         class="icon ni ni-happyf-fill"></em></a>
                             </li>
                             <li>
-                                <button (click)="sendMessage(recepient)" class="btn btn-round btn-primary btn-icon"><em
+                                <button (click)="sendMessage(recepient);getChatRooms(data1['id']);findChatMessages(data1['id'],recepient)" class="btn btn-round btn-primary btn-icon" [disabled]="MessageAdd.invalid"><em
                                         class="icon ni ni-send-alt"></em></button>
                             </li>
                         </ul>
