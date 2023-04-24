@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs-websocket';
 import { EncryptionService } from './encryption.service';
+//import { Button, message } from "antd";
 
 
 //import { ChatMessage } from '../models/chat-message.model';
@@ -17,6 +18,7 @@ export class ChatService {
 
   private socket: any;
   data: any;
+  
 
   constructor(private http: HttpClient, private encryptionService: EncryptionService) {
     this.data = this.encryptionService.decrypt(localStorage.getItem('data')!);
@@ -41,15 +43,33 @@ export class ChatService {
   }
 
   onConnect(frame: any) {
-    
     console.log("connected" + this.data);
 
     this.stompClient.subscribe(
-      "/user/" + this.data['id'] + "/queue/messages" //change id to userName 
+      "/user/" + this.data['id'] + "/queue/messages",
+      (msg: any) => this.onMessageReceived(msg)
     );
-    // this.sendMessage("zakaria aadzqdqslcsqcqs");
   }
+  public onMessageReceived(msg: any): void {
+    const notification = JSON.parse(msg.body);
+    const active = JSON.parse(sessionStorage.getItem("recoil-persist") || "{}")
+      .chatActiveContact;
 
+    if (this.data['id'] === notification.senderId) {
+      console.log(this.findMessage(notification.id));
+      this.findMessage(notification.id).subscribe((message: any) => {
+        const newMessages = JSON.parse(sessionStorage.getItem("recoil-persist") || "{}")
+          .chatMessages;
+        newMessages.push(message);
+        console.log(message);
+        
+        //setMessages(newMessages);
+      });
+    } else {
+      alert("Received a new message from " + notification.senderName);
+    }
+    this.getuserActive();
+  };
   onError(error: any) {
     console.log(error);
   }
@@ -61,12 +81,14 @@ export class ChatService {
     return this.http.get<number>(`${this.baseUrl}/messages/${senderId}/${recipientId}/count`);
   }
 
-  findChatMessages(senderId: string, recipientId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/messages/${senderId}/${recipientId}`);
+  findChatMessages(senderId: string, recipientId: string) {
+    return this.http.get(`${this.baseUrl}/messages/${senderId}/${recipientId}`);
+
   }
 
-  findMessage(id: string): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/messages/${id}`);
+
+  public findMessage(id: string) {
+    return this.http.get(`${this.baseUrl}/messages/${id}`);
   }
 
   deleteMessage(id: string): void {
@@ -93,7 +115,7 @@ export class ChatService {
   public getAllUsers() {
     return this.http.get(this.baseUrl + "/users");
   }
-  public getChatRooms(senderId:any) {
+  public getChatRooms(senderId: any) {
     return this.http.get(`${this.baseUrl}/chatRooms/${senderId}`);
   }
   public getAllChatRooms() {

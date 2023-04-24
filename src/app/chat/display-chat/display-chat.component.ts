@@ -16,6 +16,9 @@ export class DisplayChatComponent  implements OnInit{
  data:any[]=[];
  convos:any[]=[];
  messages:any[]=[];
+lastMessage:any;
+
+
  input:any;
  data1:any;
  recepient:any;
@@ -32,10 +35,12 @@ export class DisplayChatComponent  implements OnInit{
 });
 
   constructor(private encrypt: EncryptionService,private chatService:ChatService ) {}
-  sendMessage() {
-    
+  sendMessage(recepientId:any) {
+    this.MessageAdd.get("recipientName")!.setValue(recepientId);
+    this.MessageAdd.get("recipientId")!.setValue(recepientId);
       this.chatService.sendMessage(this.MessageAdd.value)
-
+      this.getChatRooms(this.data1['id']);
+      //location.reload();
      
     }
  
@@ -52,12 +57,36 @@ findChatMessages(senderId:any,recipientId:any){
 this.messages=res;
 console.log(res);
 this.recepient=recipientId;
+/*
+this.messages.sort((a: any, b: any) => b.timestamp - a.timestamp);
+    // Get the most recent message
+    const lastMessages: Set<any> = new Set();
+    this.lastMessage = this.messages[0]['content'];
+    console.log("the last message"+this.lastMessage);
+    lastMessages.add(this.lastMessage);
+    lastMessages.forEach((element) => {
+      console.log("set"+element);
+    });
+    return lastMessages;
+    
+  */ 
+
+
 
  }); 
 }
 getChatRooms(senderId:any){
 this.chatService.getChatRooms(senderId).subscribe((res:any)=>{
 this.convos=res;
+this.convos.forEach((item) => {
+  /*
+  this.findChatMessages(senderId,item['recipientId']);
+  */
+ 
+  
+});
+
+
 console.log(res);
 });
 
@@ -67,10 +96,10 @@ console.log(res);
 ngOnInit(): void {
    this.getAciveUsers();
    this.data1 = this.encrypt.decrypt(localStorage.getItem('data')!);
-   this.MessageAdd.get("recipientId")!.setValue("zakaria");
+   
    this.MessageAdd.get("senderId")!.setValue(this.data1['id']);
    this.MessageAdd.get("senderName")!.setValue(this.data1['id']);
-   this.MessageAdd.get("recipientName")!.setValue("zakaria");
+   
    this.getChatRooms(this.data1['id']);
    
    

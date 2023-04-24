@@ -9,9 +9,15 @@
                             <div class="dropdown">
                                 <a href="#" class="dropdown-toggle dropdown-indicator" data-bs-toggle="dropdown">
                                     <div class="user-avatar">
-                                        <img src="./images/avatar/b-sm.jpg" alt="">
+                                      <!--  <img src="./images/avatar/b-sm.jpg" alt="">-->
+                                      
+                                        <span>{{ data1['id'][0] | uppercase }}{{ data1['id'][1] | uppercase
+                                            }} </span>
+                                            
+                                        <span class="status dot dot-lg dot-success"></span>
+                                    
                                     </div>
-                                    <div class="title">Chats</div>
+                                    <div class="title">{{data1['id']}}</div>
                                 </a>
                                 <div class="dropdown-menu">
                                     <ul class="link-list-opt no-bdr">
@@ -65,12 +71,13 @@
                             <h6 class="title overline-title-alt">Favorites</h6>
                             <ul class="fav-list">
                                 <li *ngFor="let u of data ">
-                                    <a href="#">
-                                        <div class="user-avatar">
-                                            <span>{{ u.userName[0] | uppercase }}{{ u.userName[1] | uppercase
-                                                }}</span>
+                                    <a (click)="findChatMessages(data1['id'],u.userName)">
+                                        <div *ngIf="u.userName != data1['id']" class="user-avatar">
+                                            <span>{{ u.userName[0] | uppercase }}{{ u.userName[1] | uppercase}} </span>
+                                                
                                             <span class="status dot dot-lg dot-success"></span>
                                         </div>
+                                        
                                     </a>
                                 </li>
 
@@ -79,12 +86,13 @@
                         <div class="nk-chat-list">
                             <h6 class="title overline-title-alt">Messages</h6>
                             <ul class="chat-list">
-                                <li class="chat-item" *ngFor="let u of convos ">
+                                <li class="chat-item" *ngFor="let u of convos ,let i = index">
+                                    
                                     <a class="chat-link chat-open" (click)="findChatMessages(u.senderId,u.recipientId)">
                                         <div class="chat-media user-avatar bg-purple">
                                             <span>{{ u.recipientId[0] | uppercase }}{{ u.recipientId[1] | uppercase
                                                 }}</span>
-                                            <span class="status dot dot-lg dot-gray"></span>
+                                            <span class="status dot dot-lg dot-success"></span>
                                         </div>
                                         <div class="chat-info">
                                             <div class="chat-from">
@@ -93,7 +101,9 @@
                                             </div>
                                             <div class="chat-context">
                                                 <div class="text">
-                                                    <p>You: Please confrim if you got my last messages.</p>
+                                                    <div >
+                                                  <p >tap to chat</p><!--sender Id : last message-->
+                                                </div>
                                                 </div>
                                                 <div class="status delivered">
                                                     <em class="icon ni ni-check-circle-fill"></em>
@@ -126,7 +136,7 @@
                         </div><!-- .nk-chat-list -->
                     </div>
                 </div><!-- .nk-chat-aside -->
-                <div class="nk-chat-body profile-shown">
+                <div class="nk-chat-body profile-shown"  *ngIf="recepient != null">
                     <div class="nk-chat-head">
                         <ul class="nk-chat-head-info">
                             <li class="nk-chat-body-close">
@@ -134,14 +144,20 @@
                                         class="icon ni ni-arrow-left"></em></a>
                             </li>
                             <li class="nk-chat-head-user">
+                                
                                 <div class="user-card">
-                                    <div class="user-avatar bg-purple">
-                                        <span>IH</span>
-                                    </div>
+                                    <div class="user-avatar">
+                                        <!--  <img src="./images/avatar/b-sm.jpg" alt="">-->
+                                        
+                                          <span>{{ recepient[0] | uppercase }}{{ recepient[1] | uppercase
+                                              }} </span>
+                                              
+                                          <span class="status dot dot-lg dot-success"></span>
+                                      
+                                      </div>
                                     <div class="user-info">
                                         <div class="lead-text">{{recepient}}</div>
-                                        <div class="sub-text"><span class="d-none d-sm-inline me-1">Active </span> 35m
-                                            ago</div>
+                                        <div class="sub-text"><span class="d-none d-sm-inline me-1">Active </span></div>
                                     </div>
                                 </div>
                             </li>
@@ -191,7 +207,8 @@
                         <div class="chat is-you" *ngIf="m.senderId!=data1.id">
                             <div class="chat-avatar">
                                 <div class="user-avatar bg-purple">
-                                    <span>IH</span>
+                                    <span>{{ m.senderId[0] | uppercase }}{{ m.senderId[1] | uppercase
+                                    }}</span>
                                 </div>
                             </div>
                             <div class="chat-content">
@@ -225,8 +242,8 @@
 
                                 </div>
                                 <ul class="chat-meta">
-                                    <li>Iliash Hossain</li>
-                                    <li>29 Apr, 2020 4:28 PM</li>
+                                    <li>{{m.senderId}}</li>
+                                    <li>{{m.timestamp |  date :'short'}}</li>
                                 </ul>
                             </div>
                         </div><!-- .chat -->
@@ -261,8 +278,8 @@
                                     </div>
                                 </div>
                                 <ul class="chat-meta">
-                                    <li>Abu Bin Ishtiyak</li>
-                                    <li>29 Apr, 2020 4:12 PM</li>
+                                    <li>{{m.senderId}}</li>
+                                    <li>{{m.timestamp |  date :'short'}}</li>
                                 </ul>
                             </div>
                         </div><!-- .chat -->
@@ -282,22 +299,24 @@
                                 </ul>
                             </div>
                         </div>
-                        <form [formGroup]="MessageAdd" (ngSubmit)="MessageAdd">
+                       
                             <div class="nk-chat-editor-form">
                                 <div class="form-control-wrap">
+                                    <form [formGroup]="MessageAdd" (ngSubmit)="MessageAdd">
                                     <textarea formControlName="content"
                                         class="form-control form-control-simple no-resize" rows="1"
                                         id="default-textarea" placeholder="Type your message..."></textarea>
+                                    </form>
                                 </div>
                             </div>
-                        </form>
+                       
                         <ul class="nk-chat-editor-tools g-2">
                             <li>
                                 <a href="#" class="btn btn-sm btn-icon btn-trigger text-primary"><em
                                         class="icon ni ni-happyf-fill"></em></a>
                             </li>
                             <li>
-                                <button (click)="sendMessage()" class="btn btn-round btn-primary btn-icon"><em
+                                <button (click)="sendMessage(recepient)" class="btn btn-round btn-primary btn-icon"><em
                                         class="icon ni ni-send-alt"></em></button>
                             </li>
                         </ul>
