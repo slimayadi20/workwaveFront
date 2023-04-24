@@ -316,7 +316,7 @@
                                         class="icon ni ni-happyf-fill"></em></a>
                             </li>
                             <li>
-                                <button (click)="sendMessage(recepient);getChatRooms(data1['id']);findChatMessages(data1['id'],recepient)" class="btn btn-round btn-primary btn-icon" [disabled]="MessageAdd.invalid"><em
+                                <button (click)="sendMessage(recepient);findChatMessages(data1['id'],recepient);getChatRooms(data1['id'])" class="btn btn-round btn-primary btn-icon" [disabled]="MessageAdd.invalid"><em
                                         class="icon ni ni-send-alt"></em></button>
                             </li>
                         </ul>

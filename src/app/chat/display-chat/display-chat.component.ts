@@ -60,9 +60,7 @@ public msg: any;
     // Clear the message input field
     this.MessageAdd.get("content")!.setValue("");
     this.findChatMessages(this.data1['id'],recepientId);
-    this.findChatMessages(this.data1['id'],recepientId);
-    this.findChatMessages(this.data1['id'],recepientId);
-    this.findChatMessages(this.data1['id'],recepientId);
+    
   }
 
   sendMessages(message: any) {
@@ -151,17 +149,21 @@ public msg: any;
 
     if (this.data1['id'] == notification.senderId) {
       console.log(this.chatService.findMessage(notification.id));
+      this.findChatMessages(this.data1['id'],notification.senderName);
       this.chatService.findMessage(notification.id).subscribe((message: any) => {
 
       });
     } else {
 
-      alert("Received a new message from " + notification.senderName);
-      this.findChatMessages(this.data1['id'],notification.senderName);
-      this.getChatRooms( this.data1['id'] );
+      const confirmResult = confirm(`Received a new message from ${notification.senderName}. Do you want to view it now?`);
+      if (confirmResult) {
+        this.findChatMessages(this.data1['id'],notification.senderName);
+        this.getChatRooms(this.data1['id']);
+      }
 
     }
     this.chatService.getuserActive();
+   // this.findChatMessages(this.data1['id'],notification.senderName);
   }
 
 
