@@ -16,10 +16,13 @@ export class AuthComponent implements OnInit {
   public email1: any;
   public contact: any;
   public id: any;
+  public nom: any;
+  public prenom: any;
+  public gender: any;
   data: any;
   constructor(private router: Router, private authService: AuthServiceService, private encryptionService: EncryptionService) { }
   userLogin = new FormGroup({
-    userName: new FormControl('slimayadi310', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
+    userName: new FormControl('slim710', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
     password: new FormControl('slim', [Validators.required])
 
   })
@@ -34,18 +37,24 @@ export class AuthComponent implements OnInit {
   }
   ngOnInit() {
     // your authentication code here
+    /*if (localStorage.getItem('role') != "ROLE_ADMIN") {
+      this.router.navigate(['/error-page'])
+    }*/
   }
+ 
   login() {
     this.authService.login(this.userLogin.value).subscribe(
       data => {
         if ((data as { [key: string]: any })['jwtToken'].length != 0) {
           this.id = (data as { [key: string]: any })["user"]['userName'];
           this.email1 = (data as { [key: string]: any })["user"]['email'];
-          this.contact = (data as { [key: string]: any })["user"]['phoneNumber'];
-          console.log('aaaaaaaaaaaaaaa');
+          this.contact = (data as { [key: string]: any })["user"]['phoneNumber'] ?? "undefined";
+          this.nom = (data as { [key: string]: any })["user"]['nom'] ?? "";
+          this.prenom = (data as { [key: string]: any })["user"]['prenom'] ?? "undefined";
+          this.gender = (data as { [key: string]: any })["user"]['gender'] ?? "undefined";
 
           // console.log ((data as { [key: string]: any })["user"]["role"][0]["roleName"]);
-          localStorage.setItem('data', this.encryptionService.encrypt({ id: this.id, email: this.email1, contact: this.contact, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"] }));
+          localStorage.setItem('data', this.encryptionService.encrypt({ userName: this.id, email: this.email1, phoneNumber: this.contact, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"], nom: this.nom, prenom: this.prenom, gender: this.gender }));
           this.router.navigate(['/courses/displaycourse']);
           this.router.navigate(["/"]).then(e => {
             window.location.reload();
@@ -53,13 +62,24 @@ export class AuthComponent implements OnInit {
           )
         }
       },
-      error => {
-        console.log(error.status);
-        Swal.fire(
-          'erreur!',
-          'Mot de passe ou username invalide!',
-          'error'
-        );
+      err => {
+        if (err.status == 403) {
+
+          console.log(err.status);
+          Swal.fire(
+            'erreur!',
+            'Veuillez activer votre compte',
+            'error'
+          );
+        }
+        else {
+          console.log(err.status);
+          Swal.fire(
+            'erreur!',
+            'Mot de passe ou username invalide!',
+            'error'
+          );
+        }
       }
     );
   }

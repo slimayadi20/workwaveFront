@@ -155,9 +155,7 @@ export class SidemenuComponent implements OnInit {
                 counter: 0,
                 link: '/users/displayusers',
                 icon: ''
-
               },
-
             ]
           },
           {
@@ -165,7 +163,6 @@ export class SidemenuComponent implements OnInit {
             title: "User holiday",
             counter: 0,
             icon:'icon ni ni-users-fill',
-
             subMenus: [
               {
                 title: "Holidays List",
@@ -177,11 +174,8 @@ export class SidemenuComponent implements OnInit {
 
             ]
           },
-
-
         ]
         break;
-
 
       case "Project manager":
         this.menuapp = [
