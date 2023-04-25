@@ -30,4 +30,7 @@ export class TransactionsService {
   delete(id: number): Observable<any> {
     return this.http.delete(`${baseUrl}/deleteTransaction/${id}`);
   }
+  getbyBankAccount(id: Number) {
+    return this.http.get(`${baseUrl}/BankAccountByUser/${id}`);
+  }
 }

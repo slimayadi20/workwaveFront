@@ -101,3 +101,7 @@
   height: 100%;
   object-fit: cover;
 }
+.btn-dim.btn-primary{
+  color: #ffffff;
+
+}

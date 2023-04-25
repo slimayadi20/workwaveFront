@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthServiceService } from 'src/app/Shared/auth-service.service';
 import { EncryptionService } from 'src/app/Shared/encryption.service';
-
+import { BankAccountService } from 'src/app/Shared/bank-account.service';
 @Component({
   selector: 'app-personalinformation',
   templateUrl: './personalinformation.component.html',
   styleUrls: ['./personalinformation.component.css']
 })
 export class PersonalinformationComponent implements OnInit {
-  constructor(private encrypt: EncryptionService, public service: AuthServiceService) { }
+  constructor(private encrypt: EncryptionService, public service: AuthServiceService, private BAS : BankAccountService) { }
 
   data: any;
   countryCode: any;
