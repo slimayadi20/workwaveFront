@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgPipesModule} from 'ngx-pipes';
 
 
+
 @NgModule({
   declarations: [
     DisplayChatComponent,

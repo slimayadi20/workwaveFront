@@ -6,6 +6,10 @@ import { formatDate } from '@angular/common';
 import { Subscription } from 'rxjs';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs-websocket';
+//import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+
+
 
 
 
@@ -16,18 +20,22 @@ import * as Stomp from 'stompjs-websocket';
 })
 export class DisplayChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
+
   data: any;
   convos: any;
   messages: any;
   lastMessage: any;
+
+ 
+ 
   private messagesSubscription!: Subscription;
 
-//////
+  //////
 
-public stompClient: any;
-public msg: any;
+  public stompClient: any;
+  public msg: any;
 
-/////
+  /////
   input: any;
   data1: any;
   recepient: any;
@@ -51,28 +59,28 @@ public msg: any;
     this.MessageAdd.get("senderId")!.setValue(this.data1['id']);
     this.MessageAdd.get("senderName")!.setValue(this.data1['id']);
     this.MessageAdd.get("timestamp")!.setValue(formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ss', 'en', 'Africa/Tunis').toString());
-    
+
     // Send the message via WebSocket
     this.sendMessages(this.MessageAdd.value);
     this.getChatRooms(this.data1['id']);
-      
-    
+
+
     // Clear the message input field
     this.MessageAdd.get("content")!.setValue("");
-    this.findChatMessages(this.data1['id'],recepientId);
-    
+    this.findChatMessages(this.data1['id'], recepientId);
+
   }
 
   sendMessages(message: any) {
     this.stompClient.send("/app/chat", { 'sender': 'websocket' }, JSON.stringify(message));
   }
 
-  
-
-  
 
 
-   async getAciveUsers() {
+
+
+
+  async getAciveUsers() {
     try {
       const res = await this.chatService.getuserActive().toPromise();
       this.data = res;
@@ -87,19 +95,19 @@ public msg: any;
       this.messages = await this.chatService.findChatMessages(senderId, recipientId).toPromise();
       this.recepient = recipientId;
       //this.getChatRooms(this.data1['id']);
-      
+
     } catch (error) {
       console.log(error);
     }
   }
-  
+
 
   async getChatRooms(senderId: any) {
     try {
       const res = await this.chatService.getChatRooms(senderId).toPromise();
       this.convos = res;
       // this.convos.forEach((item:any) => {
-        //display latest message
+      //display latest message
       // });
     } catch (error) {
       console.log(error);
@@ -137,7 +145,15 @@ public msg: any;
     );
   }
 
-
+  Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    timer: 3000,
+    timerProgressBar: true
+  })
+  onError(error: any) {
+    console.log(error);
+  }
 
   public onMessageReceived(msg: any): void {
     const notification = JSON.parse(msg.body);
@@ -149,27 +165,39 @@ public msg: any;
 
     if (this.data1['id'] == notification.senderId) {
       console.log(this.chatService.findMessage(notification.id));
-      this.findChatMessages(this.data1['id'],notification.senderName);
+      this.findChatMessages(this.data1['id'], notification.senderName);
       this.chatService.findMessage(notification.id).subscribe((message: any) => {
 
       });
-    } else {
-
-      const confirmResult = confirm(`Received a new message from ${notification.senderName}. Do you want to view it now?`);
-      if (confirmResult) {
-        this.findChatMessages(this.data1['id'],notification.senderName);
-        this.getChatRooms(this.data1['id']);
-      }
+    } 
+    else
+     {
+        if (notification.senderName!=this.recepient){
+          this.Toast.fire({
+            title: 'Message Received',
+            text: `Received a new message from ${notification.senderName}.`,
+            confirmButtonColor: 'primary',
+            confirmButtonText: 'View Now',
+            
+          }).then((result) => {
+            if (result.isConfirmed) {
+              
+             this.findChatMessages(this.data1['id'], notification.senderName);
+                this.getChatRooms(this.data1['id']);
+            }
+          });
+    }
+    else{
+    this.findChatMessages(this.data1['id'], notification.senderName);
+    this.getChatRooms(this.data1['id']);
+  }
 
     }
     this.chatService.getuserActive();
-   // this.findChatMessages(this.data1['id'],notification.senderName);
+    // this.findChatMessages(this.data1['id'],notification.senderName);
   }
 
-
-  onError(error: any) {
-    console.log(error);
-  }
+ 
 
 
   ngOnInit(): void {
@@ -179,8 +207,8 @@ public msg: any;
 
 
     ///////WEB-SOCKET
-    
-    
+
+
     const socket = new SockJS('http://localhost:8082/ws');
     this.connect();
 
