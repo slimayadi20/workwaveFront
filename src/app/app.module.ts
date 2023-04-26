@@ -33,6 +33,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     DashboardComponentComponent,
     RegistersuccessComponent,
     ResetPasswordComponent,
+    
   ],
   imports: [
     BrowserModule,
