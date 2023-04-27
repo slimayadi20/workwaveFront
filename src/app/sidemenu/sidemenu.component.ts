@@ -121,13 +121,13 @@ export class SidemenuComponent implements OnInit {
           },]
         this.menudashboard = [
           {
-            mainTitle: "Dashboards",
-            title: "Dashboard",
+            mainTitle: "Finance",
+            title: "Finance",
             counter: 0,
             icon:'icon ni ni-activity-round-fill',
             subMenus: [
               {
-                title: "Sales",
+                title: "Invoices",
                 counter: 0,
                 link: 'payements/displaypayements',
                 icon: ''
@@ -226,12 +226,12 @@ export class SidemenuComponent implements OnInit {
           },]
         this.menudashboard = [
           {
-            mainTitle: "Dashboards",
-            title: "Dashboard",
+            mainTitle: "Finance",
+            title: "Finance",
             counter: 0,
             subMenus: [
               {
-                title: "Sales",
+                title: "Invoices",
                 counter: 0,
                 link: 'payements/displaypayements',
                 icon: ''

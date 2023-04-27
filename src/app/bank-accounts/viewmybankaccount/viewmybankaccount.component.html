@@ -67,12 +67,10 @@
                                       </div>
                                     </div>
                                   </div>
-                               
-
                                 <div class="col-12">
                                     <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                                         <li>
-                                            <button [disabled]="!bankForm.valid" data-bs-dismiss="modal"
+                                            <button  data-bs-dismiss="modal"
                                                 class="btn btn-lg btn-primary" (click)="updateBankAccount()">Update
                                                 Bank Account</button>
                                         </li>
@@ -238,7 +236,7 @@
                                                 <div class="profile-balance-group gx-4">
                                                     <div class="profile-balance-sub">
                                                         <div class="profile-balance-amount">
-                                                            <ng-container *ngIf="banksaccount.limitAmount  - banksaccount.balance >= 1000 else greenBadge">
+                                                            <ng-container *ngIf="banksaccount.limitAmount  - banksaccount.balance <= 1000 else greenBadge">
                                                                 <span class="badge badge-sm badge-dot has-bg bg-danger d-none d-sm-inline-flex blink">{{banksaccount.limitAmount}}</span>
                                                             </ng-container>
                                                             <ng-template #greenBadge>
@@ -252,7 +250,7 @@
                                     </div>
                                     
                                     <div class="nk-block">
-                                        <h6 class="lead-text mb-3">Recent Transactions</h6>
+                                        <h6 class="lead-text mb-3">Transactions</h6>
                                         <div class="nk-block-des text-soft">
                                             <p>You have total {{banksaccount.transactions.length}} transactions.</p>
                                         </div>
@@ -270,6 +268,44 @@
                                                
                                                 <div class="nk-tb-col">
                                                     <span class="sub-text">Transaction Date</span>
+                                                </div>
+                                            </div>
+                                            <div class="nk-tb-item" *ngFor="let t of transactions">
+                                                <div class="nk-tb-col">
+                                                    <a href="#"><span class="fw-bold">#{{t.id}}</span></a>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-sm">
+                                                        <span class="title">{{t.description}}</span>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-xxl">
+                                                    <span class="amount">$ {{t.amount}}</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="lead-text text-primary">{{ t.transactionDate | date:'dd MMMM yyyy' }}</span>
+                                                  </div>
+                                            </div>
+                                            
+                                        </div><!-- .nk-tb-list -->
+                                    </div>
+                                    <div class="nk-block" *ngIf="role == 'Admin'">
+                                        <h6 class="lead-text mb-3">Invoices</h6>
+                                        <div class="nk-block-des text-soft">
+                                            <p>You have total {{banksaccount.invoices.length}} Invoices.</p>
+                                        </div>
+                                        <div class="nk-tb-list nk-tb-ulist is-compact card">
+                                            <div class="nk-tb-item nk-tb-head">
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Invoice ID</span>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-sm">
+                                                    <span class="sub-text">Desctiption</span>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-xxl">
+                                                    <span class="sub-text">Amount Due</span>
+                                                </div>
+                                               
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Issue Date</span>
                                                 </div>
                                             </div>
                                             <div class="nk-tb-item" *ngFor="let t of transactions">

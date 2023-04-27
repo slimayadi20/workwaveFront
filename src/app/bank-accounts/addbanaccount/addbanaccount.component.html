@@ -15,7 +15,7 @@
                         <div class="card-inner">
                             <h5 class="card-title">Bank Account Details</h5>
                             <p>please enter your bank account details.</p>
-                            <form action="#" class="gy-3 form-settings">
+                            <form  [formGroup]="bankForm" class="gy-3 form-settings">
                                 <div class="row g-3 align-center">
                                     <div class="col-lg-5">
                                         <div class="form-group">
@@ -26,7 +26,22 @@
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control" id="site-name" value="My Store">
+                                                <input formControlName="bankName" type="text" class="form-control" id="site-name" placeholder="Bank Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="site-name">Account Name</label>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="accountName" type="text" class="form-control" id="site-name" placeholder="Account Name">
                                             </div>
                                         </div>
                                     </div>
@@ -37,38 +52,11 @@
                                             <label class="form-label" for="site-email">Bank Account Number</label>
                                         </div>
                                     </div>
-                                    <script>var number = document.getElementById('number');
-                                        number.addEventListener('input', function(event) {
-                                          var pos = this.selectionStart,
-                                              val = this.value,
-                                              spc = (val.substr(0, pos).match(/\s/g) || []).length,
-                                              num = val.replace(/\s/g, ''),
-                                              len = num.length,
-                                              prv = this.prev != null ? this.prev : '',
-                                              ins = prv != this.value,
-                                              pad = Math.floor(len / 4),
-                                              nex = '';
-                                        
-                                          if (ins) {
-                                            for (var i = 0; i <= pad; i++)
-                                              nex += num.substr(i * 4, 4)+(pad == 0 || pad == i ? '' : ' ');
-                                        
-                                            this.value = nex+num.substr(i * 4 + 4);
-                                        
-                                            var prevSpc = (val.substr(0, pos).match(/\s/g) || []).length,
-                                                  currSpc = (this.value.substr(0, pos).match(/\s/g) || []).length,
-                                                  newPos = pos + (currSpc - prevSpc);
-                                        
-                                            this.setSelectionRange(newPos, newPos);
-                                          }
-                                        
-                                          this.prev = this.value;
-                                        });
-                                        </script>
+                                 
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control" name="number" id="number" placeholder="4242 4242 4242 4242">
+                                                <input formControlName="accountNumber" type="text" class="form-control" name="number" id="number" placeholder="4242 4242 4242 4242">
                                             </div>
                                         </div>
                                     </div>
@@ -76,14 +64,13 @@
                                 <div class="row g-3 align-center">
                                     <div class="col-lg-5">
                                         <div class="form-group">
-                                            <label class="form-label" for="site-copyright">Site Copyright</label>
-                                            <span class="form-note">Copyright information of your website.</span>
+                                            <label class="form-label" for="site-copyright">Limit Amount</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control" id="site-copyright" value="&copy; 2019, DashLite. All Rights Reserved.">
+                                                <input formControlName="limitAmount" type="text" class="form-control" id="site-copyright" placeholder="Limit Ex: 15000">
                                             </div>
                                         </div>
                                     </div>
@@ -91,68 +78,25 @@
                                 <div class="row g-3 align-center">
                                     <div class="col-lg-5">
                                         <div class="form-group">
-                                            <label class="form-label">Allow Registration</label>
-                                            <span class="form-note">Enable or disable registration from site.</span>
+                                            <label class="form-label">Status</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
-                                        <ul class="custom-control-group g-3 align-center flex-wrap">
-                                            <li>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" checked name="reg-public" id="reg-enable">
-                                                    <label class="custom-control-label" for="reg-enable">Enable</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" name="reg-public" id="reg-disable">
-                                                    <label class="custom-control-label" for="reg-disable">Disable</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" name="reg-public" id="reg-request">
-                                                    <label class="custom-control-label" for="reg-request">On Request</label>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        
+                                            <div class="form-group">
+                                              <div class="custom-control custom-switch me-n2 checked">
+                                                <input type="checkbox" class="custom-control-input" id="status" formControlName="status">
+                                                <label class="custom-control-label" for="status"></label>
+                                              </div>
+                                            
+                                          </div>
                                     </div>
                                 </div>
-                                <div class="row g-3 align-center">
-                                    <div class="col-lg-5">
-                                        <div class="form-group">
-                                            <label class="form-label">Main Website</label>
-                                            <span class="form-note">Specify the URL if your main website is external.</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7">
-                                        <div class="form-group">
-                                            <div class="form-control-wrap">
-                                                <input type="text" class="form-control" name="site-url" value="https://www.softnio.com">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row g-3 align-center">
-                                    <div class="col-lg-5">
-                                        <div class="form-group">
-                                            <label class="form-label" for="site-off">Maintanance Mode</label>
-                                            <span class="form-note">Enable to make website make offline.</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7">
-                                        <div class="form-group">
-                                            <div class="custom-control custom-switch">
-                                                <input type="checkbox" class="custom-control-input" name="reg-public" id="site-off">
-                                                <label class="custom-control-label" for="site-off">Offline</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="row g-3">
                                     <div class="col-lg-7 offset-lg-5">
                                         <div class="form-group mt-2">
-                                            <button type="submit" class="btn btn-lg btn-primary">Update</button>
+                                            <button type="submit" (click)="addBankAccount()" class="btn btn-lg btn-primary">Add Bank Account</button>
                                         </div>
                                     </div>
                                 </div>

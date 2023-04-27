@@ -6,6 +6,7 @@ import { EncryptionService } from 'src/app/Shared/encryption.service';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { Router } from '@angular/router';
+import { InvoicesService } from 'src/app/Shared/invoices.service';
 @Component({
   selector: 'app-viewmybankaccount',
   templateUrl: './viewmybankaccount.component.html',
@@ -18,6 +19,7 @@ export class ViewmybankaccountComponent implements OnInit{
   data: any;  
   username ='';
   transactions: any[] = [];
+  invoices : any[] = [];
   bankForm: FormGroup = new FormGroup({
     accountName: new FormControl('', [Validators.minLength(2), Validators.maxLength(20)]),
     status: new FormControl('', [Validators.minLength(2), Validators.maxLength(20)]),
@@ -30,19 +32,19 @@ export class ViewmybankaccountComponent implements OnInit{
   })
   showSuccess: boolean = false;
   amount = '';
-constructor(private router :Router ,private BAS:BankAccountService, private TS:TransactionsService, private auth : AuthServiceService,private encrypt: EncryptionService){}
+  role:String ='';
+constructor(private INV: InvoicesService,private router :Router ,private BAS:BankAccountService, private TS:TransactionsService, private auth : AuthServiceService,private encrypt: EncryptionService){}
 
   ngOnInit(): void {
     this.initConfig();
-
     this.getUser();
     this.getBankAccount();
- 
   }
   getUser(){
     this.data = this.encrypt.decrypt(localStorage.getItem('data')!);
     console.log(this.data);
     this.username = this.data.userName;
+    this.role= this.data.role;
     console.log(this.username);
   }
   getBankAccount(){
@@ -50,6 +52,7 @@ constructor(private router :Router ,private BAS:BankAccountService, private TS:T
       console.log(e);
       this.banksaccount = e
       this.transactions =e.transactions;
+      this.invoices=e.invoices;
       console.log(this.transactions);
       this.bankForm.setValue({
         accountName: this.banksaccount.accountName,
@@ -75,12 +78,13 @@ constructor(private router :Router ,private BAS:BankAccountService, private TS:T
     });
   }
   deleteBankAccount(){
-    if(window.confirm('Are you sure you want to delete the bank account')){
+    if(window.confirm('Are you sure you want to delete the bank account  \r\n All the Data associated to it will be lost')){
     this.BAS.deleteBankAccount(this.banksaccount.id).subscribe((e: any) => {
       console.log(e);
     });
   
-    
+    this.router.navigate(['/bank/mybank']);
+
   }
   this.router.navigate(['/users/personalinformation']);
   }
