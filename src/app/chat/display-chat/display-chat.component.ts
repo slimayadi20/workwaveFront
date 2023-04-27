@@ -82,10 +82,13 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     this.MessageAdd.get("senderId")!.setValue(this.data1['id']);
     this.MessageAdd.get("senderName")!.setValue(this.data1['id']);
     this.MessageAdd.get("timestamp")!.setValue(formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ss', 'en', 'Africa/Tunis').toString());
-    this.MessageAdd.get("content")!.setValue("Call Started...");
+    this.MessageAdd.get("content")!.setValue(this.data1['id']+" "+"Started a Video Call");
     // Send the message via WebSocket
+    this.video="oui";
+    console.log("videooo send 2"+this.video);
     this.sendMessages(this.MessageAdd.value);
-    this.video=true;
+    
+ 
     
   }
 
@@ -158,20 +161,22 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
 
 
   onConnect(frame: any) {
-    console.log("connected" + this.data);
-
-    this.stompClient.subscribe(
+    
+      this.stompClient.subscribe(
       "/user/" + this.data1['id'] + "/queue/messages",
       (msg: any) => this.onMessageReceived(msg)
+      
     );
+    
+    
   }
 
   Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
-    timer: 3000,
+    timer: 10000,
     timerProgressBar: true
-  })
+  });
   onError(error: any) {
     console.log(error);
   }
@@ -195,25 +200,12 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     else
      {
         if (notification.senderName!=this.recepient){
-          if(this.video==true){
+       
+          
             this.Toast.fire({
-              title: 'Message Received',
-              text: `Join Call With ${notification.senderName}.`,
-              confirmButtonColor: 'primary',
-              confirmButtonText: 'Join Now',
-              
-            }).then((result) => {
-              if (result.isConfirmed) {
-                
-                this.router.navigate(['/chat/jitsi']);
-              }
-            });
-          }
-          else{
-          this.Toast.fire({
             title: 'Message Received',
             text: `Received a new message from ${notification.senderName}.`,
-            confirmButtonColor: 'primary',
+            confirmButtonColor: 'green',
             confirmButtonText: 'View Now',
             
           }).then((result) => {
@@ -224,8 +216,10 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
             }
           });
         }
-    }
+        
+    
     else{
+      
     this.findChatMessages(this.data1['id'], notification.senderName);
     this.getChatRooms(this.data1['id']);
   }

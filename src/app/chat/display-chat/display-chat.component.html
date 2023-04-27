@@ -219,6 +219,10 @@
                                             <li class="d-none d-sm-block"><a href="#"
                                                     class="btn btn-icon btn-sm btn-trigger"><em
                                                         class="icon ni ni-reply-fill"></em></a></li>
+
+                                                        <li *ngIf="m.content.includes('Started a Video Call')" class="d-none d-sm-block"><a [routerLink]="['/chat/jitsi', { id: data1['id'],recipient:recepient ,video:true}]"
+                                                            class="btn btn-icon btn-sm btn-trigger"><em
+                                                                class="icon ni ni-video-fill "></em></a></li>
                                             <li>
                                                 <div class="dropdown">
                                                     <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle"
@@ -229,10 +233,12 @@
                                                             <li class="d-sm-none"><a href="#"><em
                                                                         class="icon ni ni-reply-fill"></em> Reply</a>
                                                             </li>
+                                                            
                                                             <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em>
                                                                     Edit</a></li>
                                                             <li><a href="#"><em class="icon ni ni-trash-fill"></em>
                                                                     Remove</a></li>
+                                                                    
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -256,6 +262,9 @@
                                             <li class="d-none d-sm-block"><a href="#"
                                                     class="btn btn-icon btn-sm btn-trigger"><em
                                                         class="icon ni ni-reply-fill"></em></a></li>
+                                                        <li *ngIf="m.content.includes('Started a Video Call')" class="d-none d-sm-block"><a [routerLink]="['/chat/jitsi', { id: data1['id'],recipient:recepient ,video:true}]"
+                                                            class="btn btn-icon btn-sm btn-trigger"><em
+                                                                class="icon ni ni-video-fill "></em></a></li>
                                             <li>
                                                 <div class="dropdown">
                                                     <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle"
