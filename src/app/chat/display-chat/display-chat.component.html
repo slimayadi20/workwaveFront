@@ -62,7 +62,7 @@
                                     <div class="form-icon form-icon-left">
                                         <em class="icon ni ni-search"></em>
                                     </div>
-                                    <input type="text" class="form-control form-round" id="default-03"
+                                    <input [(ngModel)]="term" type="text" class="form-control form-round" id="default-03"
                                         placeholder="Search by name">
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                         <div class="nk-chat-list">
                             <h6 class="title overline-title-alt">Messages</h6>
                             <ul class="chat-list">
-                                <li class="chat-item" *ngFor="let u of convos ,let i = index">
+                                <li class="chat-item" *ngFor="let u of convos|filter:term ,let i = index;">
                                     
                                     <a class="chat-link chat-open" (click)="findChatMessages(u.senderId,u.recipientId)">
                                         <div class="chat-media user-avatar bg-purple">
@@ -163,9 +163,9 @@
                             </li>
                         </ul>
                         <ul class="nk-chat-head-tools">
-                            <li><a href="#" class="btn btn-icon btn-trigger text-primary"><em
+                            <li><a [routerLink]="['/chat/jitsi', { id: data1['id'],recipient:recepient ,video:true}]" (click)="sendMessage2(recepient)"class="btn btn-icon btn-trigger text-primary"><em
                                         class="icon ni ni-call-fill"></em></a></li>
-                            <li><a href="#" class="btn btn-icon btn-trigger text-primary"><em
+                            <li><a [routerLink]="['/chat/jitsi', { id: data1['id'],recipient:recepient ,video:false}]" (click)="sendMessage2(recepient)"class="btn btn-icon btn-trigger text-primary"><em
                                         class="icon ni ni-video-fill"></em></a></li>
                             <li class="d-none d-sm-block">
                                 <div class="dropdown">
@@ -331,4 +331,6 @@
 <script>
     global = globalThis // fix for "global not defined" error
 </script>
+
+
 <!-- content @e -->

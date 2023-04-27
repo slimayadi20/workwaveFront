@@ -8,6 +8,8 @@ import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs-websocket';
 //import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { RouterModule,Router } from '@angular/router';
+
 
 
 
@@ -25,6 +27,8 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
   convos: any;
   messages: any;
   lastMessage: any;
+  term: any;
+  video:any;
 
  
  
@@ -46,12 +50,12 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     senderId: new FormControl('zakaria'),
     senderName: new FormControl('zakaria'),
     recipientName: new FormControl('slimayadi'),
-    content: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
+    content: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]),
     //timestamp: new FormControl(new Date().toISOString())
     timestamp: new FormControl(formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ss', 'en', 'Africa/Tunis').toString())
   });
 
-  constructor(private encrypt: EncryptionService, private chatService: ChatService) { }
+  constructor(private encrypt: EncryptionService, private chatService: ChatService,private router:Router ) { }
 
   sendMessage(recepientId: any) {
     this.MessageAdd.get("recipientName")!.setValue(recepientId);
@@ -67,12 +71,27 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
 
     // Clear the message input field
     this.MessageAdd.get("content")!.setValue("");
+    
     this.findChatMessages(this.data1['id'], recepientId);
 
   }
 
+  sendMessage2(recepientId: any) {
+    this.MessageAdd.get("recipientName")!.setValue(recepientId);
+    this.MessageAdd.get("recipientId")!.setValue(recepientId);
+    this.MessageAdd.get("senderId")!.setValue(this.data1['id']);
+    this.MessageAdd.get("senderName")!.setValue(this.data1['id']);
+    this.MessageAdd.get("timestamp")!.setValue(formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ss', 'en', 'Africa/Tunis').toString());
+    this.MessageAdd.get("content")!.setValue("Call Started...");
+    // Send the message via WebSocket
+    this.sendMessages(this.MessageAdd.value);
+    this.video=true;
+    
+  }
+
   sendMessages(message: any) {
     this.stompClient.send("/app/chat", { 'sender': 'websocket' }, JSON.stringify(message));
+    this.getChatRooms(this.data1['id']);
   }
 
 
@@ -106,6 +125,8 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     try {
       const res = await this.chatService.getChatRooms(senderId).toPromise();
       this.convos = res;
+      
+      
       // this.convos.forEach((item:any) => {
       //display latest message
       // });
@@ -157,6 +178,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
 
   public onMessageReceived(msg: any): void {
     const notification = JSON.parse(msg.body);
+    console.log("le messageeee"+msg.body);
     //const active = JSON.parse(sessionStorage.getItem("recoil-persist") || "{}")
     //.chatActiveContact;
 
@@ -173,6 +195,21 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     else
      {
         if (notification.senderName!=this.recepient){
+          if(this.video==true){
+            this.Toast.fire({
+              title: 'Message Received',
+              text: `Join Call With ${notification.senderName}.`,
+              confirmButtonColor: 'primary',
+              confirmButtonText: 'Join Now',
+              
+            }).then((result) => {
+              if (result.isConfirmed) {
+                
+                this.router.navigate(['/chat/jitsi']);
+              }
+            });
+          }
+          else{
           this.Toast.fire({
             title: 'Message Received',
             text: `Received a new message from ${notification.senderName}.`,
@@ -186,6 +223,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
                 this.getChatRooms(this.data1['id']);
             }
           });
+        }
     }
     else{
     this.findChatMessages(this.data1['id'], notification.senderName);
@@ -214,4 +252,5 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
 
 
   }
+
 }

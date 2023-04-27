@@ -15,6 +15,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { MainComponent } from './main/main.component';
 import { DashboardComponentComponent } from './dashboard-component/dashboard-component.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { JitsiComponentComponent } from './chat/jitsi-component/jitsi-component.component';
 
  
 
@@ -30,6 +31,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     SidemenuComponent,
     MainComponent,
     DashboardComponentComponent,
+    JitsiComponentComponent,
   ],
   imports: [
     BrowserModule,

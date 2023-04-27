@@ -9,6 +9,8 @@ import { DisplayCalendarComponent } from './display-calendar/display-calendar.co
 import { CreateEventComponent } from './create-event/create-event.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgPipesModule} from 'ngx-pipes';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { JitsiComponentComponent } from './jitsi-component/jitsi-component.component';
 
 
 
@@ -17,7 +19,7 @@ import {NgPipesModule} from 'ngx-pipes';
     DisplayChatComponent,
     DisplayCalendarComponent,
     CreateEventComponent,
-
+    
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,9 @@ import {NgPipesModule} from 'ngx-pipes';
     FullCalendarModule,
     FormsModule,
     ReactiveFormsModule,
-    NgPipesModule
+    NgPipesModule,
+   Ng2SearchPipeModule 
+
     
   ]
  
