@@ -105,6 +105,11 @@ export class AuthServiceService {
   }
   ban(body: any) {
     return this.http.put(this.PATH_OF_API + '/banUser', body)
-
+  }
+  getbyBankAccount(id: Number) {
+    return this.http.get(`${this.PATH_OF_API}/UserByBankAccount/${id}`);
+  }
+  getbyNoPayments() {
+    return this.http.get(`${this.PATH_OF_API}/unpaid`);
   }
 }

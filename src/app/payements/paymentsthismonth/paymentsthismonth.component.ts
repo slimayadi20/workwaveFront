@@ -6,15 +6,15 @@ import { EncryptionService } from 'src/app/Shared/encryption.service';
 import { PaymentsService } from 'src/app/Shared/payments.service';
 import { forkJoin, map } from 'rxjs';
 import Swal from 'sweetalert2';
-
 @Component({
-  selector: 'app-list-payement',
-  templateUrl: './list-payement.component.html',
-  styleUrls: ['./list-payement.component.css']
+  selector: 'app-paymentsthismonth',
+  templateUrl: './paymentsthismonth.component.html',
+  styleUrls: ['./paymentsthismonth.component.css']
 })
+export class PaymentsthismonthComponent {
 
 
-export class ListPayementComponent implements OnInit  {
+
   banksaccount: any;
   data: any;  
   username ='';

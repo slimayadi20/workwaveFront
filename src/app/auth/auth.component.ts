@@ -22,8 +22,8 @@ export class AuthComponent implements OnInit {
   data: any;
   constructor(private router: Router, private authService: AuthServiceService, private encryptionService: EncryptionService) { }
   userLogin = new FormGroup({
-    userName: new FormControl('slim710', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
-    password: new FormControl('slim', [Validators.required])
+    userName: new FormControl('wassim', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
+    password: new FormControl('wassim', [Validators.required])
 
   })
   @ViewChild(NgProgressComponent) progressBar!: NgProgressComponent;

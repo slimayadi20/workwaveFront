@@ -54,6 +54,7 @@ constructor(private INV: InvoicesService,private router :Router ,private BAS:Ban
       this.transactions =e.transactions;
       this.invoices=e.invoices;
       console.log(this.transactions);
+      console.log(this.invoices);
       this.bankForm.setValue({
         accountName: this.banksaccount.accountName,
         status : this.banksaccount.status,

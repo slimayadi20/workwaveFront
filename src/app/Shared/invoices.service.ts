@@ -31,4 +31,7 @@ export class InvoicesService {
   getById(id: number): Observable<any> {
     return this.http.get(`${baseUrl}/Invoice/${id}`);
   }
+  getbyBankAccount(id: Number) {
+    return this.http.get(`${baseUrl}/InvoicesbyBankAccount/${id}`);
+  }
 }

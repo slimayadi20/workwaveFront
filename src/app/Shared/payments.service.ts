@@ -32,7 +32,10 @@ export class PaymentsService {
     return this.http.get(`${baseUrl}/Payment/${id}`);
   }
 
-  getPaymentsByBankAccount(idBankAccount: number) {
-    return this.http.get(`${baseUrl}/PaymentsByBankAccount/${idBankAccount}`);
+  getPaymentsThisMonth(idBankAccount: number) {
+    return this.http.get(`${baseUrl}/usersPaid?bankAccountId=${idBankAccount}`);
+  }
+  Pay(ids: number,idr:number,userName:String) {
+    return this.http.post(`${baseUrl}/Paysalary?userId=${userName}&senderBankAccountId=${ids}&receiverBankAccountId=${idr}`,null);
   }
 }

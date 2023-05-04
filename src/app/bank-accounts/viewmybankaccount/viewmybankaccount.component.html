@@ -295,7 +295,7 @@
                                         <div class="nk-tb-list nk-tb-ulist is-compact card">
                                             <div class="nk-tb-item nk-tb-head">
                                                 <div class="nk-tb-col">
-                                                    <span class="sub-text">Invoice ID</span>
+                                                    <span class="sub-text">Invoice Number</span>
                                                 </div>
                                                 <div class="nk-tb-col tb-col-sm">
                                                     <span class="sub-text">Desctiption</span>
@@ -308,18 +308,18 @@
                                                     <span class="sub-text">Issue Date</span>
                                                 </div>
                                             </div>
-                                            <div class="nk-tb-item" *ngFor="let t of transactions">
+                                            <div class="nk-tb-item" *ngFor="let i of invoices">
                                                 <div class="nk-tb-col">
-                                                    <a href="#"><span class="fw-bold">#{{t.id}}</span></a>
+                                                    <a href="#"><span class="fw-bold">#{{i.id}}</span></a>
                                                 </div>
                                                 <div class="nk-tb-col tb-col-sm">
-                                                        <span class="title">{{t.description}}</span>
+                                                        <span class="title">{{i.description}}</span>
                                                 </div>
                                                 <div class="nk-tb-col tb-col-xxl">
-                                                    <span class="amount">$ {{t.amount}}</span>
+                                                    <span class="amount">$ {{i.amountDue}}</span>
                                                 </div>
                                                 <div class="nk-tb-col">
-                                                    <span class="lead-text text-primary">{{ t.transactionDate | date:'dd MMMM yyyy' }}</span>
+                                                    <span class="lead-text text-primary">{{ i.transactionDate | date:'dd MMMM yyyy' }}</span>
                                                   </div>
                                             </div>
                                             

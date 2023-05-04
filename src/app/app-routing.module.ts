@@ -20,6 +20,8 @@ const routes: Routes = [
   { path: 'projects', canActivate: [LoginguardGuard], loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule) },
   { path: 'products', canActivate: [LoginguardGuard], loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
   { path: 'payements', canActivate: [LoginguardGuard], loadChildren: () => import('./payements/payements.module').then(m => m.PayementsModule) },
+  { path: 'invoices', canActivate: [LoginguardGuard], loadChildren: () => import('./invoices/invoices.module').then(m => m.InvoicesModule) },
+
   { path: 'chat', canActivate: [LoginguardGuard], loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule) },
   { path: 'users', canActivate: [LoginguardGuard], loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
   { path: 'bank', canActivate: [LoginguardGuard], loadChildren: () => import('./bank-accounts/bank-accounts.module').then(m => m.BankAccountsModule) },
