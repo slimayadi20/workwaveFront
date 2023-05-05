@@ -86,6 +86,12 @@ export class CreateRoleComponent implements OnInit, OnChanges {
     this.service.updateRole(this.selectedUsers, this.roleForm.get("roleName")?.value).subscribe((res: any) => {
       console.log(res);
       window.location.reload()
-    })
+    }, (err: any) => {
+      this.getUserByRole();
+      this.getusers();
+      window.location.reload()
+
+    }
+    )
   }
 }

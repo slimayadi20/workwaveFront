@@ -14,7 +14,7 @@ export class NotificationComponent implements OnInit {
   roleName = 'Administrator';
   roles: any[] = [];
   user: any[] = [];
-  data: any;
+  data: any[] = []; 
   selectedRoleId: any;
   roleDescription: any;
 
@@ -26,7 +26,7 @@ export class NotificationComponent implements OnInit {
     { name: 'Julee Rossignol', avatarUrl: 'https://demos.pixinvent.com/materialize-html-admin-template/assets/img/avatars/4.png', hovered: false },
     { name: 'Test User', avatarUrl: 'https://demos.pixinvent.com/materialize-html-admin-template/assets/img/avatars/4.png', hovered: false },
   ];
-  constructor(private service: AuthServiceService, private cdr: ChangeDetectorRef) { }
+  constructor(public service: AuthServiceService, private cdr: ChangeDetectorRef) { }
   extraUsersTooltip = '';
 
   handleHover(user: any) {
@@ -51,7 +51,7 @@ export class NotificationComponent implements OnInit {
   getRole(role: any) {
     this.service.getrole(role).subscribe((res: any) => {
       this.user = res;
-      console.log(this.roles);
+      console.log(this.user);
 
     })
   }
@@ -85,7 +85,7 @@ export class NotificationComponent implements OnInit {
   getUserCount(roleName: string): number {
     return this.roleUserCount.get(roleName) || 0;
   }
-  update(roleId:any){
-    localStorage.setItem('id',roleId);
+  update(roleId: any) {
+    localStorage.setItem('id', roleId);
   }
 }

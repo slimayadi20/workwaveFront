@@ -120,3 +120,14 @@ img {
   .avatar img:active {
     transform: scale(0.9);
   }
+  .user-avatar:hover  {
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: transform 0.5s ease;
+  }
+  
+  .user-avatar:active {
+    transform: scale(0.9);
+    transition: transform 0.5s ease;
+  }
+  
