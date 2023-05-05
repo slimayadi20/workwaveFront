@@ -4,12 +4,15 @@ import { DisplayProjectsComponent } from './display-projects/display-projects.co
 import { KanbanComponent } from './kanban/kanban.component';
 import { CreateprojectComponent } from './createproject/createproject.component';
 import { EditprojectComponent } from './editproject/editproject.component';
+import { EdittaskComponent } from './edittask/edittask.component';
 
 const routes: Routes = [
   { path: 'displayprojects', component: DisplayProjectsComponent },
   { path: 'kanban', component: KanbanComponent },
   { path: 'createproject', component: CreateprojectComponent },
   { path: 'editproject', component: EditprojectComponent },
+  { path: 'edit/:id', component: EdittaskComponent }
+
 ];
 
 @NgModule({

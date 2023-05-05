@@ -34,10 +34,10 @@
                     <div class="row g-gs">
                         <div class="col-sm-6 col-lg-4 col-xxl-3" *ngFor="let p of projects"> <!--boucle for besh njib les projet we nhothom -->
                             <div class="card h-100">
-                                <div class="card-inner" (click)="redirect(p.id)" style="cursor:pointer">
+                                <div class="card-inner"  style="cursor:pointer">
                                     <div class="project">
                                         <div class="project-head">
-                                            <a class="project-title">
+                                            <a class="project-title"(click)="redirect(p.id)">
                                                 <div class="user-avatar sq bg-purple"><span>DD</span></div>
                                                 <div class="project-info">
                                                     <h6 class="title">{{p.projectname}}</h6>
@@ -47,13 +47,13 @@
                                             <div class="drodown">
                                                 <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <ul class="link-list-opt no-bdr">
-                                                        <li><a routerLink="kanban"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
-                                                        <li><a routerLink="/projects/editproject"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                   <ul class="link-list-opt no-bdr">
+                                                        <li><a href="#"><em class="icon ni ni-mail"></em><span>Update</span></a></li>
+                                                        <li><a href="#"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
                                                     </ul>
                                                 </div>
-                                            </div>
+                                            </div> 
+                                
                                         </div>
                                         <div class="project-details">
                                             <p>{{p.description}}</p>

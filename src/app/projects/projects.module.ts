@@ -9,6 +9,8 @@ import { EditprojectComponent } from './editproject/editproject.component';
 import { AddtaskComponent } from './addtask/addtask.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { TaskService } from '../Shared/task.service';
+import { EdittaskComponent } from './edittask/edittask.component';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     KanbanComponent,
     CreateprojectComponent,
     EditprojectComponent,
-    AddtaskComponent
+    AddtaskComponent,
+    EdittaskComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     FormsModule,
     NgMultiSelectDropDownModule
 
-  ]
+  ],
+ providers: [TaskService],
+
 })
 export class ProjectsModule { }

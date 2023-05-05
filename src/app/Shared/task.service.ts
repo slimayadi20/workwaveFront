@@ -36,7 +36,7 @@ export class TaskService {
     });
   }
   changeTasketat(id:Number,etat :String) {
-    return this.http.post(`${this.baseURL}/changeetat/${id}?etat=${etat}`, {});
+    return this.http.post(`${this.baseURL}/changeetat/${id}/${etat}`, {});
   }
 
 }
