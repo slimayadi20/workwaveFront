@@ -15,7 +15,7 @@ import { EncryptionService } from './encryption.service';
 })
 export class ChatService {
 
-  private baseUrl = 'http://localhost:8082';
+  private baseUrl = 'http://localhost:8090';
 
   private socket: any;
   data: any;
@@ -25,13 +25,13 @@ export class ChatService {
   constructor(private http: HttpClient, private encryptionService: EncryptionService) {
     this.data = this.encryptionService.decrypt(localStorage.getItem('data')!);
     console.log(this.data);
-    const socket = new SockJS('http://localhost:8082/ws');
+    const socket = new SockJS('http://localhost:8090/ws');
     //this.connect();
   }
   public stompClient: any;
   public msg: any;
   connect() {
-    const socket = new SockJS('http://localhost:8082/ws');
+    const socket = new SockJS('http://localhost:8090/ws');
     this.stompClient = Stomp.over(socket);
 
     // Add JWT token to the header

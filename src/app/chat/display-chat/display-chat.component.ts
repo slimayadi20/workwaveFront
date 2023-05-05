@@ -46,46 +46,47 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
 
 
   MessageAdd = new FormGroup({
-    recipientId: new FormControl('slimayadi'),
-    senderId: new FormControl('zakaria'),
-    senderName: new FormControl('zakaria'),
-    recipientName: new FormControl('slimayadi'),
+    recipientId: new FormControl(''),
+    senderId: new FormControl(''),
+    senderName: new FormControl(''),
+    recipientName: new FormControl(''),
     content: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]),
     //timestamp: new FormControl(new Date().toISOString())
     timestamp: new FormControl(formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ss', 'en', 'Africa/Tunis').toString()),
     video :new FormControl(),
   });
 
+
   constructor(private encrypt: EncryptionService, private chatService: ChatService,private router:Router ) { }
 
   sendMessage(recepientId: any) {
     this.MessageAdd.get("recipientName")!.setValue(recepientId);
     this.MessageAdd.get("recipientId")!.setValue(recepientId);
-    this.MessageAdd.get("senderId")!.setValue(this.data1['id']);
-    this.MessageAdd.get("senderName")!.setValue(this.data1['id']);
+    this.MessageAdd.get("senderId")!.setValue(this.data1['userName']);
+    this.MessageAdd.get("senderName")!.setValue(this.data1['userName']);
     this.MessageAdd.get("timestamp")!.setValue(formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ss', 'en', 'Africa/Tunis').toString());
     this.MessageAdd.get("video")!.setValue(false);
 
     // Send the message via WebSocket
     this.sendMessages(this.MessageAdd.value);
-    this.getChatRooms(this.data1['id']);
+    this.getChatRooms(this.data1['userName']);
 
 
     // Clear the message input field
     this.MessageAdd.get("content")!.setValue("");
     
-    this.findChatMessages(this.data1['id'], recepientId);
+    this.findChatMessages(this.data1['userName'], recepientId);
 
   }
 
   sendMessage2(recepientId: any) {
     this.MessageAdd.get("recipientName")!.setValue(recepientId);
     this.MessageAdd.get("recipientId")!.setValue(recepientId);
-    this.MessageAdd.get("senderId")!.setValue(this.data1['id']);
-    this.MessageAdd.get("senderName")!.setValue(this.data1['id']);
+    this.MessageAdd.get("senderId")!.setValue(this.data1['userName']);
+    this.MessageAdd.get("senderName")!.setValue(this.data1['userName']);
     this.MessageAdd.get("timestamp")!.setValue(formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ss', 'en', 'Africa/Tunis').toString());
 
-    this.MessageAdd.get("content")!.setValue(this.data1['id']+" "+"Started a Video Call");
+    this.MessageAdd.get("content")!.setValue(this.data1['userName']+" "+"Started a Video Call");
     this.MessageAdd.get("video")!.setValue(true);
     // Send the message via WebSocket
     
@@ -98,7 +99,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
 
   sendMessages(message: any) {
     this.stompClient.send("/app/chat", { 'sender': 'websocket' }, JSON.stringify(message));
-    this.getChatRooms(this.data1['id']);
+    this.getChatRooms(this.data1['userName']);
   }
 
 
@@ -120,7 +121,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     try {
       this.messages = await this.chatService.findChatMessages(senderId, recipientId).toPromise();
       this.recepient = recipientId;
-      //this.getChatRooms(this.data1['id']);
+      //this.getChatRooms(this.data1['userName']);
 
     } catch (error) {
       console.log(error);
@@ -151,7 +152,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     } catch (err) { }
   }
   connect() {
-    const socket = new SockJS('http://localhost:8082/ws');
+    const socket = new SockJS('http://localhost:8090/ws');
     this.stompClient = Stomp.over(socket);
 
     // Add JWT token to the header
@@ -167,7 +168,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
   onConnect(frame: any) {
     
       this.stompClient.subscribe(
-      "/user/" + this.data1['id'] + "/queue/messages",
+      "/user/" + this.data1['userName'] + "/queue/messages",
       (msg: any) => this.onMessageReceived(msg)
       
     );
@@ -194,10 +195,10 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
 
 
 
-    if (this.data1['id'] == notification.senderId) {
+    if (this.data1['userName'] == notification.senderId) {
       console.log(this.chatService.findMessage(notification.id));
-      this.getChatRooms(this.data1['id']);
-      this.findChatMessages(this.data1['id'], notification.senderName);
+      this.getChatRooms(this.data1['userName']);
+      this.findChatMessages(this.data1['userName'], notification.senderName);
   
     } 
     else
@@ -214,8 +215,8 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
           }).then((result) => {
             if (result.isConfirmed) {
               
-             this.findChatMessages(this.data1['id'], notification.senderName);
-                this.getChatRooms(this.data1['id']);
+             this.findChatMessages(this.data1['userName'], notification.senderName);
+                this.getChatRooms(this.data1['userName']);
             }
           });
         }
@@ -240,13 +241,13 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     
     else{
       
-    this.findChatMessages(this.data1['id'], notification.senderName);
-    this.getChatRooms(this.data1['id']);
+    this.findChatMessages(this.data1['userName'], notification.senderName);
+    this.getChatRooms(this.data1['userName']);
   }
 
     }
     this.chatService.getuserActive();
-    // this.findChatMessages(this.data1['id'],notification.senderName);
+    // this.findChatMessages(this.data1['userName'],notification.senderName);
   }
 
  
@@ -255,13 +256,15 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void {
     this.getAciveUsers();
     this.data1 = this.encrypt.decrypt(localStorage.getItem('data')!);
-    this.getChatRooms(this.data1['id']);
+    console.log(this.data1);
+    
+    this.getChatRooms(this.data1['userName']);
 
 
     ///////WEB-SOCKET
 
 
-    const socket = new SockJS('http://localhost:8082/ws');
+    const socket = new SockJS('http://localhost:8090/ws');
     this.connect();
 
 
