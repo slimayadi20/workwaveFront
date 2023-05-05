@@ -47,7 +47,7 @@ addBankAccount(){
   };
   console.log(banksaccount);
 this.BAS.addBankAccount(banksaccount).subscribe((e: any) => {
-  this.router.navigate(['/bank/mybank']);
+  
 });
 
 this.router.navigate(['/bank/mybank']);

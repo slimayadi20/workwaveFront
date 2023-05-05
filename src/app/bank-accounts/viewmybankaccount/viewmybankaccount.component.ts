@@ -7,6 +7,7 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn,
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { Router } from '@angular/router';
 import { InvoicesService } from 'src/app/Shared/invoices.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-viewmybankaccount',
   templateUrl: './viewmybankaccount.component.html',
@@ -39,6 +40,7 @@ constructor(private INV: InvoicesService,private router :Router ,private BAS:Ban
     this.initConfig();
     this.getUser();
     this.getBankAccount();
+    
   }
   getUser(){
     this.data = this.encrypt.decrypt(localStorage.getItem('data')!);
@@ -79,16 +81,34 @@ constructor(private INV: InvoicesService,private router :Router ,private BAS:Ban
     });
   }
   deleteBankAccount(){
-    if(window.confirm('Are you sure you want to delete the bank account  \r\n All the Data associated to it will be lost')){
-    this.BAS.deleteBankAccount(this.banksaccount.id).subscribe((e: any) => {
-      console.log(e);
-    });
-  
-    this.router.navigate(['/bank/mybank']);
+    Swal.fire({
+      title: 'Attention!',
+      text:'If You Delete This Bank Account All Data Related To It Will Be Lost',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.BAS.deleteBankAccount(this.banksaccount.id).subscribe((e: any) => {
+          console.log(e);
+        });
+          Swal.fire({
+            title: 'Deleted!',
+            text: `"Bank Account Has Been Beleted.`,
+            icon: 'success',
+            confirmButtonColor: '#854FFF'
+          });
+        }
+        this.router.navigate(['/users/personalinformation']);
+      });
+      
+    }
 
-  }
-  this.router.navigate(['/users/personalinformation']);
-  }
+   
+    
   updateAmount(){
     const solde = this.paypalForm.get('solde') as FormControl;
     if (solde?.value != null) {

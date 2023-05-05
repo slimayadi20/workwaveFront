@@ -67,6 +67,14 @@
                                       </div>
                                     </div>
                                   </div>
+                                  <div class="col-md-6"style="display:none;">
+                                    <div class="form-group">
+                                      <div class="custom-control custom-switch me-n2 checked">
+                                        <input type="number" class="custom-control-input"  formControlName="balance">
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
                                 <div class="col-12">
                                     <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                                         <li>
@@ -270,7 +278,7 @@
                                                     <span class="sub-text">Transaction Date</span>
                                                 </div>
                                             </div>
-                                            <div class="nk-tb-item" *ngFor="let t of transactions">
+                                            <div class="nk-tb-item" *ngFor="let t of transactions | slice:0:4">
                                                 <div class="nk-tb-col">
                                                     <a href="#"><span class="fw-bold">#{{t.id}}</span></a>
                                                 </div>
