@@ -43,6 +43,13 @@ export class SidemenuComponent implements OnInit {
                 icon: ''
               },
               {
+                title: "Courses Categories",
+                counter: 0,
+                link: '/courses/displaycateg',
+                icon: ''
+
+              },
+              {
                 title: "Enroll History",
                 counter: 0,
                 link: '/courses/enrollement',

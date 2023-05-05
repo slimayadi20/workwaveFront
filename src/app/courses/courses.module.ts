@@ -14,6 +14,12 @@ import { NgProgressModule } from 'ngx-progressbar';
 import {RouterModule} from '@angular/router';
 import { SidemenuComponent } from '../sidemenu/sidemenu.component';
 import { FooterComponent } from '../footer/footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DisplayCategComponent } from './display-categ/display-categ.component';
+import { EditCategComponent } from './edit-categ/edit-categ.component';
+import { AddCategComponent } from './add-categ/add-categ.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { QuizComponent } from './quiz/quiz.component';
 
 
 @NgModule({
@@ -26,12 +32,19 @@ import { FooterComponent } from '../footer/footer.component';
     StudentEnrollementDetailComponent,
     StudentCoursesDetailComponent,
     CoursedetailsComponent,
+    DisplayCategComponent,
+    EditCategComponent,
+    AddCategComponent,
+    QuizComponent,
   ],
   imports: [
     CommonModule,
     CoursesRoutingModule,
     NgProgressModule,
     RouterModule,
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ]
 })
 export class CoursesModule { }

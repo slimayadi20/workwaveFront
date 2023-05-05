@@ -8,6 +8,7 @@ import { MainComponent } from './main/main.component';
 import { DashboardComponentComponent } from './dashboard-component/dashboard-component.component';
 import { RegistersuccessComponent } from './registersuccess/registersuccess.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { QuizComponent } from './courses/quiz/quiz.component';
 const routes: Routes = [
   {
     path: '',

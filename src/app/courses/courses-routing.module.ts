@@ -7,14 +7,25 @@ import { StudentCoursesDetailComponent } from './student-courses-detail/student-
 import { CoursedetailsComponent } from './coursedetails/coursedetails.component';
 import { CreateCoursesComponent } from './create-courses/create-courses.component';
 import { DeleteCoursesComponent } from './delete-courses/delete-courses.component';
+import { EditCoursesComponent } from './edit-courses/edit-courses.component';
+import { DisplayCategComponent } from './display-categ/display-categ.component';
+import { EditCategComponent } from './edit-categ/edit-categ.component';
+import { AddCategComponent } from './add-categ/add-categ.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 const routes: Routes = [
   { path: 'displaycourse', component: DisplayCoursesComponent },
   { path: 'createcourse', component: CreateCoursesComponent },
+  { path: 'editcourse', component: EditCoursesComponent },
+  { path: 'displaycateg', component: DisplayCategComponent },
+  { path: 'createcateg', component: AddCategComponent },
+   { path: 'editcateg', component: EditCategComponent },
+  { path: 'coursedetail', component: CoursedetailsComponent },
   { path: 'deletecourse', component: DeleteCoursesComponent },
   { path: 'enrollement', component: EnrollementComponent },
   { path: 'enrollementStudent', component: StudentEnrollementDetailComponent },
   { path: 'enrollementStudentCourses', component: StudentCoursesDetailComponent },
+  { path: 'quiz', component: QuizComponent },
 ];
 
 @NgModule({
