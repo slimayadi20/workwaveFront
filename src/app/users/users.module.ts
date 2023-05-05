@@ -6,11 +6,14 @@ import { DisplayusersComponent } from './displayusers/displayusers.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { HolidayComponent } from './holiday/holiday.component';
 import { PersonalinformationComponent } from './personalinformation/personalinformation.component';
-import { NotificationComponent } from './notification/notification.component';
 import { SettingComponent } from './setting/setting.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
+import { NgxSpinner, NgxSpinnerModule } from 'ngx-spinner';
+import { NotificationComponent } from './Roles/Role.component';
+import { CreateRoleComponent } from './create-role/create-role.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -19,15 +22,20 @@ import { FormsModule } from '@angular/forms';
     UserDetailsComponent,
     HolidayComponent,
     PersonalinformationComponent,
+    SettingComponent,
     NotificationComponent,
-    SettingComponent
+    CreateRoleComponent
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
     ReactiveFormsModule, 
     Ng2SearchPipeModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
+    NgMultiSelectDropDownModule.forRoot(),
+    
+
   ]
 })
 export class UsersModule { }

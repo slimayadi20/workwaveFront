@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthServiceService } from 'src/app/Shared/auth-service.service';
 import { EncryptionService } from 'src/app/Shared/encryption.service';
 import { BankAccountService } from 'src/app/Shared/bank-account.service';
@@ -9,7 +10,8 @@ import { BankAccountService } from 'src/app/Shared/bank-account.service';
   styleUrls: ['./personalinformation.component.css']
 })
 export class PersonalinformationComponent implements OnInit {
-  constructor(private encrypt: EncryptionService, public service: AuthServiceService, private BAS : BankAccountService) { }
+  constructor(private encrypt: EncryptionService, public service: AuthServiceService, private BAS : BankAccountService,private spinner: NgxSpinnerService) { }
+ 
 
   data: any;
   countryCode: any;
@@ -34,8 +36,6 @@ export class PersonalinformationComponent implements OnInit {
   user: any;
   ngOnInit(): void {
     this.data = this.encrypt.decrypt(localStorage.getItem('data')!);
-    console.log(this.data);
-
     this.getuser();
     this.countrycode();
   }
@@ -46,24 +46,39 @@ export class PersonalinformationComponent implements OnInit {
     });
   }
   getuser() {
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 500);
+
     this.service.getuser(this.data["userName"]).subscribe((e: any) => {
       console.log(e);
-      delete e.password;
-      delete e.token;
-      delete e.holidays;
-      delete e.projet;
-      delete e.role;
       this.user = e;
-      this.userForm.setValue(e);
-      console.log(this.userForm.value);
-
       if (e["prenom"] == null || e["prenom"] == "undefined")
         this.userForm.get("prenom")!.setValue("");
       if (e["gender"] == null || e["gender"] == "undefined")
         this.userForm.get("gender")!.setValue("");
       if (e["phoneNumber"] == null || e["phoneNumber"] == "undefined")
         this.userForm.get("phoneNumber")!.setValue("");
-    });
+      this.userForm.get("nom")!.setValue(e.nom);
+      this.userForm.get("prenom")!.setValue(e.prenom);
+      this.userForm.get("userName")!.setValue(e.userName);
+      this.userForm.get("email")!.setValue(e.email);
+      this.userForm.get("gender")!.setValue(e.gender);
+      this.userForm.get("phoneNumber")!.setValue(e.phoneNumber);
+
+      console.log(this.userForm.value);
+
+
+    },
+      err => {
+        this.spinner.hide();
+
+
+      },
+
+    );
   }
 
   updateUser() {

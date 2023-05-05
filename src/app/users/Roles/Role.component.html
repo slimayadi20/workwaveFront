@@ -1,0 +1,70 @@
+<div class="content-wrapper">
+
+  <!-- Content -->
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="fw-medium mb-1">Roles List</h4>
+    <p class="mb-4">A role provided access to predefined menus and features so that depending on assigned role an
+      administrator can have access to what user needs.</p>
+    <!-- Role cards -->
+    <div class="row g-4">
+      <div class="col-xl-4 col-lg-6 col-md-6" *ngFor="let r of roles">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-2">
+              <h6 class="fw-normal">Total {{getUserCount(r.roleName)}} users</h6>
+              <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
+                <ng-container *ngFor="let u of data  | slice:0:3">
+                  <li *ngIf="hasUserRole(u, r.roleName)" data-bs-toggle="tooltip" data-popup="tooltip-custom"
+                    data-bs-placement="top" class="avatar pull-up" aria-label="Vinnie Mostowy"
+                    data-bs-original-title="Vinnie Mostowy">
+                    <!-- <img class="rounded-circle" style="width: 35px;height: 35px;" src="../../../assets/images/4.png"
+                      alt="Avatar"> -->
+                    <img class="rounded-circle" style="width: 40px;height: 40px;" *ngIf="u.fileName"
+                      [src]="this.service.PATH_OF_API + '/ImgUsers/' + u.userName" alt="User avatar">
+                    <div *ngIf="!u.fileName" class="user-avatar"
+                      style="background-color: rgb(73, 135, 234); display: flex; align-items: center; justify-content: center; width: 35px;height: 35px;font-size: 15px; text-transform: uppercase;">
+                      {{ u.userName[0] }}{{ u.userName[1] }}
+                    </div>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+            <div class="d-flex justify-content-between align-items-end">
+              <div class="role-heading">
+                <h4 class="mb-1 text-body">{{r.roleName}}</h4>
+                <a href="javascript:;" data-bs-toggle="modal" href="#modalCreate" data-bs-config={backdrop:true}
+                  (click)="selectedRoleId = r.roleName ; roleDescription= r.roleDescription"
+                  class="role-edit-modal"><span>Edit Role</span></a>
+              </div>
+              <a href="javascript:void(0);" class="text-muted"><i class="mdi mdi-content-copy mdi-20px"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-xl-4 col-lg-6 col-md-6">
+        <div class="card h-100">
+          <div class="row h-100">
+            <div class="col-5">
+              <div class="d-flex align-items-end h-100 justify-content-center">
+                <img src="../../../assets/images/add-new-role-illustration.png" class="img-fluid" alt="Image"
+                  width="70">
+              </div>
+            </div>
+            <div class="col-7">
+              <div class="card-body text-sm-end text-center ps-sm-0">
+                <button data-bs-toggle="modal" href="#modalCreate" data-bs-config={backdrop:true}
+                  (click)="selectedRoleId = 0"
+                  class="btn btn-primary mb-3 text-nowrap add-new-role waves-effect waves-light">Add Role</button>
+                <p class="mb-0">Add role, if it does not exist</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-displayusers></app-displayusers>
+      <app-create-role [roleId]="selectedRoleId" [roleDescription]="roleDescription"></app-create-role>

@@ -1,124 +1,148 @@
-      <!-- content @s -->
-      <div class="nk-content ">
-        <div class="container-fluid">
-            <div class="nk-content-inner">
-                <div class="nk-content-body">
-                    <div class="nk-block">
-                        <div class="card">
-                            <div class="card-aside-wrap">
-                                <div class="card-inner card-inner-lg">
-                                    <div class="nk-block-head nk-block-head-lg">
-                                        <div class="nk-block-between">
-                                            <div class="nk-block-head-content">
-                                                <h4 class="nk-block-title">Security Settings</h4>
-                                                <div class="nk-block-des">
-                                                    <p>These settings are helps you keep your account secure.</p>
-                                                </div>
-                                            </div>
-                                            <div class="nk-block-head-content align-self-start d-lg-none">
-                                                <a href="#" class="toggle btn btn-icon btn-trigger mt-n1" data-target="userAside"><em class="icon ni ni-menu-alt-r"></em></a>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+    <p style="color: white; white-space: pre-line; text-align: center;">
+       Loading ...
+    </p>
+</ngx-spinner>
+<!-- content @s -->
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block">
+                    <div class="card">
+                        <div class="card-aside-wrap">
+                            <div class="card-inner card-inner-lg">
+                                <div class="nk-block-head nk-block-head-lg">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h4 class="nk-block-title">Security Settings</h4>
+                                            <div class="nk-block-des">
+                                                <p>These settings are helps you keep your account secure.</p>
                                             </div>
                                         </div>
-                                    </div><!-- .nk-block-head -->
-                                    <div class="nk-block">
-                                        <div class="card">
-                                            <div class="card-inner-group">
+                                        <div class="nk-block-head-content align-self-start d-lg-none">
+                                            <a href="#" class="toggle btn btn-icon btn-trigger mt-n1"
+                                                data-target="userAside"><em class="icon ni ni-menu-alt-r"></em></a>
+                                        </div>
+                                    </div>
+                                </div><!-- .nk-block-head -->
+                                <div class="nk-block">
+                                    <div class="card">
+                                        <div class="card-inner-group">
+
+
+                                            <form [formGroup]="userForm">
                                                 <div class="card-inner">
                                                     <div class="between-center flex-wrap flex-md-nowrap g-3">
                                                         <div class="nk-block-text">
-                                                            <h6>Save my Activity Logs</h6>
-                                                            <p>You can save your all activity logs including unusual activity detected.</p>
+                                                            <h6>Face Auth &nbsp;
+
+                                                                <span *ngIf="userForm.controls['tfa'].value==true"
+                                                                    class="badge bg-success ms-0">Enabled</span>
+                                                                <span *ngIf="userForm.controls['tfa'].value==false"
+                                                                    class="badge bg-danger ms-0">disbled</span>
+
+                                                            </h6>
+                                                            <p>Facial authentication can be a good replacement for a
+                                                                traditional password or PIN, but it is not a
+                                                                time-sensitive code. It works by verifying a user's
+                                                                identity based on their unique facial features, which
+                                                                are stored and compared to a live capture or image of
+                                                                their face. While this method is secure and convenient,
+                                                                it does not provide the same level of protection against
+                                                                unauthorized access as 2FA with a mobile app.
+
+                                                            </p>
                                                         </div>
-                                                        <div class="nk-block-actions">
-                                                            <ul class="align-center gx-3">
-                                                                <li class="order-md-last">
-                                                                    <div class="custom-control custom-switch me-n2">
-                                                                        <input type="checkbox" class="custom-control-input" checked="" id="activity-log">
-                                                                        <label class="custom-control-label" for="activity-log"></label>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
+                                                        <div (click)="disable()" class="nk-block-actions">
+                                                            <a class="btn btn-primary"
+                                                                *ngIf="isTwoFactorAuthEnabled">Disable</a>
                                                         </div>
-                                                    </div>
-                                                </div><!-- .card-inner -->
-                                                <div class="card-inner">
-                                                    <div class="between-center flex-wrap g-3">
-                                                        <div class="nk-block-text">
-                                                            <h6>Change Password</h6>
-                                                            <p>Set a unique password to protect your account.</p>
-                                                        </div>
-                                                        <div class="nk-block-actions flex-shrink-sm-0">
-                                                            <ul class="align-center flex-wrap flex-sm-nowrap gx-3 gy-2">
-                                                                <li class="order-md-last">
-                                                                    <a href="#" class="btn btn-primary">Change Password</a>
-                                                                </li>
-                                                                <li>
-                                                                    <em class="text-soft text-date fs-12px">Last changed: <span>Oct 2, 2019</span></em>
-                                                                </li>
-                                                            </ul>
+                                                        <div (click)="enable()" class="nk-block-actions">
+                                                            <a class="btn btn-primary"
+                                                                *ngIf="!isTwoFactorAuthEnabled">Enable</a>
                                                         </div>
                                                     </div>
                                                 </div><!-- .card-inner -->
-                                                <div class="card-inner">
-                                                    <div class="between-center flex-wrap flex-md-nowrap g-3">
-                                                        <div class="nk-block-text">
-                                                            <h6>2 Factor Auth &nbsp; <span class="badge bg-success ms-0">Enabled</span></h6>
-                                                            <p>Secure your account with 2FA security. When it is activated you will need to enter not only your password, but also a special code using app. You can receive this code by in mobile app. </p>
-                                                        </div>
-                                                        <div class="nk-block-actions">
-                                                            <a href="#" class="btn btn-primary">Disable</a>
-                                                        </div>
+                                            </form>
+                                        </div><!-- .card-inner-group -->
+                                    </div><!-- .card -->
+                                </div><!-- .nk-block -->
+                            </div><!-- .card-inner -->
+                            <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg"
+                                data-toggle-body="true" data-content="userAside" data-toggle-screen="lg"
+                                data-toggle-overlay="true">
+                                <div class="card-inner-group" data-simplebar>
+                                    <div class="card-inner">
+                                        <div class="user-card">
+                                            <div class="user-avatar">
+                                                <div
+                                                    style="height: 40px; width: 85px; border-radius: 50%; overflow: hidden;">
+                                                    <img style="height: 100%; width: 100%; object-fit: cover;"
+                                                        *ngIf="user.fileName"
+                                                        [src]="this.service.PATH_OF_API + '/ImgUsers/' + user.userName"
+                                                        alt="User avatar">
+                                                    <div *ngIf="!user.fileName"
+                                                        style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; font-size: 15px; text-transform: uppercase;">
+                                                        {{ user.userName[0] }}{{ user.userName[1] }}
                                                     </div>
-                                                </div><!-- .card-inner -->
-                                            </div><!-- .card-inner-group -->
-                                        </div><!-- .card -->
-                                    </div><!-- .nk-block -->
-                                </div><!-- .card-inner -->
-                                <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg" data-toggle-body="true" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
-                                    <div class="card-inner-group">
-                                        <div class="card-inner">
-                                            <div class="user-card">
-                                                <div class="user-avatar bg-primary">
-                                                    <span>AB</span>
                                                 </div>
-                                                <div class="user-info">
-                                                    <span class="lead-text">Abu Bin Ishtiyak</span>
-                                                    <span class="sub-text">info@softnio.com</span>
-                                                </div>
-                                                <div class="user-action">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-icon btn-trigger me-n2" data-bs-toggle="dropdown" href="#"><em class="icon ni ni-more-v"></em></a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <ul class="link-list-opt no-bdr">
-                                                                <li><a href="#"><em class="icon ni ni-camera-fill"></em><span>Change Photo</span></a></li>
-                                                                <li><a href="#"><em class="icon ni ni-edit-fill"></em><span>Update Profile</span></a></li>
-                                                            </ul>
-                                                        </div>
+
+                                            </div>
+                                            <div class="user-info">
+                                                <span class="lead-text">{{data.userName}}</span>
+                                                <span class="sub-text">{{user.email}}</span>
+                                            </div>
+                                            <div class="user-action">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-icon btn-trigger me-n2" data-bs-toggle="dropdown"
+                                                        href="#"><em class="icon ni ni-more-v"></em></a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <ul class="link-list-opt no-bdr">
+                                                            <li>
+                                                                <a href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#image-edit-modal">
+                                                                    <em class="icon ni ni-camera-fill"></em>
+                                                                    <span>Change Photo</span>
+                                                                </a>
+                                                            </li>
+
+                                                            <li><a href="#"><em
+                                                                        class="icon ni ni-edit-fill"></em><span>Update
+                                                                        Profile</span></a></li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><!-- .card-inner -->
-                                        <div class="card-inner">
-                                            <div class="user-account-info py-0">
-                                                <h6 class="overline-title-alt">Account Balance</h6>
-                                                <div class="user-balance">12.395769 <small class="currency currency-btc">USD</small></div>
-                                                <div class="user-balance-sub">Pending <span>0.344939 <span class="currency currency-btc">USD</span></span></div>
-                                            </div>
-                                        </div><!-- .card-inner -->
-                                        <div class="card-inner p-0">
-                                            <ul class="link-list-menu">
-                                                <li><a routerLink="/users/personalinformation"><em class="icon ni ni-user-fill-c"></em><span>Personal Infomation</span></a></li>
-                                                <li><a routerLink="/users/notification"><em class="icon ni ni-bell-fill"></em><span>Notifications</span></a></li>
-                                                <li><a class="active" routerLink="/users/setting"><em class="icon ni ni-lock-alt-fill"></em><span>Security Settings</span></a></li>
-                                            </ul>
-                                        </div><!-- .card-inner -->
-                                    </div><!-- .card-inner-group -->
-                                </div><!-- .card-aside -->
-                            </div><!-- .card-aside-wrap -->
-                        </div><!-- .card -->
-                    </div><!-- .nk-block -->
-                </div>
+                                        </div><!-- .user-card -->
+                                    </div><!-- .card-inner -->
+                                    <div class="card-inner">
+                                        <div class="user-account-info py-0">
+                                            <h6 class="overline-title-alt">Account Balance</h6>
+                                            <div class="user-balance">12.395769 <small
+                                                    class="currency currency-btc">USD</small></div>
+                                            <div class="user-balance-sub">Pending <span>0.344939 <span
+                                                        class="currency currency-btc">USD</span></span></div>
+                                        </div>
+                                    </div><!-- .card-inner -->
+                                    <div class="card-inner p-0">
+                                        <ul class="link-list-menu">
+                                            <li><a routerLink="/users/personalinformation"><em
+                                                        class="icon ni ni-user-fill-c"></em><span>Personal
+                                                        Infomation</span></a></li>
+                                        
+                                            <li><a class="active" routerLink="/users/setting"><em
+                                                        class="icon ni ni-lock-alt-fill"></em><span>Security
+                                                        Settings</span></a></li>
+                                        </ul>
+                                    </div><!-- .card-inner -->
+                                </div><!-- .card-inner-group -->
+                            </div><!-- card-aside -->
+                        </div><!-- .card-aside-wrap -->
+                    </div><!-- .card -->
+                </div><!-- .nk-block -->
             </div>
         </div>
     </div>
-    <!-- content @e -->
+</div>
+<!-- content @e -->

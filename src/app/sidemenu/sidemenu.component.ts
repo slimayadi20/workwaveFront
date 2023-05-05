@@ -34,7 +34,7 @@ export class SidemenuComponent implements OnInit {
             mainTitle: "APPLICATIONS",
             title: "Courses",
             counter: 0,
-            icon:'icon ni ni-book-fill',
+            icon: 'icon ni ni-book-fill',
             subMenus: [
               {
                 title: "courses list",
@@ -55,7 +55,7 @@ export class SidemenuComponent implements OnInit {
             mainTitle: "APPLICATIONS",
             title: "Projects",
             counter: 0,
-            icon:'icon ni ni-tile-thumb-fill',
+            icon: 'icon ni ni-tile-thumb-fill',
             subMenus: [
               {
                 title: "Project Cards",
@@ -77,7 +77,7 @@ export class SidemenuComponent implements OnInit {
             mainTitle: "APPLICATIONS",
             title: "Products",
             counter: 0,
-            icon:'icon ni ni-card-view',
+            icon: 'icon ni ni-card-view',
             subMenus: [
               {
                 title: "Product List",
@@ -100,7 +100,7 @@ export class SidemenuComponent implements OnInit {
             mainTitle: "APPLICATIONS",
             title: "Applications",
             counter: 0,
-            icon:'icon ni ni-card-view',
+            icon: 'icon ni ni-card-view',
 
             subMenus: [
               {
@@ -124,7 +124,7 @@ export class SidemenuComponent implements OnInit {
             mainTitle: "Finance",
             title: "Finance",
             counter: 0,
-            icon:'icon ni ni-activity-round-fill',
+            icon: 'icon ni ni-activity-round-fill',
             subMenus: [
               {
                 title: "Invoices",
@@ -148,12 +148,18 @@ export class SidemenuComponent implements OnInit {
             mainTitle: "Settings",
             title: "User manage",
             counter: 0,
-            icon:'icon ni ni-users-fill',
+            icon: 'icon ni ni-users-fill',
             subMenus: [
               {
                 title: "Display users",
                 counter: 0,
                 link: '/users/displayusers',
+                icon: ''
+              },
+              {
+                title: "Display Roles",
+                counter: 0,
+                link: '/users/roles',
                 icon: ''
               },
             ]
@@ -162,12 +168,12 @@ export class SidemenuComponent implements OnInit {
             mainTitle: "Settings",
             title: "User holiday",
             counter: 0,
-            icon:'icon ni ni-users-fill',
+            icon: 'icon ni ni-users-fill',
             subMenus: [
               {
                 title: "Holidays List",
                 counter: 0,
-                link: '/users/displayholiday',
+                link: '/users/displayholidays',
                 icon: ''
 
               },

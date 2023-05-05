@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthServiceService } from '../Shared/auth-service.service';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
@@ -32,13 +32,15 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
     otp2: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]),
     otp3: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]),
     otp4: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(1)]),
-
   })
   otpverified: boolean = false;
   taa!: number;
   data: any;
   email: any;
-
+  @ViewChild('field1') field1: ElementRef | undefined;
+  @ViewChild('field2') field2: ElementRef | undefined;
+  @ViewChild('field3') field3: ElementRef | undefined;
+  @ViewChild('field4') field4: ElementRef | undefined;
   constructor(
     private route: ActivatedRoute,
     private userService: AuthServiceService,
@@ -52,7 +54,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   }
   reset() {
     if (this.userRegister.value.password == this.userRegister.value.repassword) {
-      this.userService.reset({ "email": this.email["email"] , "password": this.userRegister.value.password })
+      this.userService.reset({ "email": this.email["email"], "password": this.userRegister.value.password })
         .subscribe((res: any) => {
           this.router.navigate(["/auth"]);
           console.log(this.user);
@@ -70,7 +72,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   otpfct() {
     this.taa = Number(this.otp.value.otp1! + this.otp.value.otp2! + this.otp.value.otp3! + this.otp.value.otp4!);
     console.log(this.taa);
-    console.log(this.email["email"]  );
+    console.log(this.email["email"]);
 
     this.userService.otp({ "otp": this.taa, "email": this.email["email"] }).subscribe((res: any) => {
       console.log(res);
@@ -84,6 +86,24 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   redirect() {
     this.router.navigate(['/reset'])
 
+  }
+  onKeyUp(event: any, fieldIndex: any) {
+    if (event.target.value && event.target.value.length > 0) {
+      switch (fieldIndex) {
+        case 1:
+          this.field2!.nativeElement.focus();
+          break;
+        case 2:
+          this.field3!.nativeElement.focus();
+          break;
+        case 3:
+          this.field4!.nativeElement.focus();
+          break;
+        case 4:
+          // Do something when the last field is filled
+          break;
+      }
+    }
   }
 }
 export function matchValidator(

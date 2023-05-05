@@ -16,8 +16,11 @@ import { MainComponent } from './main/main.component';
 import { DashboardComponentComponent } from './dashboard-component/dashboard-component.component';
 import { RegistersuccessComponent } from './registersuccess/registersuccess.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
- 
+import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
+
 
 
 @NgModule({
@@ -33,6 +36,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     DashboardComponentComponent,
     RegistersuccessComponent,
     ResetPasswordComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,11 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-    NgProgressModule
+    NgProgressModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
+    BrowserAnimationsModule,
+    AngularTypewriterEffectModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
