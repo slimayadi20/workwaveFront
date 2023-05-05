@@ -1,14 +1,15 @@
 <ng-progress [speed]="0.5" [trickleSpeed]="30"></ng-progress>
 
-<div class="nk-content ">
+<div class="nk-content " >
     <div class="container-fluid">
         <div class="nk-content-inner">
             <div class="nk-content-body">
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
+                        <ngtypewriter class="nk-block-title page-title" [StringList]='list' [speed]='1000'></ngtypewriter>
                         <div class="nk-block-head-content">
                             <!-- <h3 >Dashboard</h3> -->
-                            <ngtypewriter class="nk-block-title page-title" [StringList]='list' [speed]='1000'></ngtypewriter>
+                          
 
                         </div><!-- .nk-block-head-content -->
                         <div class="nk-block-head-content">
@@ -35,7 +36,7 @@
                         </div><!-- .nk-block-head-content -->
                     </div><!-- .nk-block-between -->
                 </div><!-- .nk-block-head -->
-                <div class="nk-block">
+                <div class="nk-block" *ngIf="roles =='Admin'">
                     <div class="row g-gs">
                         <div class="col-xxl-3 col-sm-6">
                             <div class="card">
@@ -43,14 +44,14 @@
                                     <div class="card-inner">
                                         <div class="card-title-group">
                                             <div class="card-title">
-                                                <h6 class="title">Today Orders</h6>
+                                                <h6 class="title">Today Payments</h6>
                                             </div>
                                         </div>
                                         <div class="data">
                                             <div class="data-group">
                                                 <div class="amount">1,945</div>
                                                 <div class="nk-ecwg6-ck">
-                                                    <canvas class="ecommerce-line-chart-s3" id="todayOrders"></canvas>
+                                                   <!-- <canvas class="ecommerce-line-chart-s3" id="todayOrders"></canvas>-->
                                                 </div>
                                             </div>
                                             <div class="info"><span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em>4.63%</span><span> vs. last week</span></div>

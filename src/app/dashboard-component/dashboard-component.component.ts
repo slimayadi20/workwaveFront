@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { NgProgressComponent } from 'ngx-progressbar';
-import { AuthServiceService } from '../Shared/auth-service.service';
 import { EncryptionService } from '../Shared/encryption.service';
 
 @Component({
@@ -9,11 +8,11 @@ import { EncryptionService } from '../Shared/encryption.service';
   styleUrls: ['./dashboard-component.component.css']
 })
 export class DashboardComponentComponent implements AfterViewInit, OnInit {
-  roles: any = [];
+  roles: any ;
 
 
 
-  constructor(private encrypt: EncryptionService) { }
+  constructor(private encrypt: EncryptionService,private encryptionService: EncryptionService,) { }
   data: any;
   list: any;
   @ViewChild(NgProgressComponent) progressBar!: NgProgressComponent;
@@ -33,6 +32,9 @@ export class DashboardComponentComponent implements AfterViewInit, OnInit {
       `Willkommen zurück, ${this.data['userName']}!`,
       `Bentornato/a, ${this.data['userName']}!`
     ];
+    this.data = this.encryptionService.decrypt(localStorage.getItem('data')!);
+    this.roles=this.data["role"];
+    
   }
 
 
