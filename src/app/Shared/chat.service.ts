@@ -79,9 +79,10 @@ export class ChatService {
     this.http.post(`${this.baseUrl}/chat`, body).subscribe();
   }
 
-  countNewMessages(senderId: string, recipientId: string):any {
-    return this.http.get(`${this.baseUrl}/messages/${senderId}/${recipientId}/count`);
+  countNewMessages(senderId: string, recipientId: string): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/messages/${senderId}/${recipientId}/count`);
   }
+  
 
   findChatMessages(senderId: string, recipientId: string) {
     return this.http.get(`${this.baseUrl}/messages/${senderId}/${recipientId}`);

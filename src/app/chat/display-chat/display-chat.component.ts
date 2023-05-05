@@ -29,7 +29,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
   lastMessage: any;
   term: any;
   video:any;
-
+  audio = new Audio('https://assets.mixkit.co/active_storage/sfx/1361/1361-preview.mp3');
  
  
   private messagesSubscription!: Subscription;
@@ -52,7 +52,8 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     recipientName: new FormControl('slimayadi'),
     content: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]),
     //timestamp: new FormControl(new Date().toISOString())
-    timestamp: new FormControl(formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ss', 'en', 'Africa/Tunis').toString())
+    timestamp: new FormControl(formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ss', 'en', 'Africa/Tunis').toString()),
+    video :new FormControl(),
   });
 
   constructor(private encrypt: EncryptionService, private chatService: ChatService,private router:Router ) { }
@@ -63,6 +64,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     this.MessageAdd.get("senderId")!.setValue(this.data1['id']);
     this.MessageAdd.get("senderName")!.setValue(this.data1['id']);
     this.MessageAdd.get("timestamp")!.setValue(formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ss', 'en', 'Africa/Tunis').toString());
+    this.MessageAdd.get("video")!.setValue(false);
 
     // Send the message via WebSocket
     this.sendMessages(this.MessageAdd.value);
@@ -82,10 +84,12 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     this.MessageAdd.get("senderId")!.setValue(this.data1['id']);
     this.MessageAdd.get("senderName")!.setValue(this.data1['id']);
     this.MessageAdd.get("timestamp")!.setValue(formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ss', 'en', 'Africa/Tunis').toString());
+
     this.MessageAdd.get("content")!.setValue(this.data1['id']+" "+"Started a Video Call");
+    this.MessageAdd.get("video")!.setValue(true);
     // Send the message via WebSocket
-    this.video="oui";
-    console.log("videooo send 2"+this.video);
+    
+    
     this.sendMessages(this.MessageAdd.value);
     
  
@@ -174,7 +178,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
   Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
-    timer: 10000,
+    timer: 30000,
     timerProgressBar: true
   });
   onError(error: any) {
@@ -183,7 +187,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
 
   public onMessageReceived(msg: any): void {
     const notification = JSON.parse(msg.body);
-    console.log("le messageeee"+msg.body);
+   
     //const active = JSON.parse(sessionStorage.getItem("recoil-persist") || "{}")
     //.chatActiveContact;
 
@@ -192,16 +196,15 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
 
     if (this.data1['id'] == notification.senderId) {
       console.log(this.chatService.findMessage(notification.id));
+      this.getChatRooms(this.data1['id']);
       this.findChatMessages(this.data1['id'], notification.senderName);
-      this.chatService.findMessage(notification.id).subscribe((message: any) => {
-
-      });
+  
     } 
     else
      {
         if (notification.senderName!=this.recepient){
        
-          
+          if(notification.video==false){
             this.Toast.fire({
             title: 'Message Received',
             text: `Received a new message from ${notification.senderName}.`,
@@ -215,6 +218,23 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
                 this.getChatRooms(this.data1['id']);
             }
           });
+        }
+        else{
+          this.audio.play();
+          this.Toast.fire({
+            title: 'video call Received',
+            text: `Received a video call from ${notification.senderName}.`,
+            confirmButtonColor: 'blue',
+            confirmButtonText: 'join Now',
+            
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.audio.pause();
+              this.audio.currentTime = 0;
+              this.router.navigate(["/chat/jitsi"])
+            }
+          });
+        }
         }
         
     
