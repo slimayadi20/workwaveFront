@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/Shared/project.service';
+import { ScrumboardService } from 'src/app/Shared/scrumboard.service';
 @Component({
   selector: 'app-display-projects',
   templateUrl: './display-projects.component.html',
@@ -8,12 +9,13 @@ import { ProjectService } from 'src/app/Shared/project.service';
 })
 export class DisplayProjectsComponent implements OnInit {
   projects: any;
-
-  constructor(private projectService: ProjectService, private router: Router) { }
+   taskCount = 0;
+  constructor(private projectService: ProjectService, private router: Router,private SB:ScrumboardService) { }
 
   ngOnInit() {
 
     this.getAll();
+ 
 
   }
 
@@ -25,24 +27,39 @@ export class DisplayProjectsComponent implements OnInit {
         this.projects = data;
         console.log(this.projects)
         for (let i = 0; i < this.projects.length; i++) {
-          let taskCount = 0;
-          let userCount = 0;
+         console.log(this.projects.length);
+         
           for (let j = 0; j < this.projects[i].user.length; j++) {
-            if (Array.isArray(this.projects[i].user[j].tasks)) {
-              taskCount += this.projects[i].user[j].tasks.length;
-              userCount += this.projects[i].user.length;
-            }
-          }
-          this.projects[i].taskCount = taskCount;
-          this.projects[i].userCount = userCount;
-          console.log(this.projects[i].taskCount)
-          console.log(this.projects[i].userCount)
-        }
+            console.log(this.projects[i].user.length);
+            
+           this.taskCount += this.projects[i].user[j].tasks.length;
+           console.log(this.taskCount);
+
+         }
+     }
+       // for (let i = 0; i < this.projects.length; i++) {
+       //   let taskCount = 0;
+       //   let userCount = 0;
+       //   for (let j = 0; j < this.projects[i].user.length; j++) {
+       //     if (Array.isArray(this.projects[i].user[j].tasks)) {
+       //       taskCount += this.projects[i].user[j].tasks.length;
+       //       console.log(taskCount);
+       //       
+       //       userCount += this.projects[i].user.length;
+       //       console.log(taskCount);
+       //       
+       //     }
+       //   }
+       //   this.projects[i].taskCount = taskCount;
+       //   this.projects[i].userCount = userCount;
+       //   console.log(this.projects[i].taskCount)
+       //   console.log(this.projects[i].userCount)
+       // }
 
       }
     });
   }
-
+ 
   //getAll() {
   //    this.projectService.getAll().subscribe({
   //      next:(data)=>{
