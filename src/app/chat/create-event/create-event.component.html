@@ -1,0 +1,42 @@
+    <!-- @@ Category Modal @e -->
+    <div class="modal fade" id="modalCreate">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close"> <em class="icon ni ni-cross-sm"></em></a>
+                <div class="modal-body modal-body-md">
+                    <h5 class="title">Add Event</h5>
+                    <form [formGroup]="EventAdd" (ngSubmit)="EventAdd">
+                        <div class="form-group">
+                            <label class="form-label" for="full-name">Title</label>
+                            <div class="form-control-wrap">
+                                <input formControlName="title" type="text" class="form-control" id="full-name" placeholder="Write Event Description">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="description">Description</label>
+                            <div class="form-control-wrap">
+                                <textarea formControlName="description" class="form-control" name="description" id="description" placeholder="Write Event Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="start-input">Start</label>
+                            <div class="form-control-wrap">
+                              <input formControlName="start" type="datetime-local" class="form-control" id="start-input" placeholder="e.g. 2023-04-19">
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="form-label" for="finish-input">Finish</label>
+                            <div class="form-control-wrap">
+                              <input formControlName="finish" type="datetime-local" class="form-control" id="finish-input" placeholder="e.g. 2023-04-20">
+                              
+                            </div>
+                          </div>
+                        <div class="form-group">
+                            <button  [disabled]="EventAdd.invalid"  (click)="AddEvent()" data-bs-dismiss="modal" type="submit" class="btn btn-primary">Save Informations</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

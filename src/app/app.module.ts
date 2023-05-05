@@ -20,6 +20,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { JitsiComponentComponent } from './chat/jitsi-component/jitsi-component.component';
 
 
 
@@ -37,11 +39,13 @@ import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
     RegistersuccessComponent,
     ResetPasswordComponent,
 
+    JitsiComponentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    SweetAlert2Module,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
