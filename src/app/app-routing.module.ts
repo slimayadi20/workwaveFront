@@ -31,6 +31,12 @@ const routes: Routes = [
   { path: 'payements', canActivate: [LoginguardGuard], loadChildren: () => import('./payements/payements.module').then(m => m.PayementsModule) },
   { path: 'chat', canActivate: [LoginguardGuard], loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule) },
   { path: 'users', canActivate: [LoginguardGuard], loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
+  { path: 'Supplier', canActivate: [LoginguardGuard], loadChildren: () => import('./Supplier/create-supplier/route1/Supplier.module').then(m => m.SupplierModule) },
+  { path: 'Order', canActivate: [LoginguardGuard], loadChildren: () => import('./Orders/create-order/Route/orders-module').then(m => m.ordersModule) },
+  
+  
+  
+  
     ]
   },
   { path: 'auth', component: AuthComponent },

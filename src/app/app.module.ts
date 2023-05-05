@@ -22,6 +22,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { JitsiComponentComponent } from './chat/jitsi-component/jitsi-component.component';
+import { CreateOrderComponent } from './Orders/create-order/create-order.component';
+import { CreateSupplierComponent } from './Supplier/create-supplier/create-supplier.component';
+import { ListSupplierComponent } from './Supplier/list-supplier/list-supplier/list-supplier.component';
+import { UpdateComponent } from './Supplier/update-supplier/update/update.component';
+import { ListOrdersComponent } from './Orders/create-order/orders-list/list-orders/list-orders.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
+import { EditOrderComponent } from './Orders/edit-order/edit-order/edit-order.component';
+
 
 
 
@@ -40,6 +48,16 @@ import { JitsiComponentComponent } from './chat/jitsi-component/jitsi-component.
     ResetPasswordComponent,
 
     JitsiComponentComponent,
+    ProductListComponent,
+    
+    
+    
+    
+    
+    
+    
+    
+    
   ],
   imports: [
     BrowserModule,
