@@ -156,6 +156,12 @@ export class SidemenuComponent implements OnInit {
                 link: '/users/displayusers',
                 icon: ''
               },
+              {
+                title: "Display Roles",
+                counter: 0,
+                link: '/users/roles',
+                icon: ''
+              },
             ]
           },
           {

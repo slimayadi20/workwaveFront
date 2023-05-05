@@ -5,6 +5,7 @@ import { AuthServiceService } from '../Shared/auth-service.service';
 import { EncryptionService } from '../Shared/encryption.service';
 import { NgProgressComponent } from 'ngx-progressbar';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-auth',
@@ -19,11 +20,18 @@ export class AuthComponent implements OnInit {
   public nom: any;
   public prenom: any;
   public gender: any;
+  public tfa: any = false;
+  public islogin: any = false;
   data: any;
-  constructor(private router: Router, private authService: AuthServiceService, private encryptionService: EncryptionService) { }
+  constructor(private router: Router, private authService: AuthServiceService, private encryptionService: EncryptionService,
+    private spinner: NgxSpinnerService) { }
   userLogin = new FormGroup({
-    userName: new FormControl('slim710', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
+    userName: new FormControl('slim961', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
     password: new FormControl('slim', [Validators.required])
+
+  })
+  faceLogin = new FormGroup({
+    userName: new FormControl('slim961', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
 
   })
   @ViewChild(NgProgressComponent) progressBar!: NgProgressComponent;
@@ -40,8 +48,10 @@ export class AuthComponent implements OnInit {
     /*if (localStorage.getItem('role') != "ROLE_ADMIN") {
       this.router.navigate(['/error-page'])
     }*/
+
   }
- 
+
+
   login() {
     this.authService.login(this.userLogin.value).subscribe(
       data => {
@@ -83,5 +93,52 @@ export class AuthComponent implements OnInit {
       }
     );
   }
+
+  FaceAuth() {
+    // Display spinner
+    this.spinner.show();
+
+    // Hide spinner after 5 seconds
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 5000);
+
+    // Make API call for face authentication
+    this.authService.faceAuth(this.faceLogin.value).subscribe(
+      data => {
+        if ((data as { [key: string]: any })['jwtToken'].length != 0) {
+          this.id = (data as { [key: string]: any })["user"]['userName'];
+          this.email1 = (data as { [key: string]: any })["user"]['email'];
+          this.contact = (data as { [key: string]: any })["user"]['phoneNumber'] ?? "undefined";
+          this.nom = (data as { [key: string]: any })["user"]['nom'] ?? "";
+          this.prenom = (data as { [key: string]: any })["user"]['prenom'] ?? "undefined";
+          this.gender = (data as { [key: string]: any })["user"]['gender'] ?? "undefined";
+
+          // console.log ((data as { [key: string]: any })["user"]["role"][0]["roleName"]);
+          localStorage.setItem('data', this.encryptionService.encrypt({ userName: this.id, email: this.email1, phoneNumber: this.contact, token: ((data as { [key: string]: any })['jwtToken']), role: (data as { [key: string]: any })["user"]["role"][0]["roleName"], nom: this.nom, prenom: this.prenom, gender: this.gender }));
+          this.router.navigate(['/courses/displaycourse']);
+          this.router.navigate(["/"]).then(e => {
+            window.location.reload();
+          }
+          )
+        }
+      },
+      err => {
+        this.spinner.hide();
+
+        // Handle authentication error
+        if (err.status === 403) {
+          Swal.fire('Erreur!', 'Veuillez activer 2FA', 'error');
+        } else {
+          Swal.fire('Erreur!', 'Identifiants incorrects!', 'error');
+        }
+      },
+      () => {
+        // Hide spinner when the authentication process is complete
+        this.spinner.hide();
+      }
+    );
+  }
+
 
 }

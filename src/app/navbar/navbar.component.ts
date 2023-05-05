@@ -15,20 +15,14 @@ export class NavbarComponent implements OnInit {
   displayerror: any
   ngOnInit(): void {
     this.data = this.encryptionService.decrypt(localStorage.getItem('data')!);
-   // console.log(this.data);
     this.getuser();
   }
   getuser() {
     this.service.getuser(this.data["userName"]).subscribe((e: any) => {
-      //console.log(e);
-      delete e.password;
-      delete e.token;
-      delete e.holidays;
-      delete e.projet;
-      delete e.role;
+      console.log(e);
       this.data = e;
-    //  console.log(this.data["fileName"]);
-      
+      console.log(this.data);
+
       if (e["prenom"] == null || e["prenom"] == "undefined")
         this.displayerror = true;
       if (e["gender"] == null || e["gender"] == "undefined")
@@ -37,7 +31,7 @@ export class NavbarComponent implements OnInit {
         this.displayerror = true;
     });
   }
- 
+
   logout() {
     localStorage.removeItem('data');
     this.router.navigate(['/auth']).then(e => {

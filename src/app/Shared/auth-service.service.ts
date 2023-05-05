@@ -33,6 +33,12 @@ export class AuthServiceService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
+  faceAuth(body: any) {
+    return this.http.post(this.PATH_OF_API + '/faceAuthenticate', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
   forget(body: any) {
     return this.http.post(this.PATH_OF_API + '/reset', body, {
       observe: 'body',
@@ -50,12 +56,12 @@ export class AuthServiceService {
     return !!localStorage.getItem('token')
   }
 
-  PaginationUsers(page: number, role?: string){
+  PaginationUsers(page: number, role?: string) {
     let params = new HttpParams().set('page', page.toString());
     if (role) {
       params = params.set('role', role);
     }
-    return this.http.get(this.PATH_OF_API + '/list', {params: params});
+    return this.http.get(this.PATH_OF_API + '/list', { params: params });
   }
 
   getToken() {
@@ -103,8 +109,27 @@ export class AuthServiceService {
   getroles() {
     return this.http.get(this.PATH_OF_API + "/getallroles");
   }
+  getrole(role?: string) {
+    return this.http.get(this.PATH_OF_API + "/userbyrole/" + role);
+  }
   ban(body: any) {
     return this.http.put(this.PATH_OF_API + '/banUser', body)
 
   }
+  tfa(body: any) {
+    return this.http.put(this.PATH_OF_API + '/tfaUser', body)
+  }
+  createRole(body: any) {
+    return this.http.post(this.PATH_OF_API + '/createNewRole', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+  updateRole(body: any,role:any) {
+    return this.http.post(this.PATH_OF_API + '/users/'+role, body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+
 }

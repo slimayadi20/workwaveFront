@@ -1,0 +1,70 @@
+<!-- @@ Role Modal @e -->
+<div class="modal fade" id="modalCreate">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close"> <em
+                    class="icon ni ni-cross-sm"></em></a>
+            <div *ngIf="roleId==0" class="modal-body modal-body-md">
+                <h5 class="title">Add Role</h5>
+                <form [formGroup]="roleForm" class="pt-2">
+                    <div class="form-group">
+                        <label class="form-label" for="full-name">Role Name</label>
+                        <div class="form-control-wrap">
+                            <input formControlName="roleName" type="text" class="form-control" id="full-name"
+                                placeholder="e.g. Admin">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="description">Description</label>
+                        <div class="form-control-wrap">
+                            <textarea formControlName="roleDescription" class="form-control" name="description"
+                                id="description" placeholder="Write Role Description"></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button (click)="createRole()" data-bs-dismiss="modal" type="submit"
+                            class="btn btn-primary">Save Informations</button>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="roleId!=0" class="modal-body modal-body-md">
+                <h5 class="title">Update Role</h5>
+                <form [formGroup]="roleForm" class="pt-2">
+                    <div class="form-group">
+                        <label class="form-label" for="full-name">Role Name</label>
+                        <div class="form-control-wrap">
+                            <input formControlName="roleName" type="text" class="form-control" id="full-name"
+                                placeholder="e.g. Admin">
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <div class="form-group">
+                    <label class="form-label" for="full-name">User Name</label>
+                    <div class="form-control-wrap">
+                        <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="dropdownList"
+                            [(ngModel)]="selectedItems2">
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
+                <form [formGroup]="roleForm">
+                    <div class="form-group">
+                        <label class="form-label" for="description">Description</label>
+                        <div class="form-control-wrap">
+                            <textarea formControlName="roleDescription" class="form-control" name="description"
+                                id="description" placeholder="Write Role Description"></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button (click)="updateRole()" data-bs-dismiss="modal" type="submit"
+                            class="btn btn-primary">Save Informations</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
