@@ -1,0 +1,75 @@
+<!-- @@ Category Modal @e -->
+<div class="modal fade" id="modalCreate">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close"> <em
+                    class="icon ni ni-cross-sm"></em></a>
+            <div class="modal-body modal-body-md">
+                <h5 class="title">Add Task</h5>
+                <form [formGroup]="taskForm" action="#" class="pt-2">
+                    <div class="form-group">
+                        <label for="full-name" class="form-label">Full Name</label>
+                        <div class="form-control-wrap">
+                            <input formControlName="taskName" type="text" class="form-control" id="full-name"
+                                placeholder="exp: Task 1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="full-name" class="form-label">Full Name</label>
+                        <div class="form-control-wrap">
+                            <ng-multiselect-dropdown [placeholder]="'users'" class="custom-font-size"
+                                [settings]="dropdownSettings" [data]="dropdownList" 
+                                [(ngModel)]="selectedItems"  (onSelect)="onUserSelect($event)">
+                            </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="UserName" class="form-label">UserName</label>
+                        <div class="form-control-wrap">
+                            <input type="text" class="form-control" id="UserName" placeholder="exp: User 1">
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="datedebut" class="form-label">Date Debut</label>
+                        <div class="form-control-wrap">
+                            <input formControlName="datedebut" type="date" class="form-control" id="datedebut">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="datefin" class="form-label">Date Fin</label>
+                        <div class="form-control-wrap">
+                            <input formControlName="datefin" type="date" class="form-control" id="datefin">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="form-label">Description</label>
+                        <div class="form-control-wrap">
+                            <textarea formControlName="description" class="form-control" id="description"
+                                rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group" style="display:none;">
+                        <label for="description" class="form-label">Description</label>
+                        <div class="form-control-wrap">
+                            <textarea formControlName="etat" class="form-control" id="description"
+                                rows="3"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="form-group">
+                        <label for="user" class="form-label">User</label>
+                        <div class="form-control-wrap">
+                            <textarea class="form-control" id="user" rows="3"></textarea>
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <button (click)="  addTask()" data-bs-dismiss="modal" type="submit"
+                            class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <app-edittask [taskName]="taskName" [description]="description" [datedebut]="datedebut" [datefin]="datefin" [scrumboard]="scrumboard"[user]="user"[etat]="etat"  ></app-edittask> -->
+<!-- <app-edittask [taskId]="taskId"></app-edittask> -->
