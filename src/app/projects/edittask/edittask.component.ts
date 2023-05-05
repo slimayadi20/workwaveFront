@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
@@ -12,21 +12,25 @@ import { TaskService } from 'src/app/Shared/task.service';
   styleUrls: ['./edittask.component.css']
 })
 export class EdittaskComponent implements OnInit {
-  tasks: any = [];
-  user = [{
-    userName: 'slimayadi'
-  }];
-  scrumboard = {
-    sbId: ''
-  };
+ 
+  
+    @Input() taskId: any;
+  // @Input() taskName: any;
+  // @Input() description: any;
+  // @Input() datedebut: any;
+  // @Input() datefin: any;
+  // @Input() scrumboard: any;
+  // @Input() user :any ;
+  // @Input() etat: any;
+
 
   taskForm = new FormGroup({
     taskName: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     datedebut: new FormControl('', [Validators.required]),
     datefin: new FormControl('', [Validators.required]),
-    scrumboard: new FormControl(this.scrumboard, [Validators.required]),
-    user: new FormControl(this.user, [Validators.required]),
+    // scrumboard: new FormControl(this.scrumboard, [Validators.required]),
+    // user: new FormControl(this.user, [Validators.required]),
     etat: new FormControl('Open'),
   });
   selectedItems: { userName: string }[] = [];
@@ -43,7 +47,7 @@ export class EdittaskComponent implements OnInit {
   dropdownList = [];
   pid: any;
   sbId: Number = 0;
-  @Input() taskId!: any;
+  // @Input() taskId: any;
 
   constructor(private SCS: ScrumboardService, private formBuilder: FormBuilder, private taskService: TaskService, private userservice: AuthServiceService, private route: ActivatedRoute) {
   }
@@ -57,7 +61,14 @@ export class EdittaskComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(this.taskId);
+    
+    const taskId = this.route.snapshot.paramMap.get('taskId');
+    console.log("task id "+this.taskId);
+    if (taskId != null) {
+    this.taskService.getTaskById(this.taskId).subscribe(task => {
+
+    });
+  }
     // this.pid = this.route.snapshot.queryParams['project'];
     // this.SCS.getByProjectId(this.pid).subscribe((res: any) => {
     //   console.log(res);
@@ -69,6 +80,19 @@ export class EdittaskComponent implements OnInit {
     // console.log(this.sbId);
     // this.getusers()
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['taskName'].currentValue != null) {
+      this.taskForm.get("taskName")!.setValue(changes['taskName'].currentValue);
+      this.taskForm.get("description")!.setValue(changes['description'].currentValue);
+   
+    }
+    if (changes['taskName'].currentValue == null) {
+      this.taskForm.get("taskName")!.setValue("");
+      this.taskForm.get("description")!.setValue("");
+    }
+  }
+
   getusers() {
     this.userservice.getusernames().subscribe((res: any) => {
       console.log(res);
@@ -77,7 +101,7 @@ export class EdittaskComponent implements OnInit {
   }
 
   addTask(): void {
-    this.taskForm.get("user")!.setValue(this.selectedItems);
+    // this.taskForm.get("user")!.setValue(this.selectedItems);
     console.log(this.dropdownList);
 
     //  this.scrumboard.get("sbId")!.setValue(this.sbId);
@@ -89,4 +113,8 @@ export class EdittaskComponent implements OnInit {
     );
     window.location.reload();
   }
+
+  
+
+  
 }

@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'kanban', component: KanbanComponent },
   { path: 'createproject', component: CreateprojectComponent },
   { path: 'editproject', component: EditprojectComponent },
-  { path: 'edit/:id', component: EdittaskComponent }
+  { path: 'edit', component: EdittaskComponent }
 
 ];
 

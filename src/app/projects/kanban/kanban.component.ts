@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ScrumboardService } from 'src/app/Shared/scrumboard.service';
 import { TaskService } from 'src/app/Shared/task.service';
 declare var jKanban: any;
@@ -20,7 +20,7 @@ export class KanbanComponent implements OnInit {
     inProgressTasks: any[] = [];
     doneTasks: any[] = [];
     toReview: any[] = [];
-    constructor(public service: ScrumboardService, private route: ActivatedRoute, public taskService: TaskService) { }
+    constructor(public service: ScrumboardService, private route: ActivatedRoute, public taskService: TaskService, private router: Router) { }
 
 
 
@@ -42,6 +42,7 @@ export class KanbanComponent implements OnInit {
                         title: task.taskName,
                         description: task.description,
                         datedebut: task.datedebut,
+                        link:  '[routerLink]="['+'/edit'+', ${task.id}]"',
                         datefin: task.datefin,
                         status: 'in-progress'
                     });
@@ -51,6 +52,7 @@ export class KanbanComponent implements OnInit {
                         title: task.taskName,
                         description: task.description,
                         datedebut: task.datedebut,
+                        link:  '[routerLink]="['+'/edit'+', ${task.id}]"',
                         datefin: task.datefin,
                         status: 'in-progress'
                     });
@@ -60,6 +62,7 @@ export class KanbanComponent implements OnInit {
                         title: task.taskName,
                         description: task.description,
                         datedebut: task.datedebut,
+                        link:  '[routerLink]="['+'/edit'+', ${task.id}]"',
                         datefin: task.datefin,
                         status: 'in-progress'
                     });
@@ -69,12 +72,14 @@ export class KanbanComponent implements OnInit {
                         title: task.taskName,
                         description: task.description,
                         datedebut: task.datedebut,
+                        link:  '[routerLink]="['+'/edit'+', ${task.id}]"',
                         datefin: task.datefin,
                         status: 'done'
                     });
                 }
             });
-
+            
+            
             console.log(this.todoTasks);
 
 
@@ -96,41 +101,43 @@ export class KanbanComponent implements OnInit {
                         'class': 'kanban-light',
                         'item': this.todoTasks.map(task => ({
                             'title': `
-                                <div class="kanban-item-title">
-                                    <h6 class="title">${task.title}</h6>
-                                    <h6 class="title" type="hidden" style="display:none">${task.id}</h6>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user-avatar-group">
-                                            <div class="user-avatar xs bg-danger"><span>V</span></div>
-                                        </div>
-                                        <div class="dropdown dropleft">
-                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                            <div class="dropdown-menu">
-                                                <ul class="link-list-opt no-bdr">
-                                                <li>
-                                                <a data-bs-toggle="modal" href="#modalCreate" data-bs-config={backdrop:true} [taskId]="${task.id}" >
-                                                  <em class="icon ni ni-mail"></em>
-                                                  <span>Update</span>
-                                                </a>
-                                              </li>      <li><a href="#"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="kanban-item-title">
+                              <h6 class="title">${task.title} </h6>
+                              <h6 class="title" type="hidden" style="display:none">${task.id}</h6>
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div class="user-avatar-group">
+                                  <div class="user-avatar xs bg-danger"><span>V</span></div>
                                 </div>
-                                <div class="kanban-item-text">
-                                    <p>${task.description}</p>
-                                </div>
-                                <div class="kanban-item-meta">
-                                    <ul class="kanban-item-meta-list">
-                                        <li><em class="icon ni ni-calendar"></em><span>${task.datedebut}</span></li>
-                                        <li><em class="icon ni ni-calendar"></em><span>${task.datefin}</span></li>
-                                    </ul>
-                                </div>
-                            `,
+                              
+                               
+                              </div>
+                            </div>
+                            <div class="kanban-item-text">
+                              <p>${task.description}</p>
+                            </div>
+                            <div class="kanban-item-meta">
+                              <ul class="kanban-item-meta-list">
+                                <li><em class="icon ni ni-calendar"></em><span>${task.datedebut}</span></li>
+                                <li><em class="icon ni ni-calendar"></em><span>${task.datefin}</span></li>
+                                
+                              </ul>
+                            
+                            </div>
+                            <div class="kanban-item-meta">
+                            <ul class="kanban-item-meta-list">
+                            <a href="/projects/edit?id=${task.id}" class="btn btn-primary d-none d-md-inline-flex"></em><span>Update</span></a>
+                            </ul>
+                            <ul class="kanban-item-meta-list">
+                            <a href="#" class="btn btn-danger d-none d-md-inline-flex"></em><span>Delete</span></a>
+                            </ul>
+                        
+                          </div>
+                          `,
+                            'draggable': true, // added draggable property
+                            'id': task.id // added id property
                         })),
                     },
-                    
+
                     {
                         'id': 'In Progress',
                         'title': "In Progress",
@@ -148,7 +155,7 @@ export class KanbanComponent implements OnInit {
                                         <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                         <div class="dropdown-menu">
                                             <ul class="link-list-opt no-bdr">
-                                                <li><a href="#"><em class="icon ni ni-mail"></em><span>Update</span></a></li>
+                                                <li><a routerLink=["/"]><em class="icon ni ni-mail"></em><span>Update</span></a></li>
                                                 <li><a href="#"><em class="icon ni ni-na"></em><span>Delete</span></a></li>
                                             </ul>
                                         </div>
@@ -252,6 +259,11 @@ export class KanbanComponent implements OnInit {
 
 
                 },
+            //   click            : function (el:any) {
+            //       console.log(el);
+
+            //   },
+
                 dropEl: function (el: any, target: any, source: any, sibling: any) {
                     // Get the destination column and card positions
                     const targetCol = target.parentElement.dataset.id;
@@ -293,5 +305,8 @@ export class KanbanComponent implements OnInit {
     }
 
 
+    redirect(id: any) {
+        this.router.navigate(['/projects/edit/'], { queryParams: { id: id } });
+    }
 
 }

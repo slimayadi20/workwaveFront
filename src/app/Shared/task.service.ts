@@ -39,5 +39,13 @@ export class TaskService {
     return this.http.post(`${this.baseURL}/changeetat/${id}/${etat}`, {});
   }
 
+  updateTask(task:any){
+    return this.http.put(`${this.baseURL}/updateTask}`, task);
+  }
+
+  getTaskById(taskId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseURL}/Task/{id}/${taskId}`);
+  }
+  
 }
 

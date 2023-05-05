@@ -14,12 +14,14 @@ export class DisplayProjectsComponent implements OnInit {
   ngOnInit() {
 
     this.getAll();
-   
+
   }
 
   getAll() {
     this.projectService.getAll().subscribe({
       next: (data) => {
+        console.log(data);
+        
         this.projects = data;
         console.log(this.projects)
         for (let i = 0; i < this.projects.length; i++) {
@@ -29,16 +31,14 @@ export class DisplayProjectsComponent implements OnInit {
             if (Array.isArray(this.projects[i].user[j].tasks)) {
               taskCount += this.projects[i].user[j].tasks.length;
               userCount += this.projects[i].user.length;
-
             }
-          
           }
           this.projects[i].taskCount = taskCount;
           this.projects[i].userCount = userCount;
           console.log(this.projects[i].taskCount)
           console.log(this.projects[i].userCount)
         }
-        
+
       }
     });
   }
@@ -70,5 +70,28 @@ export class DisplayProjectsComponent implements OnInit {
       { queryParams: { project: id } }
     );
   }
+
+
+  deleteproject(id: number) {
+    this.projectService.deleteProject(id).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.getAll();
+        window.location.reload();
+
+      },
+      (error: any) => {
+        window.location.reload();
+      }
+
+    );
+  }
+  Update(id: any) {
+    this.router.navigate(
+      ['/projects/editproject/'],
+      { queryParams: { id: id } }
+    );
+  }
+
 
 }
