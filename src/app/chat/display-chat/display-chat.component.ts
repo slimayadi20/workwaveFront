@@ -237,7 +237,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
               this.audio.currentTime = 0;
               this.router.navigate(['/chat/jitsi'], {
                 queryParams: {
-                  id: this.data1['id'],
+                  id: this.data1['userName'],
                   recipient: this.recepient,
                   video: true
                 }
