@@ -30,6 +30,8 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
   term: any;
   video:any;
   audio = new Audio('https://assets.mixkit.co/active_storage/sfx/1361/1361-preview.mp3');
+  audio1 = new Audio('https://assets.mixkit.co/active_storage/sfx/2357/2357-preview.mp3 ');
+  
  
  
   private messagesSubscription!: Subscription;
@@ -205,8 +207,9 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
         if (notification.senderName!=this.recepient){
        
           if(notification.video==false){
+            this.audio1.play();
             this.Toast.fire({
-            title: 'Message Received',
+            title: 'Message Received 📨',
             text: `Received a new message from ${notification.senderName}.`,
             confirmButtonColor: 'green',
             confirmButtonText: 'View Now',
@@ -222,7 +225,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
         else{
           this.audio.play();
           this.Toast.fire({
-            title: 'video call Received',
+            title: 'video call Received 📹',
             text: `Received a video call from ${notification.senderName}.`,
             confirmButtonColor: 'blue',
             confirmButtonText: 'join Now',
@@ -231,7 +234,14 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
             if (result.isConfirmed) {
               this.audio.pause();
               this.audio.currentTime = 0;
-              this.router.navigate(["/chat/jitsi"])
+              this.router.navigate(['/chat/jitsi'], {
+                queryParams: {
+                  id: this.data1['id'],
+                  recipient: this.recepient,
+                  video: true
+                }
+              });
+              
             }
           });
         }
