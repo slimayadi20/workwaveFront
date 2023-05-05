@@ -16,6 +16,14 @@ import { MainComponent } from './main/main.component';
 import { DashboardComponentComponent } from './dashboard-component/dashboard-component.component';
 import { RegistersuccessComponent } from './registersuccess/registersuccess.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CreateOrderComponent } from './Orders/create-order/create-order.component';
+import { CreateSupplierComponent } from './Supplier/create-supplier/create-supplier.component';
+import { ListSupplierComponent } from './Supplier/list-supplier/list-supplier/list-supplier.component';
+import { UpdateComponent } from './Supplier/update-supplier/update/update.component';
+import { ListOrdersComponent } from './Orders/create-order/orders-list/list-orders/list-orders.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
+import { EditOrderComponent } from './Orders/edit-order/edit-order/edit-order.component';
+
 
  
 
@@ -33,6 +41,16 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     DashboardComponentComponent,
     RegistersuccessComponent,
     ResetPasswordComponent,
+    ProductListComponent,
+    
+    
+    
+    
+    
+    
+    
+    
+    
   ],
   imports: [
     BrowserModule,

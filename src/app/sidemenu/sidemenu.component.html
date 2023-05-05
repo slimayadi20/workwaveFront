@@ -22,13 +22,18 @@
                     <a  href="#" class="nk-menu-link nk-menu-toggle">
                         <span class="nk-menu-icon"><em class="{{m.icon}}"></em></span>
                         <span class="nk-menu-text">{{m.title}}</span>
+                        
+                        
+
                     </a>
                     <ul class="nk-menu-sub">
                         <li class="nk-menu-item" *ngFor="let s of m.subMenus">
                             <a  [routerLink]=" s.link"  class="nk-menu-link"><span class="nk-menu-text">{{s.title}}</span></a>
+                            
                         </li>
                           
                     </ul><!-- .nk-menu-sub -->
+                    
                 </li><!-- .nk-menu-item -->
              
                <!-- end here apps -->
