@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/Shared/project.service';
 import { ScrumboardService } from 'src/app/Shared/scrumboard.service';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AuthServiceService } from 'src/app/Shared/auth-service.service';
+import { BudgetService } from 'src/app/Shared/budget.service';
 @Component({
   selector: 'app-display-projects',
   templateUrl: './display-projects.component.html',
@@ -10,14 +13,23 @@ import { ScrumboardService } from 'src/app/Shared/scrumboard.service';
 export class DisplayProjectsComponent implements OnInit {
   projects: any;
    taskCount = 0;
-  constructor(private projectService: ProjectService, private router: Router,private SB:ScrumboardService) { }
+   budgetAmountt:any;
+   financialManager:any;
+   BudgetForm: FormGroup = new FormGroup({
+    BudgetAmount: new FormControl('', [Validators.minLength(2), Validators.maxLength(20)]),
+    financialManager: new FormControl('', [Validators.minLength(2), Validators.maxLength(20)]),
+  })
+  financialmanager:any;
+  b_id: any;
+  constructor(private BS:BudgetService,private usr:AuthServiceService,private projectService: ProjectService, private router: Router,private SB:ScrumboardService) { }
 
   ngOnInit() {
 
     this.getAll();
- 
+    this.getFinancialManagers();
 
   }
+
 
   getAll() {
     this.projectService.getAll().subscribe({
@@ -94,11 +106,11 @@ export class DisplayProjectsComponent implements OnInit {
       (data: any) => {
         console.log(data);
         this.getAll();
-        window.location.reload();
+    //    window.location.reload();
 
       },
       (error: any) => {
-        window.location.reload();
+    //    window.location.reload();
       }
 
     );
@@ -109,6 +121,32 @@ export class DisplayProjectsComponent implements OnInit {
       { queryParams: { id: id } }
     );
   }
-
+  getFinancialManagers() {
+    this.usr.getUserByRoleFinancial().subscribe((e: any) => {
+      this.financialmanager = (e);
+      console.log(this.financialmanager);
+      
+    })
+ 
+}
+  RequestBudget(p_id:any){
+    console.log(p_id);
+    
+      this.budgetAmountt = this.BudgetForm.controls["BudgetAmount"].value;
+      this.financialManager = this.BudgetForm.controls["financialManager"].value;
+   
+        this.BS.requestBudget(p_id,this.budgetAmountt,this.financialManager).subscribe(
+          (data: any) => {
+            console.log(data);
+            
+            window.location.reload();
+    
+          },
+          (error: any) => {
+         window.location.reload();
+          }
+    
+        );
+  }
 
 }

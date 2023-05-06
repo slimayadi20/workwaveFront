@@ -7,19 +7,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  PATH_OF_API = 'http://localhost:8091';
-
+  baseUrl = 'http://localhost:8090';
   public data: any;
   constructor(private http: HttpClient, private router: Router) { }
 
   createProduct(body: any) {
-    return this.http.post("http://localhost:8091" + '/addproducts', body, {
+    return this.http.post(`${this.baseUrl}//addproducts`, body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
   editProduct(body: any) {
-    return this.http.put("http://localhost:8091" + '/updateproducts', body, {
+    return this.http.put(`${this.baseUrl}/updateproducts`, body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -28,10 +27,10 @@ export class ProductService {
 
 
   public getproduct(id: any) {
-    return this.http.get("http://localhost:8091" + "/getproduct/" + id);
+    return this.http.get(`${this.baseUrl}/getproduct/` + id);
   }
   getproducts() {
-    return this.http.get("http://localhost:8091" + '/products', {
+    return this.http.get(`${this.baseUrl}/products`, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -39,12 +38,12 @@ export class ProductService {
   getproductspagination(page: number) {
     let params = new HttpParams().set('page', page.toString());
 
-    return this.http.get("http://localhost:8091" + '/products', { params: params })
+    return this.http.get(`${this.baseUrl}/productss`, { params: params })
   }
 
 
   deleteProduct(p_id: number) {
-    return this.http.delete("http://localhost:8091" + `/deleteproducts/${p_id}`);
+    return this.http.delete(`${this.baseUrl}/deleteproducts/${p_id}`);
   }
 
 

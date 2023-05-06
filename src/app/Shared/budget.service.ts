@@ -30,4 +30,16 @@ export class BudgetService {
   deleteBudget(id: number) {
     return this.http.delete(`${baseUrl}/deleteBudget/${id}`);
   }
+  requestBudget(p_id:any,Amount:any,b_id:any){
+    return this.http.post(`${baseUrl}/requestBudget?ProjectID=${p_id}&Amount=${Amount}&BankAccountId=${b_id}`, null);
+
+  }
+  AcceptBudget(b_id:any){
+    return this.http.post(`${baseUrl}/approveBudget/${b_id}`, null);
+
+  }
+  getAllBudgetsByBankAndStatus(id:any,Status:any) {
+    return this.http.get(`${baseUrl}/BudgetByBankAccount/${id}/${Status}`);
+  }
+  
 }

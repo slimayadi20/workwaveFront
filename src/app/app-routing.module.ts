@@ -33,7 +33,9 @@ const routes: Routes = [
   { path: 'users', canActivate: [LoginguardGuard], loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
   { path: 'Supplier', canActivate: [LoginguardGuard], loadChildren: () => import('./Supplier/create-supplier/route1/Supplier.module').then(m => m.SupplierModule) },
   { path: 'Order', canActivate: [LoginguardGuard], loadChildren: () => import('./Orders/create-order/Route/orders-module').then(m => m.ordersModule) },
-  
+  { path: 'Transactions', canActivate: [LoginguardGuard], loadChildren: () => import('./transactions/transactions.module').then(m => m.TransactionsModule)},
+  { path: 'Budgets', canActivate: [LoginguardGuard], loadChildren: () => import('./budgets/budgets.module').then(m => m.BudgetsModule)}
+
   
   
   

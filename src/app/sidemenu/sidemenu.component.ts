@@ -27,7 +27,7 @@ export class SidemenuComponent implements OnInit {
     console.log(this.data["role"]);
 
     switch (this.data["role"]) {
-      case "Admin":
+      case "Financial Manager":
         this.menuapp = [
 
           {

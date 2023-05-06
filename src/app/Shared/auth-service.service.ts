@@ -63,6 +63,10 @@ export class AuthServiceService {
     }
     return this.http.get(this.PATH_OF_API + '/list', { params: params });
   }
+  getUserByRoleFinancial(){
+    return this.http.get(this.PATH_OF_API + "/getUserByRoleFinancial");
+
+  }
 
   getToken() {
     console.log(localStorage.getItem('data')!);

@@ -257,7 +257,7 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="nk-block">
+                                    <div class="nk-block"> 
                                         <h6 class="lead-text mb-3">Transactions</h6>
                                         <div class="nk-block-des text-soft">
                                             <p>You have total {{banksaccount.transactions.length}} transactions.</p>
@@ -276,6 +276,9 @@
                                                
                                                 <div class="nk-tb-col">
                                                     <span class="sub-text">Transaction Date</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">View All</span>
                                                 </div>
                                             </div>
                                             <div class="nk-tb-item" *ngFor="let t of transactions | slice:0:4">

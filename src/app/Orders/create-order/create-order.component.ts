@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { OrderService } from 'src/app/Shared/order.service';
 import { ProductService } from 'src/app/Shared/product.service';
 import { SupplierService } from 'src/app/Shared/supplier.service';
-
+import { EncryptionService } from 'src/app/Shared/encryption.service';
 @Component({
   selector: 'app-create-order',
   templateUrl: './create-order.component.html',
@@ -15,7 +15,9 @@ export class CreateOrderComponent implements OnInit {
   public quantity: any;
   data: any;
   supplier: any;
-  constructor(private Orderservice: OrderService, private router: Router, private productservice: ProductService, private supplierservice: SupplierService) { }
+  userName:any;
+
+  constructor(private encrypt:EncryptionService,private Orderservice: OrderService, private router: Router, private productservice: ProductService, private supplierservice: SupplierService) { }
   product: any;
   neworder = new FormGroup({
     orderDate: new FormControl('', [Validators.required]),
@@ -26,6 +28,9 @@ export class CreateOrderComponent implements OnInit {
   ngOnInit(): void {
     this.afficherproduit();
     this.afficherSupplier();
+    this.data = this.encrypt.decrypt(localStorage.getItem('data')!);
+    console.log(this.data);
+    this.userName = this.data.userName;
   }
 
 
@@ -41,7 +46,7 @@ export class CreateOrderComponent implements OnInit {
     };
     console.log(formData);
 
-    this.Orderservice.createorder(formData).subscribe(
+    this.Orderservice.createorder(formData,this.userName).subscribe(
       (data: any) => {
         console.log(data);
         // Reset form fields

@@ -31,6 +31,6 @@ export class TransactionsService {
     return this.http.delete(`${baseUrl}/deleteTransaction/${id}`);
   }
   getbyBankAccount(id: Number) {
-    return this.http.get(`${baseUrl}/BankAccountByUser/${id}`);
+    return this.http.get(`${baseUrl}/TransactionsByBankAccount/${id}`);
   }
 }
