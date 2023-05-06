@@ -24,6 +24,7 @@ import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
 import { CreateCoursComponent } from './create-cours/create-cours.component';
 import { DisplayCoursComponent } from './display-cours/display-cours.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
+import { CertificateComponent } from './certificate/certificate.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
     CreateCoursComponent,
     DisplayCoursComponent,
     ThankyouComponent,
+    CertificateComponent,
   ],
   imports: [
     CommonModule,

@@ -88,9 +88,10 @@
                                         <button *ngIf="!hasEnrolled(f)" (click)="enroll(f)"
                                             class="btn btn-primary enroll-button"
                                             style="  margin-left: 80%;">Enroll</button>
-                                        <button *ngIf="!verifyCompletion(f)" (click)="enroll(f)"
+                                        <button *ngIf="!verifyCompletion(f)" (click)="generateCertificatePDF(f )"
                                             class="btn btn-primary enroll-button" style="  margin-left: 60%;">Claim
                                             Certificate</button>
+
                                         <!-- <button *ngIf="hasClaimedCertificate(f)"
                                             class="btn btn-primary enroll-button claim-certificate-button"
                                             style="  margin-left: 50%;">Claim

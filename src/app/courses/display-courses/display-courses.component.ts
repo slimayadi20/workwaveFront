@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import jsPDF from 'jspdf';
 import { NgProgressComponent } from 'ngx-progressbar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthServiceService } from 'src/app/Shared/auth-service.service';
@@ -109,4 +110,44 @@ export class DisplayCoursesComponent implements AfterViewInit, OnInit {
     }
     return true; // formation not completed
   }
+  generateCertificatePDF(formation:any): void {
+    // Create a new jsPDF instance
+    const doc = new jsPDF('landscape');
+  
+    // Define certificate title font and color
+    doc.setFont('times', 'bold');
+    doc.setFontSize(30);
+    doc.setTextColor(28, 82, 120);
+  
+    // Add certificate title
+    const titleText = 'Certificate of Completion';
+    const titleWidth = doc.getStringUnitWidth(titleText) * 30 / doc.internal.scaleFactor;
+    const titleX = (doc.internal.pageSize.width - titleWidth) / 2;
+    doc.text(titleText, titleX, 70);
+  
+    // Define recipient name font and color
+    doc.setFont('times', 'normal');
+    doc.setFontSize(16);
+    doc.setTextColor(28, 82, 120);
+  
+    // Add recipient name and course details
+    const recipientText = `This certifies that ${this.username} has completed the course ${formation.nomFormation} on Workwave.`;
+    const recipientWidth = doc.getStringUnitWidth(recipientText) * 16 / doc.internal.scaleFactor;
+    const recipientX = (doc.internal.pageSize.width - recipientWidth) / 2;
+    doc.text(recipientText, recipientX, 120);
+  
+    // Add certificate border
+    doc.setLineWidth(2);
+    doc.setDrawColor(28, 82, 120);
+    doc.rect(20, 20, doc.internal.pageSize.width - 40, doc.internal.pageSize.height - 40);
+  
+    // Save the PDF
+    doc.save(`aa-Certificate.pdf`);
+  }
+  
+  
+  
+  
+  
+  
 }
