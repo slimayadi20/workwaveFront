@@ -12,14 +12,16 @@ import { DisplayCategComponent } from './display-categ/display-categ.component';
 import { EditCategComponent } from './edit-categ/edit-categ.component';
 import { AddCategComponent } from './add-categ/add-categ.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
 
 const routes: Routes = [
   { path: 'displaycourse', component: DisplayCoursesComponent },
+  { path: 'displaycourseAdmin', component: AdminCoursesComponent },
   { path: 'createcourse', component: CreateCoursesComponent },
   { path: 'editcourse', component: EditCoursesComponent },
   { path: 'displaycateg', component: DisplayCategComponent },
   { path: 'createcateg', component: AddCategComponent },
-   { path: 'editcateg', component: EditCategComponent },
+  { path: 'editcateg', component: EditCategComponent },
   { path: 'coursedetail', component: CoursedetailsComponent },
   { path: 'deletecourse', component: DeleteCoursesComponent },
   { path: 'enrollement', component: EnrollementComponent },

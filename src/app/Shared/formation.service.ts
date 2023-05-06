@@ -23,8 +23,8 @@ export class FormationService {
   public getForms() {
     return this.http.get("http://localhost:8090" + "/showForm");
   }
-  public getForm(id:any) {
-    return this.http.get("http://localhost:8090" + "/showForm/"+id);
+  public getForm(id: any) {
+    return this.http.get("http://localhost:8090" + "/showForm/" + id);
   }
   public delete(data: any) {
     let headers = new HttpHeaders({
@@ -32,5 +32,25 @@ export class FormationService {
       'responseType': 'json',
     });
     return this.http.delete("http://localhost:8090" + `/deleteForm/${data}`, { headers: headers });
+  }
+  // historique 
+  public getHisto(id: any) {
+    return this.http.get("http://localhost:8090" + "/findbyUser/" + id);
+  }
+
+  public historiquebyuserandformation(id: any, idformation: any) {
+    return this.http.get("http://localhost:8090" + "/historiquebyuserandformation/" + id + "/" + idformation);
+  }
+  public addHisto(body: any) {
+    return this.http.post("http://localhost:8090" + '/addHistorique', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+  public updateHisto(body: any) {
+    return this.http.put("http://localhost:8090" + '/updateHistorique', body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
   }
 }

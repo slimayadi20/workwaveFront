@@ -28,14 +28,19 @@
                                                         By</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <ul class="link-list-opt no-bdr">
-                                                        <li *ngFor="let c of categories"><a
-                                                                href="#"><span>{{c.nom}}</span></a></li>
+                                                        <li *ngFor="let c of categories"><a href="#"><span>{{c.nom}}</span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </li>
-
-
+                                        <li class="nk-block-tools-opt d-none d-sm-block">
+                                            <a routerLink="/courses/createcourse" class="btn btn-primary"><em
+                                                    class="icon ni ni-plus"></em><span>Add Course</span></a>
+                                        </li>
+                                        <li class="nk-block-tools-opt d-block d-sm-none">
+                                            <a href="#" class="btn btn-icon btn-primary"><em
+                                                    class="icon ni ni-plus"></em></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div><!-- .toggle-wrap -->
@@ -49,53 +54,44 @@
                                 <div class="card-inner">
                                     <div class="project">
                                         <div class="project-head">
-                                            <a (click)="redirect(f)" class="project-title">
-                                                <div class="user-avatar sq bg-purple"><span
-                                                        style="text-transform: uppercase;">{{f.nomFormation[0]}}{{f.nomFormation[1]}}</span>
-                                                </div>
+                                            <a  class="project-title">
+                                                <div class="user-avatar sq bg-purple" ><span style="text-transform: uppercase;">{{f.nomFormation[0]}}{{f.nomFormation[1]}}</span></div>
                                                 <div class="project-info">
                                                     <h6 class="title">{{f.nomFormation}}</h6>
                                                     <div class="project-meta">
                                                         <span class="sub-text">WorkWave Academy</span>
-
+                                        
                                                         <span class="badge badge-dim bg-warning"><em
-                                                                class="icon ni ni-clock"></em><span>{{f.duree}}
-                                                            </span></span>
+                                                                class="icon ni ni-clock"></em><span>{{f.duree}} </span></span>
                                                     </div>
                                                 </div>
                                             </a>
-
+                                            <div class="drodown">
+                                                <a href="#"
+                                                    class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1"
+                                                    data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <ul class="link-list-opt no-bdr">
+                                                        <li><a (click)="redirect(f.idFormation)" style="cursor: pointer;"><em
+                                                                    class="icon ni ni-edit"></em><span>Edit
+                                                                    Course</span></a></li>
+                                                        <li><a (click)="delete(f.idFormation)" style="cursor: pointer;"><em
+                                                                    class="icon ni ni-check-round-cut"></em><span>Delete Course</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="project-details">
                                             <p>{{f.description}}</p>
                                         </div>
-                                        <div *ngIf="hasEnrolled(f)">
-                                            <div class="project-progress">
-                                                <div class="project-progress-details">
-                                                    <div class="project-progress-task">
-                                                        <em class="icon ni ni-check-round-cut"></em>
-                                                        <span>{{getCompletionPercent(f)/25}} Cours</span>
-                                                    </div>
-                                                    <div class="project-progress-percent">{{getCompletionPercent(f)}}%
-                                                    </div>
-                                                </div>
-                                                <div class="progress progress-pill progress-md bg-light">
-                                                    <div class="progress-bar"
-                                                        [style.width]="getCompletionPercent(f)+'%'"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button *ngIf="!hasEnrolled(f)" (click)="enroll(f)"
-                                            class="btn btn-primary enroll-button"
-                                            style="  margin-left: 80%;">Enroll</button>
-                                        <!-- <button *ngIf="hasClaimedCertificate(f)"
-                                            class="btn btn-primary enroll-button claim-certificate-button"
-                                            style="  margin-left: 50%;">Claim
-                                            Certificate</button> -->
+                                     
+                                       
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -106,4 +102,3 @@
     <!-- <app-create-courses></app-create-courses>
     <app-edit-courses></app-edit-courses>
     <app-delete-courses></app-delete-courses> -->
-</div>

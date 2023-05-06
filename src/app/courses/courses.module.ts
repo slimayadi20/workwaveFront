@@ -20,6 +20,7 @@ import { EditCategComponent } from './edit-categ/edit-categ.component';
 import { AddCategComponent } from './add-categ/add-categ.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { QuizComponent } from './quiz/quiz.component';
+import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { QuizComponent } from './quiz/quiz.component';
     EditCategComponent,
     AddCategComponent,
     QuizComponent,
+    AdminCoursesComponent,
   ],
   imports: [
     CommonModule,

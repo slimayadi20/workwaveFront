@@ -43,6 +43,12 @@ export class SidemenuComponent implements OnInit {
                 icon: ''
               },
               {
+                title: "courses list Admin",
+                counter: 0,
+                link: '/courses/displaycourseAdmin',
+                icon: ''
+              },
+              {
                 title: "Courses Categories",
                 counter: 0,
                 link: '/courses/displaycateg',

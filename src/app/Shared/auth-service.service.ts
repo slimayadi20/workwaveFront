@@ -10,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthServiceService {
   public data: any;
-  constructor(private encryptionService: EncryptionService,private http: HttpClient, private router: Router) { }
+  constructor(private encryptionService: EncryptionService, private http: HttpClient, private router: Router) { }
 
   register(body: any) {
     return this.http.post("http://localhost:8090" + '/registerNewUser', body, {
@@ -20,19 +20,19 @@ export class AuthServiceService {
   }
 
   login(body: any) {
-    return this.http.post("http://localhost:8090"+ '/authenticate', body, {
+    return this.http.post("http://localhost:8090" + '/authenticate', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
   forget(body: any) {
-    return this.http.post("http://localhost:8090"+ '/reset', body, {
+    return this.http.post("http://localhost:8090" + '/reset', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
   reset(body: any) {
-    return this.http.post("http://localhost:8090"+ '/reset_password', body, {
+    return this.http.post("http://localhost:8090" + '/reset_password', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -42,7 +42,7 @@ export class AuthServiceService {
     return !!localStorage.getItem('token')
   }
 
- 
+
   getToken() {
     console.log(localStorage.getItem('data')!);
     if (localStorage.getItem('data') != null) {
@@ -55,7 +55,10 @@ export class AuthServiceService {
 
   }
   public getusernames() {
-    return this.http.get("http://localhost:8090"+ "/usernames");
+    return this.http.get("http://localhost:8090" + "/usernames");
+  }
+  public getUserByUsername(user: any) {
+    return this.http.get("http://localhost:8090" + "/getUser/" + user);
   }
   logoutUser() {
     localStorage.removeItem('data');
@@ -63,9 +66,9 @@ export class AuthServiceService {
     this.router.navigate(['/auth'])
   }
   otp(body: any) {
-console.log(body);
+    console.log(body);
 
-    return this.http.post("http://localhost:8090"+ '/otp', body, {
+    return this.http.post("http://localhost:8090" + '/otp', body, {
       observe: 'response',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
