@@ -44,7 +44,7 @@
                 </div><!-- .nk-block-head -->
                 <div class="nk-block">
                     <div class="row g-gs">
-                        <div class="col-sm-6 col-lg-4 col-xxl-3" *ngFor="let f of formation">
+                        <div class="col-sm-6 col-lg-4 col-xxl-3" *ngFor="let f of formation ; let i=index">
                             <div class="card h-100">
                                 <div class="card-inner">
                                     <div class="project">
@@ -69,7 +69,7 @@
                                         <div class="project-details">
                                             <p>{{f.description}}</p>
                                         </div>
-                                        <div *ngIf="hasEnrolled(f)">
+                                        <div *ngIf="hasEnrolled(f) && verifyCompletion(f) ">
                                             <div class="project-progress">
                                                 <div class="project-progress-details">
                                                     <div class="project-progress-task">
@@ -88,6 +88,9 @@
                                         <button *ngIf="!hasEnrolled(f)" (click)="enroll(f)"
                                             class="btn btn-primary enroll-button"
                                             style="  margin-left: 80%;">Enroll</button>
+                                        <button *ngIf="!verifyCompletion(f)" (click)="enroll(f)"
+                                            class="btn btn-primary enroll-button" style="  margin-left: 60%;">Claim
+                                            Certificate</button>
                                         <!-- <button *ngIf="hasClaimedCertificate(f)"
                                             class="btn btn-primary enroll-button claim-certificate-button"
                                             style="  margin-left: 50%;">Claim

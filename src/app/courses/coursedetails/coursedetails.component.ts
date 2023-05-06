@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CoursService } from 'src/app/Shared/cours.service';
 import { EncryptionService } from 'src/app/Shared/encryption.service';
 import { FormationService } from 'src/app/Shared/formation.service';
@@ -15,7 +15,7 @@ export class CoursedetailsComponent implements OnInit {
   username: any;
   historique: any = [];
   data: any = [];
-  constructor(public service: CoursService, private formationService: FormationService, private route: ActivatedRoute, private encryptionService: EncryptionService) { }
+  constructor(public service: CoursService, private formationService: FormationService, private route: ActivatedRoute, private encryptionService: EncryptionService, private router: Router) { }
   nextStep() {
     this.currentStep++;
   }
@@ -47,8 +47,12 @@ export class CoursedetailsComponent implements OnInit {
       else if (this.historique.avancement === 50) {
         this.currentStep = 2;
       }
-      else {
+      else if (this.historique.avancement === 75) {
         this.currentStep = 3
+      }
+      else {
+        this.router.navigate(['/courses/quiz'], { queryParams: { id: this.id } })
+
       }
       console.log(e);
     })

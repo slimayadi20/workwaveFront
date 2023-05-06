@@ -20,7 +20,9 @@ Author      : jthemes (https://themeforest.net/user/jthemes)
     overflow-x: hidden;
     padding-top: 1.25rem;
 }
-
+.selected {
+    background-color: #FFC300;
+}
 .count_box {
     width: 19rem;
     height: 6.0625rem;

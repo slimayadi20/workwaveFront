@@ -13,6 +13,9 @@ import { EditCategComponent } from './edit-categ/edit-categ.component';
 import { AddCategComponent } from './add-categ/add-categ.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
+import { CreateCoursComponent } from './create-cours/create-cours.component';
+import { DisplayCoursComponent } from './display-cours/display-cours.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
 
 const routes: Routes = [
   { path: 'displaycourse', component: DisplayCoursesComponent },
@@ -28,6 +31,9 @@ const routes: Routes = [
   { path: 'enrollementStudent', component: StudentEnrollementDetailComponent },
   { path: 'enrollementStudentCourses', component: StudentCoursesDetailComponent },
   { path: 'quiz', component: QuizComponent },
+  { path: 'CreateCours', component: CreateCoursComponent },
+  { path: 'displayCours', component: DisplayCoursComponent },
+  { path: 'thankyou', component: ThankyouComponent },
 ];
 
 @NgModule({

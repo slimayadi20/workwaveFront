@@ -53,4 +53,8 @@ export class FormationService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
+  // quiz
+  public getQuiz(id: any) {
+    return this.http.get("http://localhost:8090" + "/quizbyformation/" + id);
+  }
 }

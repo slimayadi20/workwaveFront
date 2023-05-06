@@ -21,6 +21,9 @@ import { AddCategComponent } from './add-categ/add-categ.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { QuizComponent } from './quiz/quiz.component';
 import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
+import { CreateCoursComponent } from './create-cours/create-cours.component';
+import { DisplayCoursComponent } from './display-cours/display-cours.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
 
 
 @NgModule({
@@ -38,6 +41,9 @@ import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
     AddCategComponent,
     QuizComponent,
     AdminCoursesComponent,
+    CreateCoursComponent,
+    DisplayCoursComponent,
+    ThankyouComponent,
   ],
   imports: [
     CommonModule,

@@ -55,6 +55,8 @@ export class DisplayCoursesComponent implements AfterViewInit, OnInit {
     this.formationService.getHisto(id).subscribe(
       data => {
         this.historique = data;
+        console.log(this.historique);
+        
       });
   }
   delete(id: any) {
@@ -99,5 +101,12 @@ export class DisplayCoursesComponent implements AfterViewInit, OnInit {
     this.formationService.addHisto(formData).subscribe((e: any) => {
       this.afficherHistoriqueByUser(this.username);
     })
+  }
+  verifyCompletion(f: any) {
+    const historique = this.historique.find((h:any) => h.formation.idFormation === f.idFormation);
+    if (historique && historique.etat === 'done') {
+      return false; // formation completed
+    }
+    return true; // formation not completed
   }
 }
