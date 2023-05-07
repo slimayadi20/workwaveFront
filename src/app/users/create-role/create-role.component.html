@@ -58,10 +58,15 @@
                         </div>
                     </div>
 
-
-                    <div class="form-group">
-                        <button (click)="updateRole()" data-bs-dismiss="modal" type="submit"
-                            class="btn btn-primary">Save Informations</button>
+                    <div class="row">
+                        <div class="form-group col-5">
+                            <button (click)="updateRole()" data-bs-dismiss="modal" type="submit"
+                                class="btn btn-primary">Save Informations</button>
+                        </div>
+                        <div class="form-group col-5">
+                            <button (click)="deleteRole(roleId)" data-bs-dismiss="modal" type="submit"
+                                class="btn btn-danger">delete Role</button>
+                        </div>
                     </div>
                 </form>
             </div>

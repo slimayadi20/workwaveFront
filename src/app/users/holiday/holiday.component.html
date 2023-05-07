@@ -37,8 +37,8 @@
                                             </div>
                                         </li>
                                         <li class="nk-block-tools-opt">
-                                            <a href="#" class="btn btn-icon btn-primary d-md-none"><em class="icon ni ni-plus"></em></a>
-                                            <a href="#" class="btn btn-primary d-none d-md-inline-flex"><em class="icon ni ni-plus"></em><span>Add</span></a>
+                                            <a href="#"  *ngIf="admin==false" class="btn btn-icon btn-primary d-md-none"><em class="icon ni ni-plus"></em></a>
+                                            <a href="#" *ngIf="admin==false" class="btn btn-primary d-none d-md-inline-flex"><em class="icon ni ni-plus"></em><span>Add</span></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -49,42 +49,18 @@
                 <div class="nk-block">
                     <div class="nk-tb-list is-separate mb-3">
                         <div class="nk-tb-item nk-tb-head">
-                            <div class="nk-tb-col nk-tb-col-check">
-                                <div class="custom-control custom-control-sm custom-checkbox notext">
-                                    <input type="checkbox" class="custom-control-input" id="uid">
-                                    <label class="custom-control-label" for="uid"></label>
-                                </div>
-                            </div>
+                           
+                            <div class="nk-tb-col tb-col-md"><span class="sub-text">#</span></div>
                             <div class="nk-tb-col"><span class="sub-text">User</span></div>
-                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">Ordered</span></div>
-                            <div class="nk-tb-col tb-col-md"><span class="sub-text">Phone</span></div>
-                            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Country</span></div>
-                            <div class="nk-tb-col tb-col-lg"><span class="sub-text">Last Order</span></div>
-                            <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
-                            <div class="nk-tb-col nk-tb-col-tools">
-                                <ul class="nk-tb-actions gx-1 my-n1">
-                                    <li>
-                                        <div class="drodown">
-                                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <ul class="link-list-opt no-bdr">
-                                                    <li><a href="#"><em class="icon ni ni-mail"></em><span>Send Email to All</span></a></li>
-                                                    <li><a href="#"><em class="icon ni ni-na"></em><span>Suspend Selected</span></a></li>
-                                                    <li><a href="#"><em class="icon ni ni-trash"></em><span>Remove Seleted</span></a></li>
-                                                    <li><a href="#"><em class="icon ni ni-shield-star"></em><span>Reset Password</span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">etat</span></div>
+                            <div class="nk-tb-col tb-col-md"><span class="sub-text">description</span></div>
+                            <div class="nk-tb-col tb-col-lg"><span class="sub-text">dateEmission</span></div>
+                            <div class="nk-tb-col tb-col-lg"><span class="sub-text">dateExpiration</span></div>
+                           
                         </div><!-- .nk-tb-item -->
-                        <div class="nk-tb-item">
-                            <div class="nk-tb-col nk-tb-col-check">
-                                <div class="custom-control custom-control-sm custom-checkbox notext">
-                                    <input type="checkbox" class="custom-control-input" id="uid1">
-                                    <label class="custom-control-label" for="uid1"></label>
-                                </div>
+                        <div class="nk-tb-item" *ngFor="let d of data ; index as i">
+                            <div class="nk-tb-col tb-col-mb">
+                                <span class="tb-amount">{{i}}</span>
                             </div>
                             <div class="nk-tb-col">
                                 <a href="html/ecommerce/customer-details.html">

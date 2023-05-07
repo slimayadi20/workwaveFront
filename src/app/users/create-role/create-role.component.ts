@@ -90,8 +90,11 @@ export class CreateRoleComponent implements OnInit, OnChanges {
       this.getUserByRole();
       this.getusers();
       window.location.reload()
-
     }
     )
+  }
+  deleteRole(roleName: any) {
+    this.service.deleteRole(roleName).subscribe((res: any) => {
+      window.location.reload()});
   }
 }
