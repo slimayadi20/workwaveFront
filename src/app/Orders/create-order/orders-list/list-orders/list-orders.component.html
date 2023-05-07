@@ -6,7 +6,7 @@
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">Products</h3>
+                            <h3 class="nk-block-title page-title">Orders</h3>
                         </div><!-- .nk-block-head-content -->
                         <div class="nk-block-head-content">
                             <div class="toggle-wrap nk-block-tools-toggle">
@@ -23,16 +23,16 @@
                                                     placeholder="Quick search by id">
                                             </div>
                                         </li>
-                                      
+                                       
                                         <li class="nk-block-tools-opt">
                                             <a href="#" data-target="addProduct"
                                                 class="toggle btn btn-icon btn-primary d-md-none"><em
                                                     class="icon ni ni-plus"></em></a>
-                                            <a routerLink="/products/createproduct" data-target="addProduct"
+                                            <a routerLink="/Order/createorder" data-target="addProduct"
                                                 class="toggle btn btn-primary d-none d-md-inline-flex"><em
-                                                    class="icon ni ni-plus"></em><span>Add Product</span></a>
-
-
+                                                    class="icon ni ni-plus"></em><span>Add order</span></a>
+                                                  
+                                                    
                                         </li>
                                     </ul>
                                 </div>
@@ -52,52 +52,75 @@
                                                 <label class="custom-control-label" for="pid"></label>
                                             </div>
                                         </div>
-                                        <div class="nk-tb-col tb-col-sm"><span>Image</span></div>
-                                        <div class="nk-tb-col"><span>Name</span></div>
-                                        <div class="nk-tb-col"><span>Ref</span></div>
-                                        <div class="nk-tb-col"><span>Price</span></div>
-                                        <div class="nk-tb-col"><span>Stock</span></div>
-                                        <div class="nk-tb-col"><span>Order</span></div>
-
-
+                                        <div class="nk-tb-col tb-col-sm">REF<span></span></div>
+                                        <div class="nk-tb-col"><span>order date</span></div>
+                                        <div class="nk-tb-col"><span>quantity</span></div>
+                                        <div class="nk-tb-col"><span>Supplier</span></div>
+                                        <div class="nk-tb-col"><span>Product</span></div>
+                                        <div class="nk-tb-col"><span></span></div>
+                                        <div class="nk-tb-col tb-col-md"><span></span></div>
+                                      
+                                        <div class="nk-tb-col nk-tb-col-tools">
+                                            <ul class="nk-tb-actions gx-1 my-n1">
+                                                <li class="me-n1">
+                                                    <div class="dropdown">
+                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger"
+                                                            data-bs-toggle="dropdown"><em
+                                                                class="icon ni ni-more-h"></em></a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <ul class="link-list-opt no-bdr">
+                                                                <li><a routerLink="/Order/editorder"><em
+                                                                            class="icon ni ni-edit"></em><span>Edit
+                                                                            Selected</span></a></li>
+                                                                <li><a href="#"><em
+                                                                            class="icon ni ni-trash"></em><span>Remove
+                                                                            Selected</span></a></li>
+                                                                <li><a href="#"><em
+                                                                            class="icon ni ni-bar-c"></em><span>Update
+                                                                            Stock</span></a></li>
+                                                                <li><a href="#"><em
+                                                                            class="icon ni ni-invest"></em><span>Update
+                                                                            Price</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div><!-- .nk-tb-item -->
-                                    <div *ngFor="let products of productList" class="nk-tb-item">
+                                    <div *ngFor="let Order of orderList" class="nk-tb-item">
                                         <div class="nk-tb-col nk-tb-col-check">
                                             <div class="custom-control custom-control-sm custom-checkbox notext">
                                                 <input type="checkbox" class="custom-control-input" id="pid1">
                                                 <label class="custom-control-label" for="pid1"></label>
                                             </div>
                                         </div>
-                                        <div class="nk-tb-col">
-                                            <span class="tb-sub"><img
-                                                    style="height: 40%; width: 30%; object-fit: cover;"
-                                                    [src]="this.productService.PATH_OF_API + '/Imgproduit/' + products.p_id"
-                                                    alt=""></span>
-                                        </div>
                                         <div class="nk-tb-col tb-col-sm">
                                             <span class="tb-product">
-
-                                                <span class="title">{{products.name}}</span>
+                                                
+                                                <span class="title">{{Order.o_id}}</span>
                                             </span>
                                         </div>
                                         <div class="nk-tb-col">
-                                            <span class="tb-sub">{{ products.p_id }}</span>
+                                            <span class="tb-sub">{{ Order.orderDate }}</span>
                                         </div>
                                         <div class="nk-tb-col">
-                                            <span class="tb-lead">{{ products.price }}</span>
+                                            <span class="tb-lead">{{ Order.quantity }}</span>
                                         </div>
                                         <div class="nk-tb-col">
-                                            <span class="tb-lead">{{ products.quantity }}</span>
+                                            <span class="tb-lead" *ngFor="let s of Order.supplier">{{ s.name }}</span>
                                         </div>
                                         <div class="nk-tb-col">
-                                            <span class="tb-sub">{{products.o_id}}</span>
+                                            <span class="tb-lead" *ngFor="let p of Order.product">{{ p.name }}</span>
                                         </div>
-
-
+                                        
+                                        <div class="nk-tb-col">
+                                            <span class="tb-sub"></span>
+                                        </div>
                                         <div class="nk-tb-col tb-col-md">
                                             <span class="tb-sub"></span>
                                         </div>
-
+                                     
 
                                         <div class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1 my-n1">
@@ -108,14 +131,13 @@
                                                                 class="icon ni ni-more-h"></em></a>
                                                         <div class="dropdown-menu dropdown-menu-end">
                                                             <ul class="link-list-opt no-bdr">
-                                                                <li><a (click)="forwardtodetail(products.p_id)"><em
+                                                                <li><a (click)="forwardtodetail(Order.o_id)" ><em
                                                                             class="icon ni ni-edit"></em><span>Edit
-                                                                            Product</span></a></li>
-
-                                                                <li><a style="cursor:pointer"
-                                                                        (click)="deleteProduct(products.p_id)"><em
+                                                                            order</span></a></li>
+                                                        
+                                                                <li><a style="cursor:pointer" (click)="deleteorder(Order.o_id)" ><em
                                                                             class="icon ni ni-trash"></em><span>Remove
-                                                                            Product</span></a></li>
+                                                                            order</span></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -125,21 +147,7 @@
                                     </div>
                                 </div><!-- .nk-tb-list -->
                             </div>
-                            <div class="card">
-                                <div class="card-inner">
-                                    <div class="nk-block-between-md g-3">
-                                        <div class="g mx-auto">
-                                            <ul class="pagination justify-content-center justify-content-md-start">
-                                                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                                                <li class="page-item" *ngFor="let p of pages;let i =index">
-                                                    <a class="page-link" href="#" (click)="setPage(i,$event)">{{i}}</a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            </ul><!-- .pagination -->
-                                        </div>
-                                    </div><!-- .nk-block-between -->
-                                </div><!-- .card-inner -->
-                            </div><!-- .card -->
+                      
                         </div>
                     </div>
                 </div>
@@ -148,4 +156,16 @@
         </div>
     </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!-- content @e -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

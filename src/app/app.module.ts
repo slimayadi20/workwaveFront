@@ -20,6 +20,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
+import { ProductListComponent } from './products/product-list/product-list.component';
 
 
 
@@ -36,6 +37,8 @@ import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
     DashboardComponentComponent,
     RegistersuccessComponent,
     ResetPasswordComponent,
+    ProductListComponent,
+
 
   ],
   imports: [

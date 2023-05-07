@@ -1,47 +1,51 @@
-   <!-- content @s -->
-   <div class="nk-content ">
+<!-- content @s -->
+<div class="nk-content ">
     <div class="container-fluid">
         <div class="nk-content-inner">
             <div class="nk-content-body">
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">product</h3>
+                            <h3 class="nk-block-title page-title"> add an order</h3>
                         </div><!-- .nk-block-head-content -->
                     </div><!-- .nk-block-between -->
                 </div><!-- .nk-block-head -->
                 <div class="nk-block">
                     <div class="card">
                         <div class="card-inner">
-                            <h5 class="card-title">add a new product to your list</h5>
+                            <h5 class="card-title">add a new order</h5>
                             <p></p>
-                            <form  [formGroup]="newproduct"class="gy-3 form-settings" >
+                            <form [formGroup]="neworder" class="gy-3 form-settings">
                                 <div class="row g-3 align-center">
                                     <div class="col-lg-5">
-                                        <div class="form-group">
-                                            <label class="form-label" for="site-name">product Name</label>
-                                            <span class="form-note">Specify the name of your product</span>
-                                        </div>
+                                      <div class="form-group">
+                                        <label class="form-label" for="order-date">Order Date</label>
+                                        <span class="form-note">Specify the date of your order</span>
+                                      </div>
                                     </div>
                                     <div class="col-lg-7">
-                                        <div class="form-group">
-                                            <div class="form-control-wrap">
-                                                <input formControlName="name" type="text" class="form-control" id="site-name"  >
-                                            </div>
+                                      <div class="form-group">
+                                        <div class="form-control-wrap">
+                                          <input class="form-control" id="order-date" formControlName="orderDate"
+                                             placeholder="yyyy-mm-dd" type="date">
+                                       
                                         </div>
+                                      </div>
                                     </div>
-                                </div>
+                                  </div>
+                                  
                                 <div class="row g-3 align-center">
                                     <div class="col-lg-5">
                                         <div class="form-group">
-                                            <label class="form-label" for="site-email">product price</label>
+                                            <label class="form-label" for="site-email">product quantity</label>
                                             <span class="form-note">Specify the price of your product</span>
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input formControlName="price" type="text" class="form-control" id="site-email" value="info@softnio.com">
+                                                <input formControlName="quantity" type="text" class="form-control"
+                                                    id="site-email" value="info@softnio.com">
                                             </div>
                                         </div>
                                     </div>
@@ -49,38 +53,65 @@
                                 <div class="row g-3 align-center">
                                     <div class="col-lg-5">
                                         <div class="form-group">
-                                            <label class="form-label" for="site-copyright">quantity</label>
-                                            <span class="form-note"></span>
+                                            <label class="form-label">product name </label>
+                                            <span class="form-note">Veuiller préciser le nom du produit
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input  formControlName="quantity" type="text" class="form-control" id="site-copyright" value="">
+                                                <select formControlName="product" class="form-control ">
+                                                    <option value="">please choose a product</option>
+                                                    <option [ngValue]="p" *ngFor="let p of product">{{ p.name }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label">Supplier name </label>
+                                            <span class="form-note">Veuiller préciser le nom du produit
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <select formControlName="supplier" class="form-control ">
+                                                    <option value="">please choose a supplier</option>
+                                                    <option [ngValue]="s" *ngFor="let s of supplier">{{ s.name }}
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row g-3 align-center">
-                                    
+
                                     <div class="col-lg-7">
                                         <ul class="custom-control-group g-3 align-center flex-wrap">
-                                            
+
                                         </ul>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row g-3 align-center">
-                                    
+
                                     <div class="col-lg-7">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-lg-7 offset-lg-5">
                                         <div class="form-group mt-2">
-                                            <button (click)="createProduct()"type="submit" class="btn btn-lg btn-primary">create</button>
-                                            
+                                            <button (click)="createorder()" type="submit"
+                                                class="btn btn-lg btn-primary">order</button>
+
                                         </div>
                                     </div>
                                 </div>

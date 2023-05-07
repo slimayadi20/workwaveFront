@@ -114,6 +114,50 @@ export class SidemenuComponent implements OnInit {
           },
           {
             mainTitle: "APPLICATIONS",
+            title: "Suppliers",
+            counter: 0,
+            icon: 'icon ni ni-card-view',
+            subMenus: [
+              {
+                title: "Supplier's list",
+                counter: 0,
+                link: '/Supplier/displaysupplier',
+                icon: ''
+
+              },
+              {
+                title: "add Supplier",
+                counter: 0,
+                link: '/Supplier/createsupplier',
+                icon: ''
+
+              }]
+          },
+          {
+            mainTitle: "APPLICATIONS",
+            title: "Orders",
+            counter: 0,
+            icon:'icon ni ni-card-view',
+            subMenus: [
+              {
+                title: "orders  list",
+                counter: 0,
+                link: '/Order/displayorder',
+                icon: ''
+
+              },
+              {
+                title: "add order",
+                counter: 0,
+                link: '/Order/createorder',
+                icon: ''
+
+              }
+
+            ]
+          },
+          {
+            mainTitle: "APPLICATIONS",
             title: "Applications",
             counter: 0,
             icon: 'icon ni ni-card-view',

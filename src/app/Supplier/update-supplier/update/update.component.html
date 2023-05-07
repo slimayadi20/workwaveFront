@@ -6,16 +6,16 @@
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">product</h3>
+                            <h3 class="nk-block-title page-title">supplier</h3>
                         </div><!-- .nk-block-head-content -->
                     </div><!-- .nk-block-between -->
                 </div><!-- .nk-block-head -->
                 <div class="nk-block">
                     <div class="card">
                         <div class="card-inner">
-                            <h5 class="card-title">add a new product to your list</h5>
+                            <h5 class="card-title">update a new product to your list</h5>
                             <p></p>
-                            <form  [formGroup]="newproduct"class="gy-3 form-settings" >
+                            <form  [formGroup]="newsupplier"class="gy-3 form-settings" >
                                 <div class="row g-3 align-center">
                                     <div class="col-lg-5">
                                         <div class="form-group">
@@ -26,7 +26,7 @@
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input formControlName="name" type="text" class="form-control" id="site-name"  >
+                                                <input formControlName="address" type="text" class="form-control" id="site-name"  >
                                             </div>
                                         </div>
                                     </div>
@@ -41,7 +41,7 @@
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input formControlName="price" type="text" class="form-control" id="site-email" value="info@softnio.com">
+                                                <input formControlName="email" type="text" class="form-control" id="site-email" value="info@softnio.com">
                                             </div>
                                         </div>
                                     </div>
@@ -56,7 +56,7 @@
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input  formControlName="quantity" type="text" class="form-control" id="site-copyright" value="">
+                                                <input  formControlName="name" type="text" class="form-control" id="site-copyright" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@
                                 <div class="row g-3">
                                     <div class="col-lg-7 offset-lg-5">
                                         <div class="form-group mt-2">
-                                            <button (click)="createProduct()"type="submit" class="btn btn-lg btn-primary">create</button>
+                                            <button (click)="editsupplier()"type="submit" class="btn btn-lg btn-primary">update</button>
                                             
                                         </div>
                                     </div>
