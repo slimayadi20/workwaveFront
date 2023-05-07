@@ -14,7 +14,7 @@ export class ListtransactionsComponent implements OnInit {
   }
   username :any;
   banksaccount: any;
-  transactions:any;
+  transactions:any[]=[];
 
   ngOnInit(): void {
     this.getUser();
@@ -40,7 +40,6 @@ export class ListtransactionsComponent implements OnInit {
     this.TS.getbyBankAccount(id).subscribe((e: any) => {
         this.transactions = e;
         console.log(this.transactions);
-        
     });
   }
 

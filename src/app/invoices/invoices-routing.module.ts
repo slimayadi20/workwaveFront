@@ -5,8 +5,8 @@ import { OneinvoiceComponent } from './oneinvoice/oneinvoice.component';
 import { InvoiceprintComponent } from './invoiceprint/invoiceprint.component';
 const routes: Routes = [
   { path: 'myinvoices', component: MyinvoicesComponent },
-  { path: 'oneinvoice', component: OneinvoiceComponent },
-  { path: 'printinvoice', component: InvoiceprintComponent },
+  { path: 'oneinvoice/:id', component: OneinvoiceComponent },
+  { path: 'printinvoice/:id', component: InvoiceprintComponent },
 
 
 ];

@@ -42,8 +42,14 @@ export class MyinvoicesComponent implements OnInit{
       console.log(this.invoices);
     });
   }
-
-
+  PayInvoice(id:any){
+    console.log("hhhhhhhhh")
+    console.log(id)
+    this.INV.PayInvoice(id,this.banksaccount.id).subscribe((e:any)=>{
+      console.log("hhhhhhhhhhhhhhhhh doneeee")
+      window.location.reload();
+    })
+  }
 
 
 }

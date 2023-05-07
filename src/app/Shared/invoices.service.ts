@@ -34,4 +34,7 @@ export class InvoicesService {
   getbyBankAccount(id: Number) {
     return this.http.get(`${baseUrl}/InvoicesbyBankAccount/${id}`);
   }
+  PayInvoice(id: Number,b_id:any) {
+    return this.http.put(`${baseUrl}/${id}/pay?bankAccountId=${b_id}`,null);
+  }
 }

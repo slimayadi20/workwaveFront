@@ -34,7 +34,22 @@ export class DashboardComponentComponent implements AfterViewInit, OnInit {
     ];
     this.data = this.encryptionService.decrypt(localStorage.getItem('data')!);
     this.roles=this.data["role"];
-    
+      this.getTodayPaymentsTotal();
+      this.getTodayPaymentsPercentageChange();
+      this.getPaymentsThisMonth();
+      this.getPaymentsTotal();
+  }
+  getPaymentsTotal() {
+    throw new Error('Method not implemented.');
+  }
+  getPaymentsThisMonth() {
+    throw new Error('Method not implemented.');
+  }
+  getTodayPaymentsPercentageChange() {
+    throw new Error('Method not implemented.');
+  }
+  getTodayPaymentsTotal() {
+    throw new Error('Method not implemented.');
   }
 
 

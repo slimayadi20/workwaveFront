@@ -256,9 +256,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+     
                                     <div class="nk-block"> 
+                                    
                                         <h6 class="lead-text mb-3">Transactions</h6>
+                                        <a routerLink="/Transactions/displaytransactions" class="btn btn-trigger btn-icon">View All<em class="icon ni ni-plus"></em></a>
+
                                         <div class="nk-block-des text-soft">
                                             <p>You have total {{banksaccount.transactions.length}} transactions.</p>
                                         </div>
@@ -277,9 +280,7 @@
                                                 <div class="nk-tb-col">
                                                     <span class="sub-text">Transaction Date</span>
                                                 </div>
-                                                <div class="nk-tb-col">
-                                                    <span class="sub-text">View All</span>
-                                                </div>
+                                               
                                             </div>
                                             <div class="nk-tb-item" *ngFor="let t of transactions | slice:0:4">
                                                 <div class="nk-tb-col">
@@ -298,8 +299,10 @@
                                             
                                         </div><!-- .nk-tb-list -->
                                     </div>
-                                    <div class="nk-block" *ngIf="role == 'Admin'">
+                                    <div class="nk-block" *ngIf="role == 'Financial Manager'">
                                         <h6 class="lead-text mb-3">Invoices</h6>
+                                        <a  class="btn btn-trigger btn-icon">View All<em class="icon ni ni-plus"></em></a>
+
                                         <div class="nk-block-des text-soft">
                                             <p>You have total {{banksaccount.invoices.length}} Invoices.</p>
                                         </div>
@@ -319,7 +322,7 @@
                                                     <span class="sub-text">Issue Date</span>
                                                 </div>
                                             </div>
-                                            <div class="nk-tb-item" *ngFor="let i of invoices">
+                                            <div class="nk-tb-item" *ngFor="let i of invoices | slice:0:4">
                                                 <div class="nk-tb-col">
                                                     <a href="#"><span class="fw-bold">#{{i.id}}</span></a>
                                                 </div>
