@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+<div class="wrapper position-relative">
+   <div class="container">
+      <form class="multisteps_form position-relative overflow-hidden mt-5">
+         <!-- Form-header-content -->
+         <div class="form_header_content text-center pt-4">
+            <h2>QUIZ</h2>
+            <span>Fill out this Tirnva quiz for fun!</span>
+         </div>
+         <div class="active">
+            <!-- Form-content -->
+            <span class="question_number text-uppercase mb-3 float-end">QUESTION {{ currentQuestionIndex + 1 }}/{{
+               questions.length
+               }}</span>
+            <h1 class="question_title px-5 py-3 animate__animated animate__fadeInRight animate_25ms">{{
+               questions[currentQuestionIndex].title }}</h1>
+            <!-- Form-items -->
+            <div class="form_items ps-5">
+               <ul class="list-unstyled p-0">
+                 <li *ngFor="let option of questions[currentQuestionIndex].options" class="step_{{ currentQuestionIndex + 1 }} ps-5 rounded-pill animate__animated animate__fadeInRight animate_50ms">
+                   <label [ngClass]="{'selected': isSelected(currentQuestionIndex, option.value)}">
+                     <input type="radio" [value]="option.value" [checked]="isSelected(currentQuestionIndex, option.value)" (change)="selectOption($event)">
+                     <span>{{ option.value }}</span>
+                   </label>
+                 </li>
+               </ul>
+             </div>
+             
+             
+         </div>
+      </form>
+   </div>
+   <!---------- Form Button ---------->
+   <div class="form_btn py-5 text-center">
+      <button type="button" class="f_btn disable text-uppercase rounded-pill text-white" id="prevBtn"
+         (click)="nextPrev(-1)" [disabled]="currentQuestionIndex === 0">
+         <span><i class="fas fa-arrow-left"></i></span> Last Question
+      </button>
+      <button type="button" class="f_btn active text-uppercase rounded-pill text-white" id="nextBtn"
+         (click)="nextPrev(1)" [disabled]="currentQuestionIndex === questions.length ">
+         Next Question <i class="fas fa-arrow-right"></i>
+      </button>
+   </div>
+</div>

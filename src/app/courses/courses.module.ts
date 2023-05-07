@@ -14,6 +14,18 @@ import { NgProgressModule } from 'ngx-progressbar';
 import {RouterModule} from '@angular/router';
 import { SidemenuComponent } from '../sidemenu/sidemenu.component';
 import { FooterComponent } from '../footer/footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DisplayCategComponent } from './display-categ/display-categ.component';
+import { EditCategComponent } from './edit-categ/edit-categ.component';
+import { AddCategComponent } from './add-categ/add-categ.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { QuizComponent } from './quiz/quiz.component';
+import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
+import { CreateCoursComponent } from './create-cours/create-cours.component';
+import { DisplayCoursComponent } from './display-cours/display-cours.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
+import { CreateQuizComponent } from './create-quiz/create-quiz.component';
+import { DisplayQuizComponent } from './display-quiz/display-quiz.component';
 
 
 @NgModule({
@@ -26,12 +38,25 @@ import { FooterComponent } from '../footer/footer.component';
     StudentEnrollementDetailComponent,
     StudentCoursesDetailComponent,
     CoursedetailsComponent,
+    DisplayCategComponent,
+    EditCategComponent,
+    AddCategComponent,
+    QuizComponent,
+    AdminCoursesComponent,
+    CreateCoursComponent,
+    DisplayCoursComponent,
+    ThankyouComponent,
+    CreateQuizComponent,
+    DisplayQuizComponent,
   ],
   imports: [
     CommonModule,
     CoursesRoutingModule,
     NgProgressModule,
     RouterModule,
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ]
 })
 export class CoursesModule { }

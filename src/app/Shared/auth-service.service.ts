@@ -135,5 +135,8 @@ export class AuthServiceService {
   deleteRole(body: any) {
     return this.http.delete(this.PATH_OF_API + '/role/' + body);
   }
+  public getUserByUsername(user: any) {
+    return this.http.get("http://localhost:8090" + "/getUser/" + user);
+  }
 
 }

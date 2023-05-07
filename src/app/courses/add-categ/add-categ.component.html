@@ -1,0 +1,53 @@
+<!-- content @s -->
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">WorkWave Academy</h3>
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="card">
+                        <div class="card-inner">
+                            <h5 class="card-title">Ajouter une categorie</h5>
+                            <!-- <p>Here is your basic store setting of your website.</p> -->
+                            <form [formGroup]="Categorie" (ngSubmit)="Categorie" class="gy-3 form-settings">
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="site-name">Nom Categorie</label>
+                                            <span class="form-note">Veuiller préciser le nom de la Categorie.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="nom" type="text" class="form-control"
+                                                    id="site-name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+
+                                <div class="row g-3">
+                                    <div class="col-lg-7 offset-lg-5">
+                                        <div class="form-group mt-2">
+                                            <button [disabled]="Categorie.invalid" (click)="addCategorie()"
+                                                type="submit" class="btn btn-lg btn-primary">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!-- .card-inner -->
+                    </div><!-- .card -->
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content @e -->

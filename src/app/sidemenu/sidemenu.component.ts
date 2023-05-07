@@ -36,11 +36,34 @@ export class SidemenuComponent implements OnInit {
             counter: 0,
             icon: 'icon ni ni-book-fill',
             subMenus: [
+
               {
-                title: "courses list",
+                title: "Display Courses",
                 counter: 0,
-                link: '/courses/displaycourse',
+                link: '/courses/displaycourseAdmin',
                 icon: ''
+              },
+              {
+                title: "Display Categories",
+                counter: 0,
+                link: '/courses/displaycateg',
+                icon: ''
+
+              },
+
+              {
+                title: "Display quiz",
+                counter: 0,
+                link: '/courses/displayQuiz',
+                icon: ''
+
+              },
+              {
+                title: "Display cours",
+                counter: 0,
+                link: '/courses/displayCours',
+                icon: ''
+
               },
               {
                 title: "Enroll History",
@@ -58,19 +81,12 @@ export class SidemenuComponent implements OnInit {
             icon: 'icon ni ni-tile-thumb-fill',
             subMenus: [
               {
-                title: "Project Cards",
+                title: "Display Projects",
                 counter: 0,
                 link: '/projects/displayprojects',
                 icon: ''
 
               },
-              {
-                title: "kanban",
-                counter: 0,
-                link: '/projects/kanban',
-                icon: ''
-
-              }
             ]
           },
           {
@@ -183,13 +199,14 @@ export class SidemenuComponent implements OnInit {
         ]
         break;
 
-      case "Project manager":
+      case "Employee":
         this.menuapp = [
 
           {
             mainTitle: "APPLICATIONS",
             title: "Courses",
             counter: 0,
+            icon: 'icon ni ni-book-fill',
             subMenus: [
               {
                 title: "courses list",
@@ -198,21 +215,30 @@ export class SidemenuComponent implements OnInit {
                 icon: ''
 
               },
-              {
-                title: "Enroll History",
-                counter: 0,
-                link: '/courses/enrollement',
-                icon: ''
-
-              }
             ]
           },
+          {
+            mainTitle: "APPLICATIONS",
+            title: "Projects",
+            counter: 0,
+            icon: 'icon ni ni-tile-thumb-fill',
+            subMenus: [
+              {
+                title: "Display Projects",
+                counter: 0,
+                link: '/projects/displayprojects',
+                icon: ''
 
+              },
+            ]
+          },
 
           {
             mainTitle: "APPLICATIONS",
             title: "Applications",
             counter: 0,
+            icon: 'icon ni ni-card-view',
+
             subMenus: [
               {
                 title: "Chat",
@@ -235,6 +261,7 @@ export class SidemenuComponent implements OnInit {
             mainTitle: "Dashboards",
             title: "Dashboard",
             counter: 0,
+            icon: 'icon ni ni-activity-round-fill',
             subMenus: [
               {
                 title: "Sales",

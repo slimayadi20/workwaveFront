@@ -1,5 +1,5 @@
- <!-- content @s -->
- <div class="nk-content ">
+<!-- content @s -->
+<div class="nk-content ">
     <div class="container-fluid">
         <div class="nk-content-inner">
             <div class="nk-content-body">
@@ -13,26 +13,19 @@
                         </div><!-- .nk-block-head-content -->
                         <div class="nk-block-head-content">
                             <div class="toggle-wrap nk-block-tools-toggle">
-                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
+                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                    data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
                                 <div class="toggle-expand-content" data-content="pageMenu">
                                     <ul class="nk-block-tools g-3">
-                                        <li>
-                                            <div class="drodown">
-                                                <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-filter-alt"></em><span>Filtered By</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <ul class="link-list-opt no-bdr">
-                                                        <li><a href="#"><span>Open</span></a></li>
-                                                        <li><a href="#"><span>Closed</span></a></li>
-                                                        <li><a href="#"><span>Onhold</span></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="nk-block-tools-opt d-none d-sm-block">
-                                            <a routerLink="/projects/createproject" class="btn btn-primary"><em class="icon ni ni-plus"></em><span>Add Project</span></a>
+
+                                        <li class="nk-block-tools-opt d-none d-sm-block" *ngIf="data.role!='Employee'">
+                                            <a data-bs-toggle="modal" href="#modalCreate" data-bs-config={backdrop:true}
+                                                class="btn btn-primary"><em class="icon ni ni-plus"></em><span>Add
+                                                    Project</span></a>
                                         </li>
                                         <li class="nk-block-tools-opt d-block d-sm-none">
-                                            <a href="#" class="btn btn-icon btn-primary"><em class="icon ni ni-plus"></em></a>
+                                            <a href="#" class="btn btn-icon btn-primary"><em
+                                                    class="icon ni ni-plus"></em></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -42,408 +35,67 @@
                 </div><!-- .nk-block-head -->
                 <div class="nk-block">
                     <div class="row g-gs">
-                        <div class="col-sm-6 col-lg-4 col-xxl-3">
+                        <div class="col-sm-6 col-lg-4 col-xxl-3" *ngFor="let p of projects">
+                            <!--boucle for besh njib les projet we nhothom -->
                             <div class="card h-100">
-                                <div class="card-inner">
+                                <div class="card-inner" style="cursor:pointer">
                                     <div class="project">
                                         <div class="project-head">
-                                            <a routerLink="/projects/kanban" class="project-title">
-                                                <div class="user-avatar sq bg-purple"><span>DD</span></div>
+                                            <a class="project-title" (click)="redirect(p.id)">
+                                                <div class="user-avatar sq bg-purple"><span>{{p.projectname[0]}}{{p.projectname[1]}}</span></div>
                                                 <div class="project-info">
-                                                    <h6 class="title">Dashlite Development</h6>
-                                                    <span class="sub-text">Softnio</span>
+                                                    <h6 class="title">{{p.projectname}}</h6>
+                                                    <span class="sub-text" style="font-size: 14px;">Date émission: {{p.dateEmission}} </span>
                                                 </div>
                                             </a>
-                                            <div class="drodown">
-                                                <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="drodown" *ngIf="data.role!='Employee'">
+                                                <a href="#"
+                                                    class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1"
+                                                    data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <ul class="link-list-opt no-bdr">
-                                                        <li><a routerLink="kanban"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
-                                                        <li><a routerLink="/projects/editproject"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                        <li><a (click)="Update(p.id)"><em
+                                                                    class="icon ni ni-mail"></em><span>Update</span></a>
+                                                        </li>
+                                                        <li><a (click)="deleteproject(p.id)"><em
+                                                                    class="icon ni ni-na"></em><span>Delete</span></a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
+
                                         </div>
                                         <div class="project-details">
-                                            <p>Design and develop the DashLite template for Envato Marketplace.</p>
+                                            <p>{{p.description}}</p>
                                         </div>
                                         <div class="project-progress">
-                                            <div class="project-progress-details">
-                                                <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>3 Tasks</span></div>
-                                                <div class="project-progress-percent">93.5%</div>
+                                            <div class="project-progress-details" [ngSwitch]="p.etat">
+                                                <div class="project-progress-task"><em
+                                                        class="icon ni ni-check-round-cut"></em><span> {{p.taskCount}}
+                                                        Tasks</span></div>
+                                                <ul *ngSwitchCase="'active'" style="color:rgb(37, 175, 50)">
+                                                    <li>Active</li>
+                                                </ul>
+                                                <ul *ngSwitchCase="'inactive'" style="color:red">
+                                                    <li>Inactive</li>
+                                                </ul>
                                             </div>
+
                                             <div class="progress progress-pill progress-md bg-light">
                                                 <div class="progress-bar" data-progress="93.5"></div>
                                             </div>
                                         </div>
+
                                         <div class="project-meta">
-                                            <ul class="project-users g-1">
-                                                <li>
-                                                    <div class="user-avatar sm bg-primary"><span>A</span></div>
-                                                </li>
-                                                <li>
-                                                    <div class="user-avatar sm bg-blue"><img src="./images/avatar/b-sm.jpg" alt=""></div>
-                                                </li>
-                                                <li>
-                                                    <div class="user-avatar bg-light sm"><span>+12</span></div>
-                                                </li>
-                                            </ul>
-                                            <span class="badge badge-dim bg-warning"><em class="icon ni ni-clock"></em><span>5 Days Left</span></span>
+
+                                            <span class="badge badge-dim bg-warning"><em
+                                                    class="icon ni ni-clock"></em><span>{{p.dateExpiration}}</span></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-4 col-xxl-3">
-                            <div class="card h-100">
-                                <div class="card-inner">
-                                    <div class="project">
-                                        <div class="project-head">
-                                            <a href="html/apps-kanban.html" class="project-title">
-                                                <div class="user-avatar sq bg-warning"><span>RW</span></div>
-                                                <div class="project-info">
-                                                    <h6 class="title">Redesign Website</h6>
-                                                    <span class="sub-text">Runnergy</span>
-                                                </div>
-                                            </a>
-                                            <div class="drodown">
-                                                <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <ul class="link-list-opt no-bdr">
-                                                        <li><a href="html/apps-kanban.html"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="project-details">
-                                            <p>Design the website for Runnergy main website including their user dashboard.</p>
-                                        </div>
-                                        <div class="project-progress">
-                                            <div class="project-progress-details">
-                                                <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>25 Tasks</span></div>
-                                                <div class="project-progress-percent">23%</div>
-                                            </div>
-                                            <div class="progress progress-pill progress-md bg-light">
-                                                <div class="progress-bar" data-progress="23"></div>
-                                            </div>
-                                        </div>
-                                        <div class="project-meta">
-                                            <ul class="project-users g-1">
-                                                <li>
-                                                    <div class="user-avatar sm bg-primary"><img src="./images/avatar/c-sm.jpg" alt=""></div>
-                                                </li>
-                                                <li>
-                                                    <div class="user-avatar sm bg-blue"><span>N</span></div>
-                                                </li>
-                                            </ul>
-                                            <span class="badge badge-dim bg-light text-gray"><em class="icon ni ni-clock"></em><span>21 Days Left</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 col-xxl-3">
-                            <div class="card h-100">
-                                <div class="card-inner">
-                                    <div class="project">
-                                        <div class="project-head">
-                                            <a href="html/apps-kanban.html" class="project-title">
-                                                <div class="user-avatar sq bg-info"><span>KR</span></div>
-                                                <div class="project-info">
-                                                    <h6 class="title">Keyword Research for SEO</h6>
-                                                    <span class="sub-text">Techyspec</span>
-                                                </div>
-                                            </a>
-                                            <div class="drodown">
-                                                <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <ul class="link-list-opt no-bdr">
-                                                        <li><a href="#"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="project-details">
-                                            <p>Improve SEO keyword research, A/B testing, Local market improvement.</p>
-                                        </div>
-                                        <div class="project-progress">
-                                            <div class="project-progress-details">
-                                                <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>2 Tasks</span></div>
-                                                <div class="project-progress-percent">52.5%</div>
-                                            </div>
-                                            <div class="progress progress-pill progress-md bg-light">
-                                                <div class="progress-bar" data-progress="52.5"></div>
-                                            </div>
-                                        </div>
-                                        <div class="project-meta">
-                                            <ul class="project-users g-1">
-                                                <li>
-                                                    <div class="user-avatar sm bg-primary"><img src="./images/avatar/a-sm.jpg" alt=""></div>
-                                                </li>
-                                            </ul>
-                                            <span class="badge badge-dim bg-danger"><em class="icon ni ni-clock"></em><span>Due Tomorrow</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 col-xxl-3">
-                            <div class="card h-100">
-                                <div class="card-inner">
-                                    <div class="project">
-                                        <div class="project-head">
-                                            <a href="html/apps-kanban.html" class="project-title">
-                                                <div class="user-avatar sq bg-danger"><span>WD</span></div>
-                                                <div class="project-info">
-                                                    <h6 class="title">Website Development</h6>
-                                                    <span class="sub-text">Fitness Next</span>
-                                                </div>
-                                            </a>
-                                            <div class="drodown">
-                                                <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <ul class="link-list-opt no-bdr">
-                                                        <li><a href="html/apps-kanban.html"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="project-details">
-                                            <p>Develop the website using WordPree for the Fitness Next client.</p>
-                                        </div>
-                                        <div class="project-progress">
-                                            <div class="project-progress-details">
-                                                <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>44 Tasks</span></div>
-                                                <div class="project-progress-percent">65.5%</div>
-                                            </div>
-                                            <div class="progress progress-pill progress-md bg-light">
-                                                <div class="progress-bar" data-progress="65.5"></div>
-                                            </div>
-                                        </div>
-                                        <div class="project-meta">
-                                            <ul class="project-users g-1">
-                                                <li>
-                                                    <div class="user-avatar sm bg-blue"><span>N</span></div>
-                                                </li>
-                                                <li>
-                                                    <div class="user-avatar sm bg-primary"><img src="./images/avatar/c-sm.jpg" alt=""></div>
-                                                </li>
-                                            </ul>
-                                            <span class="badge badge-dim bg-light text-gray"><em class="icon ni ni-clock"></em><span>16 Days Left</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 col-xxl-3">
-                            <div class="card h-100">
-                                <div class="card-inner">
-                                    <div class="project">
-                                        <div class="project-head">
-                                            <a href="html/apps-kanban.html" class="project-title">
-                                                <div class="user-avatar sq bg-info"><span>KR</span></div>
-                                                <div class="project-info">
-                                                    <h6 class="title">Keyword Research for SEO</h6>
-                                                    <span class="sub-text">Techyspec</span>
-                                                </div>
-                                            </a>
-                                            <div class="drodown">
-                                                <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <ul class="link-list-opt no-bdr">
-                                                        <li><a href="html/apps-kanban.html"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="project-details">
-                                            <p>Improve SEO keyword research, A/B testing, Local market improvement.</p>
-                                        </div>
-                                        <div class="project-progress">
-                                            <div class="project-progress-details">
-                                                <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>8 Tasks</span></div>
-                                                <div class="project-progress-percent">100%</div>
-                                            </div>
-                                            <div class="progress progress-pill progress-md bg-light">
-                                                <div class="progress-bar" data-progress="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="project-meta">
-                                            <ul class="project-users g-1">
-                                                <li>
-                                                    <div class="user-avatar sm bg-primary"><img src="./images/avatar/a-sm.jpg" alt=""></div>
-                                                </li>
-                                                <li>
-                                                    <div class="user-avatar sm bg-primary"><img src="./images/avatar/d-sm.jpg" alt=""></div>
-                                                </li>
-                                            </ul>
-                                            <span class="badge badge-dim bg-success"><em class="icon ni ni-clock"></em><span>Done</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 col-xxl-3">
-                            <div class="card h-100">
-                                <div class="card-inner">
-                                    <div class="project">
-                                        <div class="project-head">
-                                            <a href="html/apps-kanban.html" class="project-title">
-                                                <div class="user-avatar sq bg-purple"><span>DD</span></div>
-                                                <div class="project-info">
-                                                    <h6 class="title">Dashlite Development</h6>
-                                                    <span class="sub-text">Softnio</span>
-                                                </div>
-                                            </a>
-                                            <div class="drodown">
-                                                <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <ul class="link-list-opt no-bdr">
-                                                        <li><a href="html/apps-kanban.html"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="project-details">
-                                            <p>Design and develop the DashLite template for Envato Marketplace.</p>
-                                        </div>
-                                        <div class="project-progress">
-                                            <div class="project-progress-details">
-                                                <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>3 Tasks</span></div>
-                                                <div class="project-progress-percent">93.5%</div>
-                                            </div>
-                                            <div class="progress progress-pill progress-md bg-light">
-                                                <div class="progress-bar" data-progress="93.5"></div>
-                                            </div>
-                                        </div>
-                                        <div class="project-meta">
-                                            <ul class="project-users g-1">
-                                                <li>
-                                                    <div class="user-avatar sm bg-primary"><span>A</span></div>
-                                                </li>
-                                                <li>
-                                                    <div class="user-avatar sm bg-blue"><img src="./images/avatar/b-sm.jpg" alt=""></div>
-                                                </li>
-                                                <li>
-                                                    <div class="user-avatar bg-light sm"><span>+12</span></div>
-                                                </li>
-                                            </ul>
-                                            <span class="badge badge-dim bg-warning"><em class="icon ni ni-clock"></em><span>5 Days Left</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 col-xxl-3">
-                            <div class="card h-100">
-                                <div class="card-inner">
-                                    <div class="project">
-                                        <div class="project-head">
-                                            <a href="html/apps-kanban.html" class="project-title">
-                                                <div class="user-avatar sq bg-danger"><span>WD</span></div>
-                                                <div class="project-info">
-                                                    <h6 class="title">Website Development</h6>
-                                                    <span class="sub-text">Fitness Next</span>
-                                                </div>
-                                            </a>
-                                            <div class="drodown">
-                                                <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <ul class="link-list-opt no-bdr">
-                                                        <li><a href="html/apps-kanban.html"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="project-details">
-                                            <p>Develop the website using WordPree for the Fitness Next client.</p>
-                                        </div>
-                                        <div class="project-progress">
-                                            <div class="project-progress-details">
-                                                <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>44 Tasks</span></div>
-                                                <div class="project-progress-percent">65.5%</div>
-                                            </div>
-                                            <div class="progress progress-pill progress-md bg-light">
-                                                <div class="progress-bar" data-progress="65.5"></div>
-                                            </div>
-                                        </div>
-                                        <div class="project-meta">
-                                            <ul class="project-users g-1">
-                                                <li>
-                                                    <div class="user-avatar sm bg-blue"><span>N</span></div>
-                                                </li>
-                                                <li>
-                                                    <div class="user-avatar sm bg-primary"><img src="./images/avatar/c-sm.jpg" alt=""></div>
-                                                </li>
-                                            </ul>
-                                            <span class="badge badge-dim bg-light text-gray"><em class="icon ni ni-clock"></em><span>16 Days Left</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 col-xxl-3">
-                            <div class="card h-100">
-                                <div class="card-inner">
-                                    <div class="project">
-                                        <div class="project-head">
-                                            <a href="html/apps-kanban.html" class="project-title">
-                                                <div class="user-avatar sq bg-warning"><span>RW</span></div>
-                                                <div class="project-info">
-                                                    <h6 class="title">Redesign Website</h6>
-                                                    <span class="sub-text">Runnergy</span>
-                                                </div>
-                                            </a>
-                                            <div class="drodown">
-                                                <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <ul class="link-list-opt no-bdr">
-                                                        <li><a href="html/apps-kanban.html"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
-                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="project-details">
-                                            <p>Design the website for Runnergy main website including their user dashboard.</p>
-                                        </div>
-                                        <div class="project-progress">
-                                            <div class="project-progress-details">
-                                                <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>25 Tasks</span></div>
-                                                <div class="project-progress-percent">23%</div>
-                                            </div>
-                                            <div class="progress progress-pill progress-md bg-light">
-                                                <div class="progress-bar" data-progress="23"></div>
-                                            </div>
-                                        </div>
-                                        <div class="project-meta">
-                                            <ul class="project-users g-1">
-                                                <li>
-                                                    <div class="user-avatar sm bg-primary"><img src="./images/avatar/c-sm.jpg" alt=""></div>
-                                                </li>
-                                                <li>
-                                                    <div class="user-avatar sm bg-blue"><span>N</span></div>
-                                                </li>
-                                            </ul>
-                                            <span class="badge badge-dim bg-light text-gray"><em class="icon ni ni-clock"></em><span>21 Days Left</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div><!-- .nk-block -->
             </div>
@@ -451,3 +103,12 @@
     </div>
 </div>
 <!-- content @e -->
+<app-createproject></app-createproject>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

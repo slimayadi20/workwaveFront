@@ -1,14 +1,19 @@
 <div class="nk-sidebar-element nk-sidebar-head">
     <div class="nk-sidebar-brand">
         <a href="html/index.html" class="logo-link nk-sidebar-logo">
-            <img class="logo-light logo-img" src="../../assets/images/logo.png" srcset="../../assets/images/logo2x.png 2x" alt="logo">
-            <img class="logo-dark logo-img" src="../../assets/images/logo-dark.png" srcset="../../assets/images/logo-dark2x.png 2x" alt="logo-dark">
-            <img class="logo-small logo-img logo-img-small" src="../../assets/images/logo-small.png" srcset="../../assets/images/logo-small2x.png 2x" alt="logo-small">
+            <img class="logo-light logo-img" src="../../assets/images/logo.png"
+                srcset="../../assets/images/logo2x.png 2x" alt="logo">
+            <img class="logo-dark logo-img" src="../../assets/images/logo-dark.png"
+                srcset="../../assets/images/logo-dark2x.png 2x" alt="logo-dark">
+            <img class="logo-small logo-img logo-img-small" src="../../assets/images/logo-small.png"
+                srcset="../../assets/images/logo-small2x.png 2x" alt="logo-small">
         </a>
     </div>
     <div class="nk-menu-trigger me-n2">
-        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
-        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em
+                class="icon ni ni-arrow-left"></em></a>
+        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em
+                class="icon ni ni-menu"></em></a>
     </div>
 </div><!-- .nk-sidebar-element -->
 <div class="nk-sidebar-element">
@@ -18,51 +23,54 @@
                 <li class="nk-menu-heading">
                     <h6 class="overline-title text-primary-alt">APPLICATIONS</h6>
                 </li><!-- .nk-menu-item -->
-                <li style="cursor:pointer"  class="nk-menu-item has-sub" *ngFor="let m of menuapp">
-                    <a  href="#" class="nk-menu-link nk-menu-toggle">
+                <li style="cursor:pointer" class="nk-menu-item has-sub" *ngFor="let m of menuapp">
+                    <a href="#" class="nk-menu-link nk-menu-toggle">
                         <span class="nk-menu-icon"><em class="{{m.icon}}"></em></span>
                         <span class="nk-menu-text">{{m.title}}</span>
                     </a>
                     <ul class="nk-menu-sub">
                         <li class="nk-menu-item" *ngFor="let s of m.subMenus">
-                            <a  [routerLink]=" s.link"  class="nk-menu-link"><span class="nk-menu-text">{{s.title}}</span></a>
+                            <a [routerLink]=" s.link" class="nk-menu-link"><span
+                                    class="nk-menu-text">{{s.title}}</span></a>
                         </li>
-                          
+
                     </ul><!-- .nk-menu-sub -->
                 </li><!-- .nk-menu-item -->
-             
-               <!-- end here apps -->
+
+                <!-- end here apps -->
                 <li class="nk-menu-heading">
                     <h6 class="overline-title text-primary-alt">Dashboards</h6>
                 </li><!-- .nk-menu-item -->
 
                 <li style="cursor:pointer" class="nk-menu-item" *ngFor="let m of menudashboard">
-                    <a  href="#" class="nk-menu-link nk-menu-toggle">
+                    <a href="#" class="nk-menu-link nk-menu-toggle">
                         <span class="nk-menu-icon"><em class="{{m.icon}}"></em></span>
                         <span class="nk-menu-text">{{m.title}}</span>
                     </a>
                     <ul class="nk-menu-sub">
                         <li class="nk-menu-item" *ngFor="let s of m.subMenus">
-                            <a  [routerLink]=" s.link"  class="nk-menu-link"><span class="nk-menu-text">{{s.title}}</span></a>
+                            <a [routerLink]=" s.link" class="nk-menu-link"><span
+                                    class="nk-menu-text">{{s.title}}</span></a>
                         </li>
-                          
+
                     </ul><!-- .nk-menu-sub -->
                 </li><!-- .nk-menu-item -->
-            
-               <!-- dashends here  -->
+
+                <!-- dashends here  -->
                 <li class="nk-menu-heading">
-                    <h6 class="overline-title text-primary-alt">Settings</h6>
+                    <h6 *ngIf="data.role!=='Employee'" class="overline-title text-primary-alt">Settings</h6>
                 </li><!-- .nk-menu-heading -->
                 <li style="cursor:pointer" class="nk-menu-item" *ngFor="let m of menusettings   ">
-                    <a  href="#" class="nk-menu-link nk-menu-toggle">
+                    <a href="#" class="nk-menu-link nk-menu-toggle">
                         <span class="nk-menu-icon"><em class="{{m.icon}}"></em></span>
                         <span class="nk-menu-text">{{m.title}}</span>
                     </a>
                     <ul class="nk-menu-sub">
                         <li class="nk-menu-item" *ngFor="let s of m.subMenus">
-                            <a  [routerLink]=" s.link"  class="nk-menu-link"><span class="nk-menu-text">{{s.title}}</span></a>
+                            <a [routerLink]=" s.link" class="nk-menu-link"><span
+                                    class="nk-menu-text">{{s.title}}</span></a>
                         </li>
-                          
+
                     </ul><!-- .nk-menu-sub -->
                 </li><!-- .nk-menu-item -->
             </ul>

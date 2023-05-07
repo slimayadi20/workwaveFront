@@ -26,12 +26,12 @@ export class AuthComponent implements OnInit {
   constructor(private router: Router, private authService: AuthServiceService, private encryptionService: EncryptionService,
     private spinner: NgxSpinnerService) { }
   userLogin = new FormGroup({
-    userName: new FormControl('slim961', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
+    userName: new FormControl('slim318', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
     password: new FormControl('slim', [Validators.required])
 
   })
   faceLogin = new FormGroup({
-    userName: new FormControl('slim961', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
+    userName: new FormControl('slim318', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]),
 
   })
   @ViewChild(NgProgressComponent) progressBar!: NgProgressComponent;

@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'kanban', component: KanbanComponent },
   { path: 'createproject', component: CreateprojectComponent },
   { path: 'editproject', component: EditprojectComponent },
+
 ];
 
 @NgModule({

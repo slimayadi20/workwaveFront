@@ -1,0 +1,112 @@
+<!-- content @s -->
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">Enrollment list</h3>
+                        </div><!-- .nk-block-head-content -->
+                        <div class="nk-block-head-content">
+                            <div class="toggle-wrap nk-block-tools-toggle">
+                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                    data-target="more-options"><em class="icon ni ni-more-v"></em></a>
+                                <div class="toggle-expand-content" data-content="more-options">
+                                    <ul class="nk-block-tools g-3">
+                                        <li>
+                                            <div class="form-control-wrap">
+                                                <div class="form-icon form-icon-right">
+                                                    <em class="icon ni ni-search"></em>
+                                                </div>
+                                                <input [(ngModel)]="term" type="text" class="form-control"
+                                                    id="default-04" placeholder="Search by name">
+                                            </div>
+                                        </li>
+
+                                        <li class="nk-block-tools-opt">
+
+                                            <a routerLink="/courses/createcateg"
+                                                class="btn btn-primary d-none d-md-inline-flex"><em
+                                                    class="icon ni ni-plus"></em><span>Add</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="card">
+                        <div class="card-inner-group">
+                            <div class="card-inner p-0">
+                                <div class="nk-tb-list nk-tb-ulist">
+                                    <div class="nk-tb-item nk-tb-head">
+
+                                        <div class="nk-tb-col"><span class="sub-text">#</span></div>
+                                        <div class="nk-tb-col tb-col-md"><span class="sub-text">Nom Categorie</span>
+                                        </div>
+
+                                    </div><!-- .nk-tb-item -->
+                                    <!-- .nk-tb-item -->
+                                    <div class="nk-tb-item" *ngFor="let c of categories|filter:term;let i=index">
+
+                                        <div class="nk-tb-col tb-col-md">
+                                            <span>{{i}}</span>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-md">
+                                            <span>{{c.nom}}</span>
+                                        </div>
+
+                                        <div class="nk-tb-col nk-tb-col-tools">
+                                            <ul class="nk-tb-actions gx-1">
+
+                                                <li>
+                                                    <div class="drodown">
+                                                        <a href="#"
+                                                            class="dropdown-toggle btn btn-sm btn-icon btn-trigger"
+                                                            data-bs-toggle="dropdown"><em
+                                                                class="icon ni ni-more-h"></em></a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <ul class="link-list-opt no-bdr">
+                                                                <li><a style="cursor: pointer;"
+                                                                        (click)="redirect(c.id)"><em
+                                                                            class="icon ni ni-edit"></em><span>Edit
+                                                                            Categorie</span></a></li>
+                                                                <li><a style="cursor: pointer;"
+                                                                        (click)="delete(c.id)"><em
+                                                                            class="icon ni ni-more-v"></em><span>Delete
+                                                                            Categorie</span></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div><!-- .nk-tb-list -->
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="nk-block-between-md g-3">
+                                        <div class="g mx-auto">
+                                            <ul class="pagination justify-content-center justify-content-md-start">
+                                                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                                                <li class="page-item" *ngFor="let p of pages;let i =index">
+                                                    <a class="page-link" href="#" (click)="setPage(i,$event)">{{i}}</a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                            </ul><!-- .pagination -->
+                                        </div>
+                                    </div><!-- .nk-block-between -->
+                                </div><!-- .card-inner -->
+                            </div><!-- .card -->
+                        </div>
+                    </div>
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content @e -->

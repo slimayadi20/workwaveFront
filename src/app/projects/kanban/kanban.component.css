@@ -1,0 +1,8 @@
+.kanban-item {
+    transition: none !important;
+  }
+  .sortable-placeholder {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
