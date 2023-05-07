@@ -116,6 +116,7 @@ export class AuthServiceService {
     return this.http.put(this.PATH_OF_API + '/banUser', body)
 
   }
+
   tfa(body: any) {
     return this.http.put(this.PATH_OF_API + '/tfaUser', body)
   }
@@ -125,11 +126,14 @@ export class AuthServiceService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
-  updateRole(body: any,role:any) {
-    return this.http.post(this.PATH_OF_API + '/users/'+role, body, {
+  updateRole(body: any, role: any) {
+    return this.http.post(this.PATH_OF_API + '/users/' + role, body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
+  }
+  deleteRole(body: any) {
+    return this.http.delete(this.PATH_OF_API + '/role/' + body);
   }
 
 }
