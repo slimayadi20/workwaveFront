@@ -1,0 +1,423 @@
+<!-- content @s -->
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">WorkWave Academy</h3>
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="card">
+                        <div class="card-inner">
+                            <h5 class="card-title" *ngIf="!test">Ajouter un QUIZ</h5>
+                            <h5 class="card-title" *ngIf="test">Editer un QUIZ</h5>
+                            <!-- <p>Here is your basic store setting of your website.</p> -->
+                            <form [formGroup]="Quizz" (ngSubmit)="Quizz" class="gy-3 form-settings">
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="question1">Question 1</label>
+                                            <span class="form-note">Veuillez saisir la question 1.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="question1" type="text"
+                                                    placeholder="Veuillez saisir la question 1." class="form-control"
+                                                    id="question1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="rep1Q1">Réponse 1</label>
+                                            <span class="form-note">Veuillez saisir la réponse 1 pour la question
+                                                1.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep1Q1" type="text"
+                                                    placeholder="Veuillez saisir la réponse 1 pour la question 1."
+                                                    class="form-control" id="rep1Q1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="rep2Q1">Réponse 2</label>
+                                            <span class="form-note">Veuillez saisir la réponse 2 pour la question
+                                                1.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep2Q1" type="text"
+                                                    placeholder="Veuillez saisir la réponse 2 pour la question 1."
+                                                    class="form-control" id="rep2Q1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="rep3Q1">Réponse 3</label>
+                                            <span class="form-note">Veuillez saisir la réponse 3 pour la question
+                                                1.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep3Q1" type="text"
+                                                    placeholder="Veuillez saisir la réponse 3 pour la question 1."
+                                                    class="form-control" id="rep3Q1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="repCorrectQ1">Réponse </label>
+                                            <span class="form-note">Veuillez saisir la réponse pour la question
+                                                1.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="repCorrectQ1" type="text"
+                                                    placeholder="Veuillez saisir la réponse 3 pour la question 1."
+                                                    class="form-control" id="repCorrectQ1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Question2">Question 2</label>
+                                            <span class="form-note">Veuillez saisir la question 2.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="question2" type="text"
+                                                    placeholder="Veuillez saisir la question 2." class="form-control"
+                                                    id="Question2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Reponse1Q2">Réponse 1</label>
+                                            <span class="form-note">Veuillez saisir la réponse 1 pour la question
+                                                2.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep1Q2" type="text"
+                                                    placeholder="Veuillez saisir la réponse 1 pour la question 2."
+                                                    class="form-control" id="Reponse1Q2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Reponse2Q2">Réponse 2</label>
+                                            <span class="form-note">Veuillez saisir la réponse 2 pour la question
+                                                2.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep2Q2" type="text"
+                                                    placeholder="Veuillez saisir la réponse 2 pour la question 2."
+                                                    class="form-control" id="Reponse2Q2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Reponse3Q2">Réponse 3</label>
+                                            <span class="form-note">Veuillez saisir la réponse 3 pour la question
+                                                2.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep3Q2" type="text"
+                                                    placeholder="Veuillez saisir la réponse 3 pour la question 2."
+                                                    class="form-control" id="Reponse3Q2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="repCorrectQ1">Réponse </label>
+                                            <span class="form-note">Veuillez saisir la réponse pour la question
+                                                2.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="repCorrectQ2" type="text"
+                                                    placeholder="Veuillez saisir la réponse pour la question 2."
+                                                    class="form-control" id="repCorrectQ2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  -->
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="question3">Question 3</label>
+                                            <span class="form-note">Veuillez saisir votre question 3.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="question3" type="text"
+                                                       placeholder="Veuillez saisir votre question 3." class="form-control"
+                                                       id="question3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="rep1Q3">Réponse 1</label>
+                                            <span class="form-note">Veuillez saisir la réponse 1 de la question 3.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep1Q3" type="text"
+                                                       placeholder="Veuillez saisir la réponse 1 de la question 3." class="form-control"
+                                                       id="rep1Q3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="rep2Q3">Réponse 2</label>
+                                            <span class="form-note">Veuillez saisir la réponse 2 de la question 3.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep2Q3" type="text"
+                                                       placeholder="Veuillez saisir la réponse 2 de la question 3." class="form-control"
+                                                       id="rep2Q3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="rep3Q3">Réponse 3</label>
+                                            <span class="form-note">Veuillez saisir la réponse 3 de la question 3.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep3Q3" type="text"
+                                                       placeholder="Veuillez saisir la réponse 3 de la question 3." class="form-control"
+                                                       id="rep3Q3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="repCorrectQ3">Réponse </label>
+                                            <span class="form-note">Veuillez saisir la réponse pour la question
+                                                3.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="repCorrectQ3" type="text"
+                                                    placeholder="Veuillez saisir la réponse pour la question 3."
+                                                    class="form-control" id="repCorrectQ2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <!--  -->
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Question4">Question 4</label>
+                                            <span class="form-note">Veuillez poser la question 4.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="question4" type="text"
+                                                    placeholder="Veuillez poser la question 4." class="form-control"
+                                                    id="Question4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Rep1Q4">Réponse 1</label>
+                                            <span class="form-note">Veuillez saisir la réponse 1 à la question 4.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep1Q4" type="text"
+                                                    placeholder="Veuillez saisir la réponse 1 à la question 4."
+                                                    class="form-control" id="Rep1Q4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Rep2Q4">Réponse 2</label>
+                                            <span class="form-note">Veuillez saisir la réponse 2 à la question 4.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep2Q4" type="text"
+                                                    placeholder="Veuillez saisir la réponse 2 à la question 4."
+                                                    class="form-control" id="Rep2Q4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Rep3Q4">Réponse 3</label>
+                                            <span class="form-note">Veuillez saisir la réponse 3 à la question 4.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="rep3Q4" type="text"
+                                                    placeholder="Veuillez saisir la réponse 3 à la question 4."
+                                                    class="form-control" id="Rep3Q4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="repCorrectQ1">Réponse </label>
+                                            <span class="form-note">Veuillez saisir la réponse pour la question
+                                                4.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="repCorrectQ4" type="text"
+                                                    placeholder="Veuillez saisir la réponse pour la question 4."
+                                                    class="form-control" id="repCorrectQ4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label">Formation</label>
+                                            <span class="form-note">Veuiller préciser la Formation.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <select formControlName="formation" class="form-control ">
+                                                    <option value="">please choose a course</option>
+                                                    <option [ngValue]="c" *ngFor="let c of formation">{{
+                                                        c.nomFormation }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row g-3" *ngIf="test==false">
+                                    <div class="col-lg-7 offset-lg-5">
+                                        <div class="form-group mt-2">
+                                            <button [disabled]="Quizz.invalid" (click)="addQuiz()" type="submit"
+                                                class="btn btn-lg btn-primary">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3" *ngIf="test==true">
+                                    <div class="col-lg-7 offset-lg-5">
+                                        <div class="form-group mt-2">
+                                            <button [disabled]="Quizz.invalid" (click)="updateQuiz()" type="submit"
+                                                class="btn btn-lg btn-primary">Editer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!-- .card-inner -->
+                    </div><!-- .card -->
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>

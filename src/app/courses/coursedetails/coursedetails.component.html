@@ -1,0 +1,200 @@
+<!-- content @s -->
+<div class="nk-content ">
+
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="content-page wide-md m-auto">
+
+                    <div class="nk-block" *ngIf=" currentStep == 0 ">
+                        <div class="nk-block-head nk-block-head-lg wide-xs mx-auto">
+                            <div class="nk-block-head-content text-center">
+                                <h2 class="nk-block-title fw-normal">{{data.titre}}</h2>
+                            </div>
+                        </div><!-- .nk-block-head -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class=" progress-wrap" style="margin-bottom: 50px;">
+                                    <div class="line-progress-bar">
+                                        <div class="line"></div>
+                                        <ul class="checkout-bar">
+                                            <li class="progressbar-dots active "><span>step 1</span></li>
+                                            <li class="progressbar-dots"><span>step 2</span></li>
+                                            <li class="progressbar-dots  "><span>step 3</span></li>
+                                            <li class="progressbar-dots"><span>step 4</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner card-inner-xl">
+                                    <article class="entry">
+                                        <h3> {{data.sousTitre1}}</h3>
+
+                                        <img style="height: 100%; width: 100%; object-fit: cover;"
+                                            [src]="this.service.PATH_OF_API + '/imgcours/' + data.idCours">
+                                        <p>{{data.contenu1}}</p>    
+
+                                    </article>
+                                    <div class="text-center">
+                                        <fieldset>
+                                            <button class="btn btn-secondary" style="margin-right: 10px;" type="button"
+                                                (click)="goBack()">Précédent</button>
+                                            <button (click)="updateHistorique()" class="btn btn-primary main-button ml-3" type="button"
+                                                (click)="nextStep()">Suivant</button>
+                                        </fieldset>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div><!-- .nk-block -->
+                    </div>
+                    <div class="nk-block" *ngIf="currentStep == 1">
+                        <div class="nk-block-head nk-block-head-lg wide-xs mx-auto">
+                            <div class="nk-block-head-content text-center">
+                                <h2 class="nk-block-title fw-normal"> {{data.titre}}</h2>
+                            </div>
+                        </div><!-- .nk-block-head -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="progress-wrap" style="margin-bottom: 50px;">
+                                    <div class="line-progress-bar">
+                                        <div class="line"></div>
+                                        <ul class="checkout-bar">
+                                            <li class="progressbar-dots active "><span>step 1</span></li>
+                                            <li class="progressbar-dots active"><span>step 2</span></li>
+                                            <li class="progressbar-dots  "><span>step 3</span></li>
+                                            <li class="progressbar-dots"><span>step 4</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-inner card-inner-xl">
+                                        <article class="entry">
+                                            <h3> {{data.sousTitre2}}</h3>
+
+                                            <img style="height: 100%; width: 100%; object-fit: cover;"
+                                                [src]="this.service.PATH_OF_API + '/imgcours/' + data.idCours"
+                                                alt="User avatar">
+                                            <p>{{data.contenu2}}</p>
+
+                                        </article>
+                                        <div class="text-center">
+                                            <fieldset>
+                                                <button  class="btn btn-secondary" style="margin-right: 10px;"
+                                                    type="button" (click)="goBack()">Précédent</button>
+                                                <button (click)="updateHistorique()" class="btn btn-primary main-button ml-3" type="button"
+                                                    (click)="nextStep()">Suivant</button>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-block" *ngIf="currentStep == 2">
+                        <div class="nk-block-head nk-block-head-lg wide-xs mx-auto">
+                            <div class="nk-block-head-content text-center">
+                                <h2 class="nk-block-title fw-normal"> {{data.titre}}</h2>
+                            </div>
+                        </div><!-- .nk-block-head -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="progress-wrap" style="margin-bottom: 50px;">
+                                    <div class="line-progress-bar">
+                                        <div class="line"></div>
+                                        <ul class="checkout-bar">
+                                            <li class="progressbar-dots active "><span>step 1</span></li>
+                                            <li class="progressbar-dots active"><span>step 2</span></li>
+                                            <li class="progressbar-dots active "><span>step 3</span></li>
+                                            <li class="progressbar-dots"><span>step 4</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-inner card-inner-xl">
+                                        <article class="entry">
+                                            <h3> {{data.sousTitre3}}</h3>
+
+                                            <img style="height: 100%; width: 100%; object-fit: cover;"
+                                                [src]="this.service.PATH_OF_API + '/imgcours/' + data.idCours"
+                                                alt="User avatar">
+                                            <p>{{data.contenu3}}</p>
+
+                                        </article>
+                                        <div class="text-center">
+                                            <fieldset>
+                                                <button  class="btn btn-secondary" style="margin-right: 10px;"
+                                                    type="button" (click)="goBack()">Précédent</button>
+                                                <button (click)="updateHistorique()" class="btn btn-primary main-button ml-3" type="button"
+                                                    (click)="nextStep()">Suivant</button>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-block" *ngIf="currentStep == 3">
+                        <div class="nk-block-head nk-block-head-lg wide-xs mx-auto">
+                            <div class="nk-block-head-content text-center">
+                                <h2 class="nk-block-title fw-normal"> {{data.titre}}</h2>
+                            </div>
+                        </div><!-- .nk-block-head -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="progress-wrap" style="margin-bottom: 50px;">
+                                    <div class="line-progress-bar">
+                                        <div class="line"></div>
+                                        <ul class="checkout-bar">
+                                            <li class="progressbar-dots active "><span>step 1</span></li>
+                                            <li class="progressbar-dots active"><span>step 2</span></li>
+                                            <li class="progressbar-dots  active"><span>step 3</span></li>
+                                            <li class="progressbar-dots active"><span>step 4</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-inner card-inner-xl">
+                                        <article class="entry">
+                                            <h3> {{data.sousTitre4}}</h3>
+
+                                            <img style="height: 100%; width: 100%; object-fit: cover;"
+                                                [src]="this.service.PATH_OF_API + '/imgcours/' + data.idCours"
+                                                alt="User avatar">
+                                            <p>{{data.contenu4}}</p>
+
+                                        </article>
+                                        <div class="text-center">
+                                            <fieldset>
+                                                <button class="btn btn-secondary" style="margin-right: 10px;"
+                                                    type="button" (click)="goBack()">Précédent</button>
+                                                <button  (click)="updateHistorique()" class="btn btn-primary main-button ml-3" type="button"
+                                                    (click)="nextStep()">Suivant</button>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-block" *ngIf="currentStep == 4">
+                        <app-quiz></app-quiz>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content @e -->
+</div>

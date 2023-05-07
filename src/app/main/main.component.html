@@ -1,0 +1,44 @@
+
+<body class="nk-body bg-lighter npc-default has-sidebar ">
+    <div class="nk-app-root" >
+  
+      <!-- main @s -->
+      <div class="nk-main ">
+        <!-- sidebar @s -->
+        <div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
+          <app-sidemenu></app-sidemenu>
+        </div>
+        <!-- wrap @s -->
+        <div class="nk-wrap ">
+          <!-- main header @e -->
+          <!-- content @s -->
+          <div class="nk-header nk-header-fixed is-light">
+            <div class="container-fluid">
+              <app-navbar></app-navbar>
+            </div>
+          </div>
+          <div class="nk-content ">
+            <div class="container-fluid">
+              <div class="nk-content-inner">
+                <div class="nk-content-body">
+                  <router-outlet></router-outlet>
+                </div>
+              </div>
+            </div>
+          </div>
+          <app-footer></app-footer>
+
+        </div>
+        <!-- wrap @e -->
+      </div>
+      <!-- main @e -->
+    </div>
+    
+
+  </body>
+    <!-- app-root @e -->
+
+    <!-- JavaScript -->
+    <script src="../../assets/js/bundle.js"></script>
+<script src="../../assets/js/scripts.js"></script>
+<script src="../../assets/js/charts/chart-ecommerce.js"></script>

@@ -1,0 +1,234 @@
+<!-- content @s -->
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">WorkWave Academy</h3>
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="card">
+                        <div class="card-inner">
+                            <h5 class="card-title">Ajouter un cours</h5>
+                            <!-- <p>Here is your basic store setting of your website.</p> -->
+                            <form [formGroup]="Cours" (ngSubmit)="Cours" class="gy-3 form-settings">
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Contenu1">Contenu 1</label>
+                                            <span class="form-note">Veuillez préciser le contenu 1.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="contenu1" type="text"
+                                                    placeholder="Veuillez préciser le contenu 1." class="form-control"
+                                                    id="Contenu1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Contenu2">Contenu 2</label>
+                                            <span class="form-note">Veuillez préciser le contenu 2.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="contenu2"
+                                                    placeholder="Veuillez préciser le contenu 2." type="text"
+                                                    class="form-control" id="Contenu2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Contenu3">Contenu 3</label>
+                                            <span class="form-note">Veuillez préciser le contenu 3.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="contenu3"
+                                                    placeholder="Veuillez préciser le contenu 3." type="text"
+                                                    class="form-control" id="Contenu3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Contenu4">Contenu 4</label>
+                                            <span class="form-note">Veuillez préciser le contenu 4.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="contenu4" type="text"
+                                                    placeholder="Veuillez préciser le contenu 4." class="form-control"
+                                                    id="Contenu4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="SousTitre1">Sous-titre 1</label>
+                                            <span class="form-note">Veuillez préciser le sous-titre 1.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="sousTitre1" type="text"
+                                                    placeholder="Veuillez préciser le sous-titre 1."
+                                                    class="form-control" id="SousTitre1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="SousTitre3">Sous-titre 2</label>
+                                            <span class="form-note">Veuillez préciser le sous-titre 2.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="sousTitre2" type="text"
+                                                    placeholder="Veuillez préciser le sous-titre 2."
+                                                    class="form-control" id="SousTitre2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="SousTitre3">Sous-titre 3</label>
+                                            <span class="form-note">Veuillez préciser le sous-titre 3.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="sousTitre3" type="text"
+                                                    placeholder="Veuillez préciser le sous-titre 3."
+                                                    class="form-control" id="SousTitre3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="SousTitre4">Sous-titre 4</label>
+                                            <span class="form-note">Veuillez préciser le sous-titre 4.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="sousTitre4" type="text"
+                                                    placeholder="Veuillez préciser le sous-titre 4."
+                                                    class="form-control" id="SousTitre4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="titre">Titre</label>
+                                            <span class="form-note">Veuillez préciser le titre.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="titre" type="text"
+                                                    placeholder="Veuillez préciser le titre " class="form-control"
+                                                    id="titre">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="titre">Image</label>
+                                            <span class="form-note">Veuillez préciser l'image.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input id="upload-input" accept="image/*" (change)="onSelectFile($event)" type="file" name="image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label">Formation</label>
+                                            <span class="form-note">Veuiller préciser la Formation.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <select formControlName="formation" class="form-control " >
+                                                    <option value="">please choose a course</option>
+                                                    <option [ngValue]="c" *ngFor="let c of formation">{{ c.nomFormation }}</option> 
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+
+                                <div class="row g-3" *ngIf="test==false">
+                                    <div class="col-lg-7 offset-lg-5">
+                                        <div class="form-group mt-2">
+                                            <button [disabled]="Cours.invalid" (click)="addCours()" type="submit"
+                                                class="btn btn-lg btn-primary">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3" *ngIf="test==true">
+                                    <div class="col-lg-7 offset-lg-5">
+                                        <div class="form-group mt-2">
+                                            <button [disabled]="Cours.invalid" (click)="updateCours()" type="submit"
+                                                class="btn btn-lg btn-primary">Editer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!-- .card-inner -->
+                    </div><!-- .card -->
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>

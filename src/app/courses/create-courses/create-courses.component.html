@@ -1,0 +1,137 @@
+<!-- content @s -->
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">WorkWave Academy</h3>
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="card">
+                        <div class="card-inner">
+                            <h5 class="card-title">Ajouter une formation</h5>
+                            <!-- <p>Here is your basic store setting of your website.</p> -->
+                            <form [formGroup]="Formation" (ngSubmit)="Formation" class="gy-3 form-settings">
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="site-name">Nom Formation</label>
+                                            <span class="form-note">Veuiller préciser le nom de la formation.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="nomFormation" type="text" class="form-control" id="site-name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="site-email">La durée</label>
+                                            <span class="form-note">Veuiller préciser la durée de la formation.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input  formControlName="duree"  type="text" class="form-control" id="site-email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="site-copyright">Instructeur de la
+                                                formation</label>
+                                            <span class="form-note">Veuiller préciser l'instructeur de la
+                                                formation.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input  formControlName="instructeur"  type="text" class="form-control" id="site-copyright">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label" for="site-email">Image de l'instructeur</label>
+                                            <span class="form-note">Veuiller préciser l'image de l'instructeur de la
+                                                formation.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="imageInstructeur"  type="text" class="form-control" id="site-email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                              
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label">Description</label>
+                                            <span class="form-note">Veuiller préciser la description de la
+                                                formation.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input formControlName="description"  type="text" class="form-control" name="site-url"
+                                                    >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="form-label">Categorie</label>
+                                            <span class="form-note">Veuiller préciser la categorie de la
+                                                formation.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <select formControlName="categ" class="form-control " >
+                                                    <option value="">please choose a category</option>
+                                                    <option [ngValue]="c" *ngFor="let c of categorie">{{ c.nom }}</option> 
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="row g-3">
+                                    <div class="col-lg-7 offset-lg-5">
+                                        <div class="form-group mt-2">
+                                            <button [disabled]="Formation.invalid" (click)="addFormation()" type="submit" class="btn btn-lg btn-primary">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!-- .card-inner -->
+                    </div><!-- .card -->
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content @e -->
