@@ -111,6 +111,8 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
   async getAciveUsers() {
     try {
       const res = await this.chatService.getuserActive().toPromise();
+      console.log(res);
+      
       this.data = res;
     } catch (error) {
       console.log(error);
@@ -266,6 +268,9 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     this.getAciveUsers();
     this.data1 = this.encrypt.decrypt(localStorage.getItem('data')!);
     this.getChatRooms(this.data1['userName']);
+    console.log(this.data1['userName']);
+    
+  
 
 
     ///////WEB-SOCKET

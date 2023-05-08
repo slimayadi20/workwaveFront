@@ -19,8 +19,8 @@
                                                 <div class="form-icon form-icon-right">
                                                     <em class="icon ni ni-search"></em>
                                                 </div>
-                                                <input type="text" class="form-control" id="default-04"
-                                                    placeholder="Search by name">
+                                                <input [(ngModel)]="term" type="text" class="form-control"
+                                                    id="default-04" placeholder="Search by name">
                                             </div>
                                         </li>
 
@@ -57,11 +57,11 @@
 
                                     </div><!-- .nk-tb-item -->
                                     <!-- .nk-tb-item -->
-                                    <div class="nk-tb-item" *ngFor="let q of quiz">
+                                    <div class="nk-tb-item" *ngFor="let q of quiz| filter:term">
                                         <div class="nk-tb-col tb-col-md">
                                             <span>{{q.formation.nomFormation}}</span>
                                         </div>
-                              
+
                                         <div class="nk-tb-col tb-col-md">
                                             <span>{{q.question1}}</span>
                                         </div>
@@ -86,7 +86,7 @@
                                         <div class="nk-tb-col tb-col-md">
                                             <span>{{q.repCorrectQ4}}</span>
                                         </div>
-                                  
+
                                         <div class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1">
                                                 <li>
@@ -97,16 +97,16 @@
                                                                 class="icon ni ni-more-h"></em></a>
                                                         <div class="dropdown-menu dropdown-menu-end">
                                                             <ul class="link-list-opt no-bdr">
-                                                    <li><a style="cursor: pointer;"
-                                                        (click)="redirect(q.idQuizz)"><em
-                                                          class="icon ni ni-edit"></em><span>Edit
-                                                          Categorie</span></a></li>
-                                                    <li><a style="cursor: pointer;"
-                                                        (click)="delete(q.idQuizz)"><em
-                                                          class="icon ni ni-more-v"></em><span>Delete
-                                                          Categorie</span></a>
-                                                    </li>
-                                                  </ul>
+                                                                <li><a style="cursor: pointer;"
+                                                                        (click)="redirect(q.idQuizz)"><em
+                                                                            class="icon ni ni-edit"></em><span>Edit
+                                                                            Categorie</span></a></li>
+                                                                <li><a style="cursor: pointer;"
+                                                                        (click)="delete(q.idQuizz)"><em
+                                                                            class="icon ni ni-more-v"></em><span>Delete
+                                                                            Categorie</span></a>
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -116,7 +116,7 @@
 
                                 </div><!-- .nk-tb-list -->
                             </div>
-                           
+
                         </div>
                     </div>
                 </div><!-- .nk-block -->

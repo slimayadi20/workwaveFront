@@ -145,11 +145,12 @@
                                     class="btn btn-warning">Unban</a>
                             </div>
                             <div class="nk-tb-col tb-col-mb">
-                                
-                                <span [ngStyle]="{color: u.role && u.role.length > 0 && u.role[0].roleName === 'Admin' ? 'Red' : 'Green'}">
+
+                                <span
+                                    [ngStyle]="{color: u.role && u.role.length > 0 && u.role[0].roleName === 'Admin' ? 'Red' : 'Green'}">
                                     {{u.role && u.role.length > 0 ? u.role[0].roleName : ''}}
                                 </span>
-                                
+
                             </div>
                             <!-- <div class="nk-tb-col nk-tb-col-tools">
                                 <ul class="nk-tb-actions gx-1">

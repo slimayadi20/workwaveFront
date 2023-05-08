@@ -11,6 +11,7 @@ export class DisplayQuizComponent implements OnInit {
 
   constructor(private service: FormationService,private router:Router) { }
   quiz: any;
+  term: any;
   ngOnInit(): void {
     this.getAllQuiz();
   }

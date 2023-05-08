@@ -57,4 +57,12 @@ export class AdminCoursesComponent  implements AfterViewInit, OnInit{
       { queryParams: { id: id } }
     );
   }
+  displaywithcateg(c:any){
+    this.formationService.getFormswithcateg(c).subscribe(
+      data => {
+        this.formation = data;
+        console.log(data);
+
+      });
+  }
 }

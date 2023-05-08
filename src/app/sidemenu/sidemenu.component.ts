@@ -116,7 +116,7 @@ export class SidemenuComponent implements OnInit {
             mainTitle: "APPLICATIONS",
             title: "Suppliers",
             counter: 0,
-            icon: 'icon ni ni-card-view',
+            icon: 'icon ni ni-user-list-fill',
             subMenus: [
               {
                 title: "Supplier's list",
@@ -137,7 +137,7 @@ export class SidemenuComponent implements OnInit {
             mainTitle: "APPLICATIONS",
             title: "Orders",
             counter: 0,
-            icon:'icon ni ni-card-view',
+            icon:'icon ni ni-cc-alt2-fill',
             subMenus: [
               {
                 title: "orders  list",
@@ -160,7 +160,7 @@ export class SidemenuComponent implements OnInit {
             mainTitle: "APPLICATIONS",
             title: "Applications",
             counter: 0,
-            icon: 'icon ni ni-card-view',
+            icon: 'icon ni ni-grid-alt-fill',
 
             subMenus: [
               {

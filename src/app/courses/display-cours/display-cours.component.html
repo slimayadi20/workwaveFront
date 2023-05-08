@@ -19,7 +19,7 @@
                                                 <div class="form-icon form-icon-right">
                                                     <em class="icon ni ni-search"></em>
                                                 </div>
-                                                <input type="text" class="form-control" id="default-04"
+                                                <input [(ngModel)]="term" type="text" class="form-control" id="default-04"
                                                     placeholder="Search by name">
                                             </div>
                                         </li>
@@ -53,7 +53,7 @@
 
                                     </div><!-- .nk-tb-item -->
                                     <!-- .nk-tb-item -->
-                                    <div class="nk-tb-item" *ngFor="let c of cours">
+                                    <div class="nk-tb-item" *ngFor="let c of cours |filter:term">
                                         <div class="nk-tb-col tb-col-md">
                                             <span>{{c.titre}}</span>
                                         </div>
@@ -103,21 +103,7 @@
 
                                 </div><!-- .nk-tb-list -->
                             </div>
-                            <div class="card">
-                                <div class="card-inner">
-                                    <div class="nk-block-between-md g-3">
-                                        <div class="g mx-auto">
-                                            <ul class="pagination justify-content-center justify-content-md-start">
-                                                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                                                <!-- <li class="page-item" *ngFor="let p of pages;let i =index">
-                                                    <a class="page-link" href="#" (click)="setPage(i,$event)">{{i}}</a>
-                                                </li> -->
-                                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                            </ul><!-- .pagination -->
-                                        </div>
-                                    </div><!-- .nk-block-between -->
-                                </div><!-- .card-inner -->
-                            </div><!-- .card -->
+                           
                         </div>
                     </div>
                 </div><!-- .nk-block -->
@@ -125,4 +111,16 @@
         </div>
     </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!-- content @e -->

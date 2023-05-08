@@ -175,7 +175,14 @@ export class DisplayCoursesComponent implements  OnInit {
   }
 
 
+  displaywithcateg(c:any){
+    this.formationService.getFormswithcateg(c).subscribe(
+      data => {
+        this.formation = data;
+        console.log(data);
 
+      });
+  }
 
 
 

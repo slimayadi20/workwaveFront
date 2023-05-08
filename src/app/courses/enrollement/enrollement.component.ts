@@ -10,6 +10,7 @@ export class EnrollementComponent implements OnInit {
 
   constructor(private fs: FormationService) { }
   histo: any;
+  term: any;
   ngOnInit(): void {
     this.displayEnrollement()
   }

@@ -10,6 +10,7 @@ import { FormationService } from 'src/app/Shared/formation.service';
 })
 export class DisplayCoursComponent implements OnInit {
   cours: any;
+  term: any;
   constructor(private service: CoursService,private router :Router) { }
   ngOnInit(): void {
     this.afficherCours()

@@ -21,7 +21,7 @@
                                     <ul class="nk-block-tools g-3">
                                         <li>
                                             <div class="drodown">
-                                                <a href="#"
+                                                <a  
                                                     class="dropdown-toggle btn btn-white btn-dim btn-outline-light"
                                                     data-bs-toggle="dropdown"><em
                                                         class="d-none d-sm-inline icon ni ni-filter-alt"></em><span>Filtered
@@ -29,7 +29,7 @@
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <ul class="link-list-opt no-bdr">
                                                         <li *ngFor="let c of categories"><a
-                                                                href="#"><span>{{c.nom}}</span></a></li>
+                                                               (click)="displaywithcateg(c.id)"><span>{{c.nom}}</span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>

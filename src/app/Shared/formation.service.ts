@@ -26,6 +26,9 @@ export class FormationService {
   public getForm(id: any) {
     return this.http.get("http://localhost:8090" + "/showForm/" + id);
   }
+  public getFormswithcateg(id: any) {
+    return this.http.get("http://localhost:8090" + "/showFormByCateg/" + id);
+  }
   public delete(data: any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',

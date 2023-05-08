@@ -28,10 +28,7 @@ export class KanbanComponent implements OnInit {
 
     ngOnInit() {
         this.datarole = this.encryptionService.decrypt(localStorage.getItem('data')!);
-
         this.getData(this.taskService, this.datarole);
-
-
     }
     getData(taskService: TaskService, datarole: any) {
         this.id = this.route.snapshot.queryParams['project'];
@@ -48,7 +45,8 @@ export class KanbanComponent implements OnInit {
                         datedebut: task.datedebut,
                         link: '[routerLink]="[' + '/edit' + ', ${task.id}]"',
                         datefin: task.datefin,
-                        status: 'in-progress'
+                        status: 'in-progress',
+                        users: task.user // assuming that the task object has a 'user' property that is an array of user objects
                     });
                 } else if (task.etat === 'In Progress') {
                     this.inProgressTasks.push({
@@ -58,7 +56,9 @@ export class KanbanComponent implements OnInit {
                         datedebut: task.datedebut,
                         link: '[routerLink]="[' + '/edit' + ', ${task.id}]"',
                         datefin: task.datefin,
-                        status: 'in-progress'
+                        status: 'in-progress',
+                        users: task.user // assuming that the task object has a 'user' property that is an array of user objects
+
                     });
                 } else if (task.etat === 'To Review') {
                     this.toReview.push({
@@ -68,7 +68,9 @@ export class KanbanComponent implements OnInit {
                         datedebut: task.datedebut,
                         link: '[routerLink]="[' + '/edit' + ', ${task.id}]"',
                         datefin: task.datefin,
-                        status: 'in-progress'
+                        status: 'in-progress',
+                        users: task.user // assuming that the task object has a 'user' property that is an array of user objects
+
                     });
                 } else if (task.etat === 'Completed') {
                     this.doneTasks.push({
@@ -78,7 +80,9 @@ export class KanbanComponent implements OnInit {
                         datedebut: task.datedebut,
                         link: '[routerLink]="[' + '/edit' + ', ${task.id}]"',
                         datefin: task.datefin,
-                        status: 'done'
+                        status: 'done',
+                        users: task.user // assuming that the task object has a 'user' property that is an array of user objects
+
                     });
                 }
             });
@@ -86,9 +90,25 @@ export class KanbanComponent implements OnInit {
 
             console.log(this.todoTasks);
 
-
-
-
+            function getUserColor(username: string) {
+                const colors = ['#E27D60', '#85DCBA', '#E8A87C', '#C38D9E', '#41B3A3', '#F7CAC9', '#FFC914', '#A8DADC'];
+                const index = username ? Math.abs(hashString(username)) % colors.length : Math.floor(Math.random() * colors.length);
+                return colors[index];
+              }
+              
+            function hashString(str: string): number {
+                let hash = 0;
+                if (str.length === 0) {
+                  return hash;
+                }
+                for (let i = 0; i < str.length; i++) {
+                  const char = str.charCodeAt(i);
+                  hash = ((hash << 5) - hash) + char;
+                  hash = hash & hash; // Convert to 32bit integer
+                }
+                return hash;
+              }
+              
             var kanban = new jKanban({
                 // add your jKanban configuration options here
                 // for example:
@@ -108,14 +128,17 @@ export class KanbanComponent implements OnInit {
                             <div class="kanban-item-title">
                               <h6 class="title">${task.title} </h6>
                               <h6 class="title" type="hidden" style="display:none">${task.id}</h6>
-                              <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
                                 <div class="user-avatar-group">
-                                  <div class="user-avatar xs bg-danger"><span>V</span></div>
+                                ${task.users.map((user: any) => `<div class="user-avatar xs ${getUserColor(user.userName || user)}"><span>${user[0] ? user[0]+user[1] : user.userName[0]+user.userName[1]}</span></div>`).join('')}
                                 </div>
-                              </div>
+                                </div>
+                          </div>
+                          
                             </div>
                             <div class="kanban-item-text">
                               <p>${task.description}</p>
+                         
                             </div>
                             <div class="kanban-item-meta">
                               <ul class="kanban-item-meta-list">
@@ -142,9 +165,9 @@ export class KanbanComponent implements OnInit {
                                 <h6 class="title">${task.title}</h6>
                                 <h6 class="title" type="hidden" style="display:none">${task.id}</h6>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="user-avatar-group">
-                                        <div class="user-avatar xs bg-danger"><span>V</span></div>
-                                    </div>
+                                <div class="user-avatar-group">
+                                ${task.users.map((user: any) => `<div class="user-avatar xs ${getUserColor(user.userName || user)}"><span>${user[0] ? user[0]+user[1] : user.userName[0]+user.userName[1]}</span></div>`).join('')}
+                            </div>
                                    
                                 </div>
                             </div>
@@ -171,9 +194,9 @@ export class KanbanComponent implements OnInit {
                                     <h6 class="title">${task.title}</h6>
                                     <h6 class="title" type="hidden" style="display:none">${task.id}</h6>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user-avatar-group">
-                                            <div class="user-avatar xs bg-danger"><span>V</span></div>
-                                        </div>
+                                    <div class="user-avatar-group">
+                                    ${task.users.map((user: any) => `<div class="user-avatar xs ${getUserColor(user.userName || user)}"><span>${user[0] ? user[0]+user[1] : user.userName[0]+user.userName[1]}</span></div>`).join('')}
+                                    </div>
                               
                                     </div>
                                 </div>
@@ -200,9 +223,9 @@ export class KanbanComponent implements OnInit {
                                 <h6 class="title">${task.title}</h6>
                                 <h6 class="title" type="hidden" style="display:none">${task.id}</h6>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="user-avatar-group">
-                                        <div class="user-avatar xs bg-danger"><span>V</span></div>
-                                    </div>
+                                <div class="user-avatar-group">
+                                ${task.users.map((user: any) => `<div class="user-avatar xs ${getUserColor(user.userName || user)}"><span>${user[0] ? user[0]+user[1] : user.userName[0]+user.userName[1]}</span></div>`).join('')}
+                                </div>
                                
                                 </div>
                             </div>
@@ -241,19 +264,19 @@ export class KanbanComponent implements OnInit {
 
                     console.log("Dropped in column:", targetCol);
                     console.log("Dropped card id:", cardId);
-                        taskService.changeTasketat(cardId, targetCol).subscribe((res: any) => {
-                            // Handle the response from the server here
-                            console.log(res);
+                    taskService.changeTasketat(cardId, targetCol).subscribe((res: any) => {
+                        // Handle the response from the server here
+                        console.log(res);
 
-                            // If the server returns a success message, update the local state to reflect the change
-                            if (res.success) {
-                                // Find the task in the local state and update its state
-                                const taskIndex = this.allTasks.findIndex((task: any) => task.id === cardId);
-                                if (taskIndex !== -1) {
-                                    this.tasks[taskIndex].state = targetCol;
-                                }
+                        // If the server returns a success message, update the local state to reflect the change
+                        if (res.success) {
+                            // Find the task in the local state and update its state
+                            const taskIndex = this.allTasks.findIndex((task: any) => task.id === cardId);
+                            if (taskIndex !== -1) {
+                                this.tasks[taskIndex].state = targetCol;
                             }
-                        });
+                        }
+                    });
                 },
             });
         })
