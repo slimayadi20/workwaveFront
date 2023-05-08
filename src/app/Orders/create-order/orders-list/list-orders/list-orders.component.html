@@ -14,25 +14,13 @@
                                     data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
                                 <div class="toggle-expand-content" data-content="pageMenu">
                                     <ul class="nk-block-tools g-3">
-                                        <li>
-                                            <div class="form-control-wrap">
-                                                <div class="form-icon form-icon-right">
-                                                    <em class="icon ni ni-search"></em>
-                                                </div>
-                                                <input type="text" class="form-control" id="default-04"
-                                                    placeholder="Quick search by id">
-                                            </div>
-                                        </li>
-                                       
                                         <li class="nk-block-tools-opt">
                                             <a href="#" data-target="addProduct"
                                                 class="toggle btn btn-icon btn-primary d-md-none"><em
                                                     class="icon ni ni-plus"></em></a>
                                             <a routerLink="/Order/createorder" data-target="addProduct"
                                                 class="toggle btn btn-primary d-none d-md-inline-flex"><em
-                                                    class="icon ni ni-plus"></em><span>Add order</span></a>
-                                                  
-                                                    
+                                                  class="icon ni ni-plus"></em><span>Add order</span></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -46,12 +34,7 @@
                             <div class="card-inner p-0">
                                 <div class="nk-tb-list">
                                     <div class="nk-tb-item nk-tb-head">
-                                        <div class="nk-tb-col nk-tb-col-check">
-                                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                                <input type="checkbox" class="custom-control-input" id="pid">
-                                                <label class="custom-control-label" for="pid"></label>
-                                            </div>
-                                        </div>
+                                      
                                         <div class="nk-tb-col tb-col-sm">REF<span></span></div>
                                         <div class="nk-tb-col"><span>order date</span></div>
                                         <div class="nk-tb-col"><span>quantity</span></div>
@@ -59,7 +42,7 @@
                                         <div class="nk-tb-col"><span>Product</span></div>
                                         <div class="nk-tb-col"><span></span></div>
                                         <div class="nk-tb-col tb-col-md"><span></span></div>
-                                      
+
                                         <div class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1 my-n1">
                                                 <li class="me-n1">
@@ -89,15 +72,10 @@
                                         </div>
                                     </div><!-- .nk-tb-item -->
                                     <div *ngFor="let Order of orderList" class="nk-tb-item">
-                                        <div class="nk-tb-col nk-tb-col-check">
-                                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                                <input type="checkbox" class="custom-control-input" id="pid1">
-                                                <label class="custom-control-label" for="pid1"></label>
-                                            </div>
-                                        </div>
+                                  
                                         <div class="nk-tb-col tb-col-sm">
                                             <span class="tb-product">
-                                                
+
                                                 <span class="title">{{Order.o_id}}</span>
                                             </span>
                                         </div>
@@ -113,14 +91,14 @@
                                         <div class="nk-tb-col">
                                             <span class="tb-lead" *ngFor="let p of Order.product">{{ p.name }}</span>
                                         </div>
-                                        
+
                                         <div class="nk-tb-col">
                                             <span class="tb-sub"></span>
                                         </div>
                                         <div class="nk-tb-col tb-col-md">
                                             <span class="tb-sub"></span>
                                         </div>
-                                     
+
 
                                         <div class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1 my-n1">
@@ -131,11 +109,12 @@
                                                                 class="icon ni ni-more-h"></em></a>
                                                         <div class="dropdown-menu dropdown-menu-end">
                                                             <ul class="link-list-opt no-bdr">
-                                                                <li><a (click)="forwardtodetail(Order.o_id)" ><em
+                                                                <li><a (click)="forwardtodetail(Order.o_id)"><em
                                                                             class="icon ni ni-edit"></em><span>Edit
                                                                             order</span></a></li>
-                                                        
-                                                                <li><a style="cursor:pointer" (click)="deleteorder(Order.o_id)" ><em
+
+                                                                <li><a style="cursor:pointer"
+                                                                        (click)="deleteorder(Order.o_id)"><em
                                                                             class="icon ni ni-trash"></em><span>Remove
                                                                             order</span></a></li>
                                                             </ul>
@@ -147,7 +126,7 @@
                                     </div>
                                 </div><!-- .nk-tb-list -->
                             </div>
-                      
+
                         </div>
                     </div>
                 </div>

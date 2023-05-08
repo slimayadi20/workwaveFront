@@ -1,3 +1,4 @@
+
 <!-- content @s -->
 <div class="nk-content ">
     <div class="container-fluid">
@@ -19,11 +20,11 @@
                                                 <div class="form-icon form-icon-right">
                                                     <em class="icon ni ni-search"></em>
                                                 </div>
-                                                <input type="text" class="form-control" id="default-04"
+                                                <input [(ngModel)]="term" type="text" class="form-control" id="default-04"
                                                     placeholder="Quick search by id">
                                             </div>
                                         </li>
-                                      
+
                                         <li class="nk-block-tools-opt">
                                             <a href="#" data-target="addProduct"
                                                 class="toggle btn btn-icon btn-primary d-md-none"><em
@@ -61,7 +62,7 @@
 
 
                                     </div><!-- .nk-tb-item -->
-                                    <div *ngFor="let products of productList" class="nk-tb-item">
+                                    <div *ngFor="let products of productList | filter:term" class="nk-tb-item">
                                         <div class="nk-tb-col nk-tb-col-check">
                                             <div class="custom-control custom-control-sm custom-checkbox notext">
                                                 <input type="checkbox" class="custom-control-input" id="pid1">
@@ -130,11 +131,9 @@
                                     <div class="nk-block-between-md g-3">
                                         <div class="g mx-auto">
                                             <ul class="pagination justify-content-center justify-content-md-start">
-                                                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
                                                 <li class="page-item" *ngFor="let p of pages;let i =index">
                                                     <a class="page-link" href="#" (click)="setPage(i,$event)">{{i}}</a>
                                                 </li>
-                                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
                                             </ul><!-- .pagination -->
                                         </div>
                                     </div><!-- .nk-block-between -->

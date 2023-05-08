@@ -21,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
 import { ProductListComponent } from './products/product-list/product-list.component';
+import { JitsiComponentComponent } from './chat/jitsi-component/jitsi-component.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -38,6 +40,8 @@ import { ProductListComponent } from './products/product-list/product-list.compo
     RegistersuccessComponent,
     ResetPasswordComponent,
     ProductListComponent,
+    JitsiComponentComponent,
+
 
 
   ],
@@ -51,7 +55,8 @@ import { ProductListComponent } from './products/product-list/product-list.compo
     NgProgressModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     BrowserAnimationsModule,
-    AngularTypewriterEffectModule
+    AngularTypewriterEffectModule,
+    Ng2SearchPipeModule
 
   ],
   providers: [],

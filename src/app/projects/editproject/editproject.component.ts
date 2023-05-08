@@ -23,7 +23,7 @@ export class EditprojectComponent implements OnInit {
   id: any
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.queryParams['id'];
+    this.id = this.route.snapshot.queryParams['userName'];
     this.getdata(this.id)
   }
 

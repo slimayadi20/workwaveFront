@@ -12,6 +12,7 @@ export class ProductListComponent implements OnInit {
   productList: any;
   page: number = 0;
   pages: Array<number> | undefined;
+  term: any;
 
   constructor(public productService: ProductService, private router: Router) { }
 
@@ -49,9 +50,5 @@ export class ProductListComponent implements OnInit {
     event.preventDefault();
     this.page = i;
     this.getproducts();
-
   }
-
-
-
 }

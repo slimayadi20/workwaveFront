@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateSupplierComponent } from '../Supplier/create-supplier/create-supplier.component';
 import { EditproductComponent } from './editproduct/editproduct.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -22,6 +24,10 @@ import { BrowserModule } from '@angular/platform-browser';
     ProductsRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    Ng2SearchPipeModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
+
+
     
   ],
   schemas: [NO_ERRORS_SCHEMA]
