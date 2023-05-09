@@ -1,0 +1,4 @@
+.table-orders th,
+.table-orders td {
+  width: calc(100% / 8); /* divide by the number of columns */
+}

@@ -48,18 +48,22 @@
                                                     <span class="sub-text" style="font-size: 14px;">Date émission: {{p.dateEmission}} </span>
                                                 </div>
                                             </a>
-                                            <div class="drodown" *ngIf="data.role!='Employee'">
+                                            <div class="drodown">
                                                 <a href="#"
                                                     class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1"
                                                     data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <ul class="link-list-opt no-bdr">
+                                                    <ul class="link-list-opt no-bdr" >
+                                                        <li *ngIf="!p.budget" (click)="idb=p.id;name=p.projectname"><a data-bs-toggle="modal" data-bs-target="#bank-edit"><em
+                                                            class="icon ni ni-visa"></em><span>Set Budget</span></a>
+                                                        </li>
                                                         <li><a (click)="Update(p.id)"><em
-                                                                    class="icon ni ni-mail"></em><span>Update</span></a>
+                                                            class="icon ni ni-mail"></em><span>Update</span></a>
                                                         </li>
                                                         <li><a (click)="deleteproject(p.id)"><em
-                                                                    class="icon ni ni-na"></em><span>Delete</span></a>
+                                                            class="icon ni ni-na"></em><span>Delete</span></a>
                                                         </li>
+                                                        
                                                     </ul>
                                                 </div>
                                             </div>
@@ -87,13 +91,21 @@
                                         </div>
 
                                         <div class="project-meta">
-
+                                            <div class="project-meta" *ngIf="p.budget">
+                                                <ng-container [ngSwitch]="p.budget.statusBudget">
+                                                  <span *ngSwitchCase="'InProgress'" class="badge badge-dim bg-info"><span>Budget Status : {{p.budget.statusBudget}}</span></span>
+                                                  <span *ngSwitchCase="'Approved'" class="badge badge-dim bg-success"><span>Budget Status : {{p.budget.statusBudget}}</span></span>
+                                                  <span *ngSwitchCase="'Declined'" class="badge badge-dim bg-warning"><span>Budget Status : {{p.budget.statusBudget}}</span></span>
+                                                  <span *ngSwitchDefault class="badge badge-dim"><span>Budget Status : Not Requested Yet </span></span>
+                                                </ng-container>
                                             <span class="badge badge-dim bg-warning"><em
                                                     class="icon ni ni-clock"></em><span>{{p.dateExpiration}}</span></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <app-budget-modal [id]="idb" [name]="name"></app-budget-modal>
+
                         </div>
 
                     </div>

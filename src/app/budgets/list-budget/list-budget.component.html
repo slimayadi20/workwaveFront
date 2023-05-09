@@ -1,1 +1,99 @@
-<p>list-budget works!</p>
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">Budgets </h3>
+                        </div><!-- .nk-block-head-content -->
+                        <div class="nk-block-head-content">
+                            <div class="toggle-wrap nk-block-tools-toggle">
+                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                    data-target="more-options"><em class="icon ni ni-more-v"></em></a>
+                                <div class="toggle-expand-content" data-content="more-options">
+                                    <ul class="nk-block-tools g-3">
+                                        
+                                        <li>
+                                            <div class="drodown">
+                                                <a href="#"
+                                                    class="dropdown-toggle dropdown-indicator btn btn-outline-light btn-white"
+                                                    data-bs-toggle="dropdown">Status</a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <ul class="link-list-opt no-bdr">
+                                                        <li *ngFor="let r of Status"><a
+                                                                (click)="getBudgetsByStatus(r)"><span>{{r}}</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- <li class="nk-block-tools-opt">
+                                            <a href="#" class="btn btn-icon btn-primary d-md-none"><em
+                                                    class="icon ni ni-plus"></em></a>
+                                            <a href="#" class="btn btn-primary d-none d-md-inline-flex"><em
+                                                    class="icon ni ni-plus"></em><span>Add</span></a>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="nk-tb-list is-separate mb-3">
+                        <div class="nk-tb-item nk-tb-head">
+                            
+                            <div class="nk-tb-col"><span class="sub-text">Amount</span></div>
+                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">Notes</span></div>
+                            <div class="nk-tb-col tb-col-md"><span class="sub-text">Project Name</span></div>
+                            <div class="nk-tb-col tb-col-md"><span class="sub-text">Start Date</span></div>
+                            <div class="nk-tb-col tb-col-md"><span class="sub-text">End Date</span></div>
+                            <div class="nk-tb-col tb-col-md"><span class="sub-text">Actions</span></div>
+                        </div><!-- .nk-tb-item -->
+                        <div class="nk-tb-item" *ngFor="let b of budgets">
+                            
+                           
+                            <div class="nk-tb-col tb-col-mb">
+                                <span class="tb-amount"> $<span class="currency">{{b.amount}} USD</span></span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md">
+                                <span>{{b.notes}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-lg">
+                                <span>{{b.name}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-lg">
+                                <span>{{b.startDate  | date:'dd MMMM yyyy'}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-lg">
+                                <span>{{b.endDate  | date:'dd MMMM yyyy'}}</span>
+                            </div>
+                            <div class="nk-tb-col nk-tb-col-tools" >
+                                <ul class="nk-tb-actions" style="justify-content: flex-start;" *ngIf="b.statusBudget=='InProgress'">
+                                    <li class="nk-tb-action" >
+                                        <a  class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Pay Budget Now" (click)="AcceptBudget(b.id)">
+                                            <em class="icon ni ni-cc-alt2-fill"></em>
+                                        </a>
+                                    </li>
+                                    <li class="nk-tb-action">
+                                        <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Refuse Budget">
+                                            <em class="text-blue icon ni ni-cross"></em>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                       
+                   
+                        </div><!-- .nk-tb-item -->
+                       
+                        
+                            </div><!-- .nk-tb-list -->
+                            
+                        
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>

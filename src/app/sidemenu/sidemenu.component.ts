@@ -181,22 +181,36 @@ export class SidemenuComponent implements OnInit {
           },]
         this.menudashboard = [
           {
-            mainTitle: "Dashboards",
-            title: "Dashboard",
+            mainTitle: "Finances",
+            title: "Finances",
             counter: 0,
             icon: 'icon ni ni-activity-round-fill',
             subMenus: [
               {
-                title: "Sales",
+                title: "Manage Payments",
                 counter: 0,
                 link: 'payements/displaypayements',
                 icon: ''
 
               },
               {
-                title: "Analytics",
+                title: "Manage Salary",
                 counter: 0,
-                link: '/chat/displaycalendar',
+                link: '/payements/setSalary',
+                icon: ''
+
+              },
+              {
+                title: "Manage Invoices",
+                counter: 0,
+                link: '/invoices/myinvoices',
+                icon: ''
+
+              },
+              {
+                title: "Manage Budgets",
+                counter: 0,
+                link: '/Budgets/listBudgets',
                 icon: ''
 
               }

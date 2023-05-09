@@ -1,0 +1,54 @@
+<div class="modal fade" role="dialog" id="bank-edit">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+            <div class="modal-body modal-body-lg">
+                <h5 class="title">Request A budget For Project {{name}}</h5>
+                <ul class="nk-nav nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#personal">Budget</a>
+                    </li>
+                </ul><!-- .nav-tabs -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="personal">
+                        <form  [formGroup]="BudgetForm">
+                            <div class="row gy-4">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label" for="budgetAmount">Budget Amount</label>
+                                        <input type="number" class="form-control form-control-lg" id="BudgetAmount"
+                                            formControlName="BudgetAmount" placeholder="Enter Budget Amount">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                      <label class="form-label" for="financialManager">Financial Manager To request From</label>
+                                      <select class="form-control form-control-lg" id="financialManager" formControlName="financialManager" *ngFor="let f of financialmanager">
+                                        <option value=""selected>Select User</option>
+                                        <option ngValue="{{f.bankAccount.id}}">{{f.nom}} {{f.prenom}}</option>
+                                       
+                                        <!-- Add more options for other users as needed -->
+                                      </select>
+                                    </div>
+                                  </div>
+                                <div class="col-12">
+                                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                        <li>
+                                            <button  data-bs-dismiss="modal"
+                                                class="btn btn-lg btn-primary" (click)="RequestBudget(id)">RequestBudget</button>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-bs-dismiss="modal" class="link link-light">Cancel</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- .tab-pane -->
+
+                      
+               
+            </div><!-- .modal-body -->
+        </div><!-- .modal-content -->
+    </div><!-- .modal-dialog -->
+</div><!-- .modal -->

@@ -1,0 +1,379 @@
+
+<div class="modal fade" role="dialog" id="bank-edit">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+            <div class="modal-body modal-body-lg">
+                <h5 class="title">Update Bank Account</h5>
+                <ul class="nk-nav nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#personal">Bank Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#address">Deposit Balance</a>
+                    </li>
+                </ul><!-- .nav-tabs -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="personal">
+                        <form  [formGroup]="bankForm">
+                            <div class="row gy-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="accountName">Account Name</label>
+                                        <input type="text" class="form-control form-control-lg" id="accountName"
+                                            formControlName="accountName" placeholder="Enter Account Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="display: none;">
+                                    <div class="form-group">
+                                        <label class="form-label" for="id">id</label>
+                                        <input type="text" class="form-control form-control-lg" id="id"
+                                            formControlName="id" placeholder="Enter Account Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="display: none;">
+                                    <div class="form-group">
+                                        <label class="form-label" for="id">balance</label>
+                                        <input type="text" class="form-control form-control-lg" id="balance"
+                                            formControlName="balance" placeholder="Enter Account Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="accountNumber">Account Number</label>
+                                        <input type="text" class="form-control form-control-lg" id="accountNumber"
+                                            formControlName="accountNumber" placeholder="Enter Account Number">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="bankName">Bank Name</label>
+                                        <input type="text" class="form-control form-control-lg" id="bankName"
+                                            formControlName="bankName" placeholder="Enter Bank Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="limitAmount">Limit Amount</label>
+                                        <input type="text" class="form-control form-control-lg" id="limitAmount"
+                                            formControlName="limitAmount" placeholder="Enter Limit Amount">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                      <div class="custom-control custom-switch me-n2 checked">
+                                        <input type="checkbox" class="custom-control-input" id="status" [checked]="banksaccount.status" formControlName="status">
+                                        <label class="custom-control-label" for="status">{{ banksaccount.status ? 'Active' : 'Inactive' }}</label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6"style="display:none;">
+                                    <div class="form-group">
+                                      <div class="custom-control custom-switch me-n2 checked">
+                                        <input type="number" class="custom-control-input"  formControlName="balance">
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                <div class="col-12">
+                                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                        <li>
+                                            <button  data-bs-dismiss="modal"
+                                                class="btn btn-lg btn-primary" (click)="updateBankAccount()">Update
+                                                Bank Account</button>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-bs-dismiss="modal" class="link link-light">Cancel</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- .tab-pane -->
+                    <div class="tab-pane" id="address">
+                        <div class="row gy-4">
+                            <form [formGroup]="paypalForm">
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label" for="solde">Balance to deposit</label>
+                                            <input type="text" class="form-control form-control-lg" id="solde"
+                                                formControlName="solde" placeholder="Enter Money Amount">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <button  
+                                    (click)="updateAmount()" class="btn btn-lg btn-primary btn-block">Confirm Amout</button>
+                                </div>
+                            </form>
+                            
+                           
+                          
+                            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                        </div>
+                    </div>
+                </div><!-- .tab-content -->
+            </div><!-- .modal-body -->
+        </div><!-- .modal-content -->
+    </div><!-- .modal-dialog -->
+</div><!-- .modal -->
+
+<div class="nk-content ">
+    <div class="container">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between g-3">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">My Bank Account Details</h3>
+                            <div class="nk-block-des text-soft">
+                          
+                            </div>
+                        </div>
+                        <div class="nk-block-head-content">
+                            <a  class="btn btn-outline-light bg-white d-none d-sm-inline-flex" routerLink="/users/personalinformation"><em class="icon ni ni-arrow-left"></em><span>Back</span></a>
+                            <a class="btn btn-icon btn-outline-light bg-white d-inline-flex d-sm-none"><em class="icon ni ni-arrow-left"></em></a>
+                        </div>
+                    </div>
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="row g-gs">
+                        <div class="col-lg-4 col-xl-4 col-xxl-3">
+                            <div class="card">
+                                <div class="card-inner-group">
+                                    <div class="card-inner">
+                                        <div class="user-card user-card-s2">
+                                            <div class="user-avatar lg bg-primary">
+                                                <em class="icon ni ni-cc-alt2-fill"></em>
+                                            </div>
+                                            <div class="user-info">
+                                               
+                                                <span *ngIf="banksaccount.status" class="badge badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex">Active</span>
+                                                <span *ngIf="!banksaccount.status" class="badge badge-sm badge-dot has-bg bg-danger d-none d-sm-inline-flex">Inactive</span>
+                                               
+                                                <h5>{{data.nom}} {{data.prenom}}</h5>
+                                                <span class="sub-text">{{data.email}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                   <!-- <div class="card-inner">
+                                        <div class="row text-center">
+                                           
+                                            
+                                           
+                                        </div>
+                                    </div>-->
+                                    <div class="card-inner">
+                                        <h6 class="overline-title mb-2">My Details</h6>
+                                        <div class="row g-3">
+                                            <div class="col-sm-6 col-md-4 col-lg-12">
+                                                <span class="sub-text">Username:</span>
+                                                <span>{{data.userName}}</span>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4 col-lg-12">
+                                                <span class="sub-text">My Email:</span>
+                                                <span>{{data.email}}</span>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4 col-lg-12">
+                                                <span class="sub-text">My Phone Number:</span>
+                                                <span>{{data.phoneNumber}}</span>
+                                            </div>
+                                            <!--<div class="col-sm-6 col-md-4 col-lg-12">
+                                                <span class="sub-text">Billing Address:</span>
+                                                <span>551 Swanston Street, Melbourne <br /> Victoria 3053 Australia</span>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4 col-lg-12">
+                                                <span class="sub-text">Language:</span>
+                                                <span>English, France</span>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4 col-lg-12">
+                                                <span class="sub-text">Last Login:</span>
+                                                <span>15 Feb, 2019 01:02 PM</span>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4 col-lg-12">
+                                                <span class="sub-text">KYC Status:</span>
+                                                <span class="lead-text text-success">Approved</span>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4 col-lg-12">
+                                                <span class="sub-text">Register At:</span>
+                                                <span>Nov 24, 2019</span>
+                                            </div>-->
+                                        </div>
+                                    </div><!-- .card-inner -->
+                                </div>
+                            </div>
+                        </div><!-- .col -->
+                        <div class="col-lg-8 col-xl-8 col-xxl-9">
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="nk-block" style="display: flex; flex-direction: row;">
+                                        <div style="flex-grow: 1;">
+                                            <div class="overline-title-alt mb-2 mt-2">Account Balance</div>
+                                            <div class="profile-balance">
+                                                <div class="profile-balance-group gx-4">
+                                                    <div class="profile-balance-sub">
+                                                        <div class="profile-balance-amount">
+                                                            <div class="number">{{banksaccount.balance}} <small class="currency currency-usd">USD</small></div>
+                                                        </div>
+                                                        <br>
+                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="flex-grow: 1;">
+                                            <div class="overline-title-alt mb-2 mt-2">Account Name</div>
+                                            <div class="profile-balance">
+                                                <div class="profile-balance-group gx-4">
+                                                    <div class="profile-balance-sub">
+                                                        <div class="profile-balance-amount">
+                                                            <div class="number">{{banksaccount.accountName}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="flex-grow: 1;">
+                                            <div class="overline-title-alt mb-2 mt-2">Account Limit</div>
+                                            <div class="profile-balance">
+                                                <div class="profile-balance-group gx-4">
+                                                    <div class="profile-balance-sub">
+                                                        <div class="profile-balance-amount">
+                                                            <ng-container *ngIf="banksaccount.limitAmount  - banksaccount.balance <= 1000 else greenBadge">
+                                                                <span class="badge badge-sm badge-dot has-bg bg-danger d-none d-sm-inline-flex blink">{{banksaccount.limitAmount}}</span>
+                                                            </ng-container>
+                                                            <ng-template #greenBadge>
+                                                                <span class="badge badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex">{{banksaccount.limitAmount}}</span>
+                                                            </ng-template>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+     
+                                    <div class="nk-block"> 
+                                    
+                                        <h6 class="lead-text mb-3">Transactions</h6>
+                                        <a routerLink="/Transactions/displaytransactions" class="btn btn-trigger btn-icon">View All<em class="icon ni ni-plus"></em></a>
+
+                                        <div class="nk-block-des text-soft">
+                                            <p>You have total {{banksaccount.transactions.length}} transactions.</p>
+                                        </div>
+                                        <div class="nk-tb-list nk-tb-ulist is-compact card">
+                                            <div class="nk-tb-item nk-tb-head">
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Transaction ID</span>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-sm">
+                                                    <span class="sub-text">Desctiption</span>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-xxl">
+                                                    <span class="sub-text">Amount</span>
+                                                </div>
+                                               
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Transaction Date</span>
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="nk-tb-item" *ngFor="let t of transactions | slice:0:4">
+                                                <div class="nk-tb-col">
+                                                    <a href="#"><span class="fw-bold">#{{t.id}}</span></a>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-sm">
+                                                        <span class="title">{{t.description}}</span>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-xxl">
+                                                    <span class="amount">$ {{t.amount}}</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="lead-text text-primary">{{ t.transactionDate | date:'dd MMMM yyyy' }}</span>
+                                                  </div>
+                                            </div>
+                                            
+                                        </div><!-- .nk-tb-list -->
+                                    </div>
+                                    <div class="nk-block" *ngIf="role == 'Financial Manager' || role=='Admin'">
+                                        <h6 class="lead-text mb-3">Invoices</h6>
+                                        <a  class="btn btn-trigger btn-icon">View All<em class="icon ni ni-plus"></em></a>
+
+                                        <div class="nk-block-des text-soft">
+                                            <p>You have total {{banksaccount.invoices.length}} Invoices.</p>
+                                        </div>
+                                        <div class="nk-tb-list nk-tb-ulist is-compact card">
+                                            <div class="nk-tb-item nk-tb-head">
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Invoice Number</span>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-sm">
+                                                    <span class="sub-text">Desctiption</span>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-xxl">
+                                                    <span class="sub-text">Amount Due</span>
+                                                </div>
+                                               
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Issue Date</span>
+                                                </div>
+                                            </div>
+                                            <div class="nk-tb-item" *ngFor="let i of invoices | slice:0:4">
+                                                <div class="nk-tb-col">
+                                                    <a href="#"><span class="fw-bold">#{{i.id}}</span></a>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-sm">
+                                                        <span class="title">{{i.description}}</span>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-xxl">
+                                                    <span class="amount">$ {{i.amountDue}}</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="lead-text text-primary">{{ i.transactionDate | date:'dd MMMM yyyy' }}</span>
+                                                  </div>
+                                            </div>
+                                            
+                                        </div><!-- .nk-tb-list -->
+                                    </div>
+                                    <div class="nk-block">
+                                        <h6 class="lead-text mb-3">My Bank Account</h6>
+                                        <div class="row g-3">
+                                            <div class="col-xl-12 col-xxl-12">
+                                                <div class="card">
+                                                    <div class="card-inner">
+                                                        <div class="d-flex align-items-center justify-content-between">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="icon-circle icon-circle-lg">
+                                                                    <em class="icon ni ni-visa"></em>
+                                                                </div>
+                                                                <div class="ms-3">
+                                                                    <h6 class="lead-text">{{banksaccount.bankName}} <span class="text-soft ml-1">* * * * {{banksaccount.accountNumber | slice:-4 }}</span></h6>
+                                                                    <span class="sub-text">{{banksaccount.accountName}} </span>
+                                                                </div>
+                                                            </div>
+                                                            <ul class="btn-toolbar justify-center gx-1 me-n1 flex-nowrap">
+                                                                
+                                                                <li><a href="#" class="btn btn-trigger btn-icon"  data-bs-toggle="modal" data-bs-target="#bank-edit"><em class="icon ni ni-edit"></em></a></li>
+                                                                <li><a href="#" class="btn btn-trigger btn-icon" (click)="deleteBankAccount()" data-bs-toggle="modal" data-bs-target="#profile-edit"><em class="icon ni ni-trash"></em></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- .col -->
+                                            
+                                        </div><!-- .row -->
+                                    </div>
+                                    
+                                </div><!-- .card-inner -->
+                            </div><!-- .card -->
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>

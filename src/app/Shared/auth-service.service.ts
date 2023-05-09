@@ -138,5 +138,18 @@ export class AuthServiceService {
   public getUserByUsername(user: any) {
     return this.http.get("http://localhost:8090" + "/getUser/" + user);
   }
+  getUserByRoleFinancial(){
+    return this.http.get(this.PATH_OF_API + "/getUserByRoleFinancial");
+
+  }
+  getbyBankAccount(id: Number) {
+    return this.http.get(`${this.PATH_OF_API}/UserByBankAccount/${id}`);
+  }
+  getbyNoPayments() {
+    return this.http.get(`${this.PATH_OF_API}/unpaid`);
+  }
+  setSalary(userName:any,Salary:any){
+    return this.http.put(`${this.PATH_OF_API}/${userName}/salary?salary=${Salary}`,null)
+  }
 
 }

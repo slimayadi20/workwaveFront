@@ -117,14 +117,17 @@
                                         </div><!-- .user-card -->
                                     </div><!-- .card-inner -->
                                     <div class="card-inner">
-                                        <div class="user-account-info py-0">
-                                            <h6 class="overline-title-alt">Account Balance</h6>
-                                            <div class="user-balance">12.395769 <small
-                                                    class="currency currency-btc">USD</small></div>
-                                            <div class="user-balance-sub">Pending <span>0.344939 <span
-                                                        class="currency currency-btc">USD</span></span></div>
+                                        <div class="user-account-info py-0" *ngIf="user.bankAccount">
+                                          <h6 class="overline-title-alt">Account Balance</h6>
+                                          <div class="user-balance">{{user.bankAccount.balance}} <small class="currency currency-btc">USD</small></div>
+                                          <div class="nk-block-actions flex-shrink-0">
+                                            <a routerLink="/bank/mybank" class="btn btn-lg btn-dim btn-primary">View My Bank Account details</a>
+                                          </div>
                                         </div>
-                                    </div><!-- .card-inner -->
+                                        <div class="nk-block-actions flex-shrink-0" *ngIf="!user.bankAccount ">
+                                          <a routerLink="/bank/addbank" class="btn btn-lg btn-dim btn-primary">Add My Bank Account details</a>
+                                        </div>
+                                      </div><!-- .card-inner -->
                                     <div class="card-inner p-0">
                                         <ul class="link-list-menu">
                                             <li><a routerLink="/users/personalinformation"><em

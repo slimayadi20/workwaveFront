@@ -1,0 +1,54 @@
+<div class="modal fade" role="dialog" id="bank-edit">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <a class="close" data-bs-dismiss="modal"><em
+                    class="icon ni ni-cross-sm"></em></a>
+            <div class="modal-body modal-body-lg">
+                <h5 class="title">Set Salary For User {{prenom2}} {{nom2}} </h5>
+                <ul class="nk-nav nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab"
+                            href="#personal">Salary</a>
+                    </li>
+                </ul><!-- .nav-tabs -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="personal">
+                        <form [formGroup]="SalaryForm">
+                            <div class="row gy-4">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label" for="salaryAmount">Salary
+                                            Amount</label>
+                                        <input type="number"
+                                            class="form-control form-control-lg"
+                                            id="salaryAmount" formControlName="salaryAmount"
+                                            placeholder="Enter Salary Amount">
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <ul
+                                        class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                        <li>
+                                            <a class="btn btn-lg btn-primary"
+                                                (click)="SetSalary(username2)">Set Salary
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-bs-dismiss="modal"
+                                                class="link link-light">Cancel</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- .tab-pane -->
+
+
+
+                </div><!-- .modal-body -->
+            </div><!-- .modal-content -->
+        </div><!-- .modal-dialog -->
+    </div><!-- .modal -->
+
+

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListAccountsComponent } from './list-accounts.component';
+import { SetModalComponent } from './set-modal.component';
 
-describe('ListAccountsComponent', () => {
-  let component: ListAccountsComponent;
-  let fixture: ComponentFixture<ListAccountsComponent>;
+describe('SetModalComponent', () => {
+  let component: SetModalComponent;
+  let fixture: ComponentFixture<SetModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListAccountsComponent ]
+      declarations: [ SetModalComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListAccountsComponent);
+    fixture = TestBed.createComponent(SetModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

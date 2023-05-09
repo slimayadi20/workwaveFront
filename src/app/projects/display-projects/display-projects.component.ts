@@ -10,6 +10,8 @@ import { ProjectService } from 'src/app/Shared/project.service';
 export class DisplayProjectsComponent implements OnInit {
   projects: any;
   data: any
+  name: any
+  idb: any
   constructor(private projectService: ProjectService, private router: Router, private encryptionService: EncryptionService) { }
 
   ngOnInit() {

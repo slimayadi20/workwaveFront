@@ -10,6 +10,7 @@ import { AddtaskComponent } from './addtask/addtask.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TaskService } from '../Shared/task.service';
+import { BudgetModalComponent } from './budget-modal/budget-modal.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TaskService } from '../Shared/task.service';
     CreateprojectComponent,
     EditprojectComponent,
     AddtaskComponent,
+    BudgetModalComponent,
   ],
   imports: [
     CommonModule,
