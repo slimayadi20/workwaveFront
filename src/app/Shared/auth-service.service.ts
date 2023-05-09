@@ -145,5 +145,7 @@ export class AuthServiceService {
   getbyNoPayments() {
     return this.http.get(`${this.PATH_OF_API}/unpaid`);
   }
-
+  setSalary(userName:any,Salary:any){
+    return this.http.put(`${this.PATH_OF_API}/${userName}/salary?salary=${Salary}`,null)
+  }
 }

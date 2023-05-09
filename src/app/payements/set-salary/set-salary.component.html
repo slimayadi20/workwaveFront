@@ -1,0 +1,191 @@
+<!-- content @s -->
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h4 class="fw-medium mb-1 mt-5">Total users with their Salaries</h4>
+                            <p class="mb-0 mt-1">Find all of your company’s administrator accounts and their associate
+                                Salaries.</p>
+                            <div class="nk-block-des text-soft">
+                                <p>You have total {{data.length}} users.</p>
+                            </div>
+                        </div><!-- .nk-block-head-content -->
+                        <div class="nk-block-head-content">
+                            <div class="toggle-wrap nk-block-tools-toggle">
+                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                    data-target="more-options"><em class="icon ni ni-more-v"></em></a>
+                                <div class="toggle-expand-content" data-content="more-options">
+                                    <ul class="nk-block-tools g-3">
+                                       
+                                        <li>
+                                            <div class="drodown">
+                                                <a href="#"
+                                                    class="dropdown-toggle dropdown-indicator btn btn-outline-light btn-white"
+                                                    data-bs-toggle="dropdown">Roles</a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <ul class="link-list-opt no-bdr">
+                                                        <li *ngFor="let r of roles"><a
+                                                                (click)="filterByRole(r.roleName)"><span>{{r.roleName}}</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                      
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="nk-tb-list is-separate mb-3">
+                        <div class="nk-tb-item nk-tb-head">
+                            <!-- <div class="nk-tb-col nk-tb-col-check">
+                                <div class="custom-control custom-control-sm custom-checkbox notext">
+                                    <input type="checkbox" class="custom-control-input" id="uid">
+                                    <label class="custom-control-label" for="uid"></label>
+                                </div>
+                            </div> -->
+                            
+                            <div class="nk-tb-col"><span class="sub-text">User</span></div>
+                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">Nom</span></div>
+                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">Prenom</span></div>
+                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">Gender</span></div>
+                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">Phone Number</span></div>
+                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">Salary</span></div>
+                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">Role</span></div>
+                        
+                        </div><!-- .nk-tb-item -->
+                        <div class="nk-tb-item" *ngFor="let u of data ">
+                            
+                          
+                          
+                            <div class="nk-tb-col">
+                                <a style="cursor: pointer;" (click)="forwardtodetail(u.userName)">
+                                    <div class="user-card">
+                                        <div class="user-avatar">
+                                            <div
+                                                style="height: 40px; width: 85px; border-radius: 50%; overflow: hidden;">
+                                                <img style="height: 100%; width: 100%; object-fit: cover;"
+                                                    *ngIf="u.fileName"
+                                                    [src]="this.service.PATH_OF_API + '/ImgUsers/' + u.userName"
+                                                    alt="User avatar">
+                                                <div *ngIf="!u.fileName"
+                                                    style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; font-size: 15px; text-transform: uppercase;">
+                                                    {{ u.userName[0] }}{{ u.userName[1] }}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="user-info">
+                                            <span class="tb-lead">{{u.userName}}<span
+                                                    class="dot dot-success d-md-none ms-1"></span></span>
+                                            <span>{{u.email}}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nk-tb-col tb-col-mb">
+                                <span>{{u.nom}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-mb">
+                                <span>{{u.prenom}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-mb">
+                                <span
+                                    [ngStyle]="{color :u.gender==='MALE' ? '#93D2FFFF' : '#E14099FF' }">{{u.gender}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-mb">
+                                <span>(+216) {{u.phoneNumber}}</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md">
+                                <a style="width: 65%; text-align: center; display: flex; align-items: center; justify-content: center;"
+                                     *ngIf="u.salary==0" data-bs-toggle="modal" data-bs-target="#bank-edit" class="btn btn-success">Set Salary</a>
+                                     <a
+                                     *ngIf="u.salary!=0" >{{u.salary}}</a>
+                                
+                            </div>
+                            <div class="nk-tb-col tb-col-mb">
+                                
+                                <span [ngStyle]="{color: u.role && u.role.length > 0 && u.role[0].roleName === 'Admin' ? 'Red' : 'Green'}">
+                                    {{u.role && u.role.length > 0 ? u.role[0].roleName : ''}}
+                                </span>
+                                
+                            </div>
+                            <div class="modal fade" role="dialog" id="bank-edit">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <a class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                                        <div class="modal-body modal-body-lg">
+                                            <h5 class="title">Set Salary For User {{u.prenom}} {{u.nom}} </h5>
+                                            <ul class="nk-nav nav nav-tabs">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-bs-toggle="tab" href="#personal">Budget</a>
+                                                </li>
+                                            </ul><!-- .nav-tabs -->
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="personal">
+                                                    <form [formGroup]="SalaryForm">
+                                                        <div class="row gy-4">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="salaryAmount">Salary Amount</label>
+                                                                    <input type="number" class="form-control form-control-lg" id="salaryAmount"
+                                                                        formControlName="salaryAmount" placeholder="Enter Salary Amount">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-12">
+                                                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                                                    <li>
+                                                                        <a  
+                                                                            class="btn btn-lg btn-primary" (click)="SetSalary(u.userName)">Set Salary </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a  data-bs-dismiss="modal" class="link link-light">Cancel</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div><!-- .tab-pane -->
+                            
+                                                  
+                                           
+                                        </div><!-- .modal-body -->
+                                    </div><!-- .modal-content -->
+                                </div><!-- .modal-dialog -->
+                            </div><!-- .modal -->
+                       
+                            
+                            
+                            
+                        </div><!-- .nk-tb-item -->
+
+                    </div><!-- .nk-tb-list -->
+                    </div>
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="nk-block-between-md g-3">
+                                <div class="g mx-auto">
+                                    <ul class="pagination justify-content-center justify-content-md-start">
+                                        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                                        <li class="page-item" *ngFor="let p of pages;let i =index">
+                                            <a class="page-link" href="#" (click)="setPage(i,$event)">{{i}}</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    </ul><!-- .pagination -->
+                                </div>
+                            </div><!-- .nk-block-between -->
+                        </div><!-- .card-inner -->
+                    </div><!-- .card -->
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content @e -->

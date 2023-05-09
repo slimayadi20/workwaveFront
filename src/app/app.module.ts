@@ -29,7 +29,7 @@ import { UpdateComponent } from './Supplier/update-supplier/update/update.compon
 import { ListOrdersComponent } from './Orders/create-order/orders-list/list-orders/list-orders.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { EditOrderComponent } from './Orders/edit-order/edit-order/edit-order.component';
-
+import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -49,6 +49,9 @@ import { EditOrderComponent } from './Orders/edit-order/edit-order/edit-order.co
 
     JitsiComponentComponent,
     ProductListComponent,
+    
+
+    
     
     
     
@@ -70,7 +73,8 @@ import { EditOrderComponent } from './Orders/edit-order/edit-order/edit-order.co
     NgProgressModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     BrowserAnimationsModule,
-    AngularTypewriterEffectModule
+    AngularTypewriterEffectModule,
+    NgChartsModule.forRoot()
 
   ],
   providers: [],

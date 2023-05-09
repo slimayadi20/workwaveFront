@@ -431,7 +431,7 @@
       color: "#eb6459",
       dash: [5],
       background: "transparent",
-      data: [110, 220, 810, 480, 600, 670, 660, 830, 590, 730, 790, 950, 100, 800, 950, 850, 950, 450, 900, 0, 200, 250, 900, 950, 300, 200, 250, 650, 950, 750]
+     // data: [110, 220, 810, 480, 600, 670, 660, 830, 590, 730, 790, 950, 100, 800, 950, 850, 950, 450, 900, 0, 200, 250, 900, 950, 300, 200, 250, 650, 950, 750]
     }]
   };
   function ecommerceLineS4(selector, set_data) {
@@ -675,13 +675,23 @@
     }]
   };
   var orderStatistics = {
-    labels: ["Completed", "Processing", "Canclled"],
-    dataUnit: 'People',
+    labels: ["Paid", "Unpaid"],
+    dataUnit: 'Users',
     legend: false,
     datasets: [{
       borderColor: "#fff",
-      background: ["#816bff", "#13c9f2", "#ff82b7"],
-      data: [4305, 859, 482]
+      background: ["#816bff", "#ff82b7"],
+      data: [10, 15]
+    }]
+  };
+  var orderStatistics1 = {
+    labels: ["Paid", "Unpaid"],
+    dataUnit: 'Users',
+    legend: false,
+    datasets: [{
+      borderColor: "#fff",
+      background: ["#816bff", "#ff82b7"],
+      data: [4305, 859]
     }]
   };
   function ecommerceDoughnutS1(selector, set_data) {
