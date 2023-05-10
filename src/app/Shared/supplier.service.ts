@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class SupplierService {
   public data :  any;
   constructor(private http: HttpClient, private router: Router) {}
-  PATH_OF_API = 'https://20.231.246.138:8090';
+  PATH_OF_API = 'http://20.231.246.138:8090';
 
   createSupplier(body: any) {
     return this.http.post(this.PATH_OF_API + '/addSupplier', body, {

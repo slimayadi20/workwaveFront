@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class OrderService {
-  PATH_OF_API = 'https://20.231.246.138:8090';
+  PATH_OF_API = 'http://20.231.246.138:8090';
  
   public data: any;
   constructor(private http: HttpClient, private router: Router) { }

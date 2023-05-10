@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HolidayService {
-  PATH_OF_API = 'https://20.231.246.138:8090';
+  PATH_OF_API = 'http://20.231.246.138:8090';
 
   constructor(private http: HttpClient,) { }
   add(body: any) {

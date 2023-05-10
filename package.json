@@ -26,7 +26,6 @@
     "@fullcalendar/interaction": "^6.1.5",
     "@fullcalendar/timegrid": "^6.1.5",
     "@sweetalert2/ngx-sweetalert2": "^12.1.0",
-    "angular-typewriter-effect": "0.0.1",
     "angular2-emoji-picker": "^1.4.6",
     "angularjs-sweetalert2": "^1.0.0",
     "antd": "^5.4.2",

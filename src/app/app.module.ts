@@ -19,7 +19,6 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { JitsiComponentComponent } from './chat/jitsi-component/jitsi-component.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -55,7 +54,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     NgProgressModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     BrowserAnimationsModule,
-    AngularTypewriterEffectModule,
     Ng2SearchPipeModule
 
   ],

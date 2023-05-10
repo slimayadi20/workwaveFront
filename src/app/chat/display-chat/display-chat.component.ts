@@ -155,7 +155,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     } catch (err) { }
   }
   connect() {
-    const socket = new SockJS('https://20.231.246.138:8090/ws');
+    const socket = new SockJS('http://20.231.246.138:8090/ws');
     this.stompClient = Stomp.over(socket);
 
     // Add JWT token to the header
@@ -276,7 +276,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     ///////WEB-SOCKET
 
 
-    const socket = new SockJS('https://20.231.246.138:8090/ws');
+    const socket = new SockJS('http://20.231.246.138:8090/ws');
     this.connect();
 
 

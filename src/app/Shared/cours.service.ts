@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class CoursService {
 
   constructor(private http: HttpClient) { }
-  PATH_OF_API = 'https://20.231.246.138:8090';
+  PATH_OF_API = 'http://20.231.246.138:8090';
 
   public addCours(formData: FormData) {
     return this.http.post(this.PATH_OF_API +'/addCours', formData, {
