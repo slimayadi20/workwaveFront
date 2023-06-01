@@ -299,46 +299,7 @@
                                             
                                         </div><!-- .nk-tb-list -->
                                     </div>
-                                    <div class="nk-block" *ngIf="role == 'Financial Manager' || role=='Admin'">
-                                        <h6 class="lead-text mb-3">Invoices</h6>
-                                        <a  class="btn btn-trigger btn-icon">View All<em class="icon ni ni-plus"></em></a>
-
-                                        <div class="nk-block-des text-soft">
-                                            <p>You have total {{banksaccount.invoices.length}} Invoices.</p>
-                                        </div>
-                                        <div class="nk-tb-list nk-tb-ulist is-compact card">
-                                            <div class="nk-tb-item nk-tb-head">
-                                                <div class="nk-tb-col">
-                                                    <span class="sub-text">Invoice Number</span>
-                                                </div>
-                                                <div class="nk-tb-col tb-col-sm">
-                                                    <span class="sub-text">Desctiption</span>
-                                                </div>
-                                                <div class="nk-tb-col tb-col-xxl">
-                                                    <span class="sub-text">Amount Due</span>
-                                                </div>
-                                               
-                                                <div class="nk-tb-col">
-                                                    <span class="sub-text">Issue Date</span>
-                                                </div>
-                                            </div>
-                                            <div class="nk-tb-item" *ngFor="let i of invoices | slice:0:4">
-                                                <div class="nk-tb-col">
-                                                    <a href="#"><span class="fw-bold">#{{i.id}}</span></a>
-                                                </div>
-                                                <div class="nk-tb-col tb-col-sm">
-                                                        <span class="title">{{i.description}}</span>
-                                                </div>
-                                                <div class="nk-tb-col tb-col-xxl">
-                                                    <span class="amount">$ {{i.amountDue}}</span>
-                                                </div>
-                                                <div class="nk-tb-col">
-                                                    <span class="lead-text text-primary">{{ i.transactionDate | date:'dd MMMM yyyy' }}</span>
-                                                  </div>
-                                            </div>
-                                            
-                                        </div><!-- .nk-tb-list -->
-                                    </div>
+                                    
                                     <div class="nk-block">
                                         <h6 class="lead-text mb-3">My Bank Account</h6>
                                         <div class="row g-3">

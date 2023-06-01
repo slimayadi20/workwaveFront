@@ -57,8 +57,8 @@
                 </li><!-- .nk-menu-item -->
 
                 <!-- dashends here  -->
-                <li class="nk-menu-heading">
-                    <h6 *ngIf="data.role!=='Employee'" class="overline-title text-primary-alt">Settings</h6>
+                <li class="nk-menu-heading"  >
+                    <h6 *ngIf="data.role!=='Employee' && data.role!=='Financial Manager'" class="overline-title text-primary-alt">Settings</h6>
                 </li><!-- .nk-menu-heading -->
                 <li style="cursor:pointer" class="nk-menu-item" *ngFor="let m of menusettings   ">
                     <a href="#" class="nk-menu-link nk-menu-toggle">

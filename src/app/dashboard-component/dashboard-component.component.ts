@@ -73,13 +73,17 @@ export class DashboardComponentComponent implements AfterViewInit, OnInit {
 
       console.log(this.banksaccount.id);
 
-    })
+   
     this.SS.getBalanceHistory(this.banksaccount.id).subscribe((b: any) => {
       console.log(b);
       this.balanceHistory = b;
       console.log(this.balanceHistory);
 
+    }, (err: any) => {
+      this.balanceHistory = 0;
 
+    });
+  
       const today = new Date(); // current date
       const oneMonthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate()); // date one month ago
       const Labels = [];
@@ -99,7 +103,7 @@ export class DashboardComponentComponent implements AfterViewInit, OnInit {
           datasets: [
             {
               label: "Balance",
-              data: this.balanceHistory,
+              data: [this.balanceHistory],
               backgroundColor: '#854fff'
             }
           ]
@@ -108,11 +112,8 @@ export class DashboardComponentComponent implements AfterViewInit, OnInit {
           aspectRatio: 2.5
         }
       });
-    }, (err: any) => {
-      this.balanceHistory = 0;
-
-    });
-
+   
+    })
 
     this.SS.getUserUnpaidNumber().subscribe((b: any) => {
       console.log(b);
@@ -320,7 +321,7 @@ export class DashboardComponentComponent implements AfterViewInit, OnInit {
       this.getLowestBudgetProject(this.banksaccount.id)
       this.getPaymentsLowest(this.banksaccount.id)
       this.getPaymentsHighest(this.banksaccount.id)
-      this.getBalanceHistory(this.banksaccount.id)
+    //  this.getBalanceHistory(this.banksaccount.id)
 
     });
   }

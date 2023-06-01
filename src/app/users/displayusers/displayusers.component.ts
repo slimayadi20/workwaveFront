@@ -34,12 +34,12 @@ export class DisplayusersComponent implements OnInit {
       this.data = e
     });
   }
-  forwardtodetail(id: any) {
-    this.router.navigate(
-      ['/users/detailusers/'],
-      { queryParams: { userName: id } }
-    );
-  }
+    forwardtodetail(id: any) {
+      this.router.navigate(
+        ['/users/detailusers/'],
+        { queryParams: { userName: id } }
+      );
+    }
   ban(etat: any, user: any) {
     this.service.ban({ userName: user, ban: etat }).subscribe((e: any) => {
       console.log(e);

@@ -15,7 +15,7 @@ import { EncryptionService } from './encryption.service';
 })
 export class ChatService {
 
-  private baseUrl = 'http://20.231.246.138:8090';
+  private baseUrl = 'http://localhost:8090';
 
   private socket: any;
   data: any;

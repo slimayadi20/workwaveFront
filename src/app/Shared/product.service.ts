@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  PATH_OF_API = 'http://20.231.246.138:8090';
+  PATH_OF_API = 'http://localhost:8090';
 
   public data: any;
   constructor(private http: HttpClient, private router: Router) { }

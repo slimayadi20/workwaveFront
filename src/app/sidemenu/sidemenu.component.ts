@@ -200,13 +200,7 @@ export class SidemenuComponent implements OnInit {
                 icon: ''
 
               },
-              {
-                title: "Manage Invoices",
-                counter: 0,
-                link: '/invoices/myinvoices',
-                icon: ''
 
-              },
               {
                 title: "Manage Budgets",
                 counter: 0,
@@ -236,22 +230,6 @@ export class SidemenuComponent implements OnInit {
                 link: '/users/roles',
                 icon: ''
               },
-            ]
-          },
-          {
-            mainTitle: "Settings",
-            title: "User holiday",
-            counter: 0,
-            icon: 'icon ni ni-users-fill',
-            subMenus: [
-              {
-                title: "Holidays List",
-                counter: 0,
-                link: '/users/displayholidays',
-                icon: ''
-
-              },
-
             ]
           },
         ]
@@ -336,6 +314,94 @@ export class SidemenuComponent implements OnInit {
 
               }
             ]
+          },]
+        break;
+      case "Financial Manager":
+        this.menuapp = [
+
+          {
+            mainTitle: "APPLICATIONS",
+            title: "Courses",
+            counter: 0,
+            icon: 'icon ni ni-book-fill',
+            subMenus: [
+              {
+                title: "courses list",
+                counter: 0,
+                link: '/courses/displaycourse',
+                icon: ''
+
+              },
+            ]
+          },
+          {
+            mainTitle: "APPLICATIONS",
+            title: "Projects",
+            counter: 0,
+            icon: 'icon ni ni-tile-thumb-fill',
+            subMenus: [
+              {
+                title: "Display Projects",
+                counter: 0,
+                link: '/projects/displayprojects',
+                icon: ''
+
+              },
+            ]
+          },
+
+          {
+            mainTitle: "APPLICATIONS",
+            title: "Applications",
+            counter: 0,
+            icon: 'icon ni ni-card-view',
+
+            subMenus: [
+              {
+                title: "Chat",
+                counter: 0,
+                link: '/chat/displaychat',
+                icon: ''
+
+              },
+              {
+                title: "Calendar",
+                counter: 0,
+                link: '/chat/displaycalendar',
+                icon: ''
+
+              }
+            ]
+          },]
+        this.menudashboard = [
+          {
+            mainTitle: "Finances",
+            title: "Finances",
+            counter: 0,
+            icon: 'icon ni ni-activity-round-fill',
+            subMenus: [
+              {
+                title: "Manage Payments",
+                counter: 0,
+                link: 'payements/displaypayements',
+                icon: ''
+
+              },
+              {
+                title: "Manage Salary",
+                counter: 0,
+                link: '/payements/setSalary',
+                icon: ''
+
+              },
+
+              {
+                title: "Manage Budgets",
+                counter: 0,
+                link: '/Budgets/listBudgets',
+                icon: ''
+
+              }]
           },]
         break;
     }

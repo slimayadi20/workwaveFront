@@ -10,7 +10,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class AuthServiceService {
   public data: any;
-  PATH_OF_API = 'http://20.231.246.138:8090';
+  PATH_OF_API = 'http://localhost:8090';
 
   constructor(private encryptionService: EncryptionService, private http: HttpClient, private router: Router) { }
 
@@ -136,7 +136,7 @@ export class AuthServiceService {
     return this.http.delete(this.PATH_OF_API + '/role/' + body);
   }
   public getUserByUsername(user: any) {
-    return this.http.get("http://20.231.246.138:8090" + "/getUser/" + user);
+    return this.http.get("http://localhost:8090" + "/getUser/" + user);
   }
   getUserByRoleFinancial(){
     return this.http.get(this.PATH_OF_API + "/getUserByRoleFinancial");
