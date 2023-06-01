@@ -9,33 +9,33 @@ export class CategorieService {
   constructor(private http: HttpClient, private router: Router) { }
 
   public addCateg(body: any) {
-    return this.http.post("http://localhost:8090" + '/addCateg', body, {
+    return this.http.post("https://workwaveback.onrender.com" + '/addCateg', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
   public updateCateg(body: any) {
-    return this.http.put("http://localhost:8090" + '/updateCateg', body, {
+    return this.http.put("https://workwaveback.onrender.com" + '/updateCateg', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
   public getCategs() {
-    return this.http.get("http://localhost:8090" + "/Categs");
+    return this.http.get("https://workwaveback.onrender.com" + "/Categs");
   }
   public getCategspage(page: number) {
     let params = new HttpParams().set('page', page.toString());
      
-    return this.http.get("http://localhost:8090" + '/categ/list', {params: params});
+    return this.http.get("https://workwaveback.onrender.com" + '/categ/list', {params: params});
   }
   public getCateg(id:any) {
-    return this.http.get("http://localhost:8090" + "/Categ/"+id);
+    return this.http.get("https://workwaveback.onrender.com" + "/Categ/"+id);
   }
   public deleteForm(data: any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'responseType': 'json',
     });
-    return this.http.delete("http://localhost:8090" + `/deleteCateg/${data}`, { headers: headers });
+    return this.http.delete("https://workwaveback.onrender.com" + `/deleteCateg/${data}`, { headers: headers });
   }
 }

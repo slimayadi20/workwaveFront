@@ -15,7 +15,7 @@ import { EncryptionService } from './encryption.service';
 })
 export class ChatService {
 
-  private baseUrl = 'http://localhost:8090';
+  private baseUrl = 'https://workwaveback.onrender.com';
 
   private socket: any;
   data: any;

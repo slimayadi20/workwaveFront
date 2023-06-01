@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-const baseUrl = 'http://localhost:8090';
+const baseUrl = 'https://workwaveback.onrender.com';
 @Injectable({
   providedIn: 'root'
 })

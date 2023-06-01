@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HolidayService {
-  PATH_OF_API = 'http://localhost:8090';
+  PATH_OF_API = 'https://workwaveback.onrender.com';
 
   constructor(private http: HttpClient,) { }
   add(body: any) {

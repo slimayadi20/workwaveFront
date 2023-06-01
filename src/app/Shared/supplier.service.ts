@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class SupplierService {
   public data :  any;
   constructor(private http: HttpClient, private router: Router) {}
-  PATH_OF_API = 'http://localhost:8090';
+  PATH_OF_API = 'https://workwaveback.onrender.com';
 
   createSupplier(body: any) {
     return this.http.post(this.PATH_OF_API + '/addSupplier', body, {

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CalendarService {
 
-  private baseUrl = 'http://localhost:8090'; 
+  private baseUrl = 'https://workwaveback.onrender.com'; 
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class CalendarService {
   }
 
   addEvent(body: any) {
-    return this.http.post("http://localhost:8090" + '/event', body, {
+    return this.http.post("https://workwaveback.onrender.com" + '/event', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -31,7 +31,7 @@ export class CalendarService {
     return this.http.put<any>(`${this.baseUrl}/event`, event);
   }*/
   updateEvent(body: any) {
-    return this.http.put("http://localhost:8090" + '/event', body, {
+    return this.http.put("https://workwaveback.onrender.com" + '/event', body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -43,7 +43,7 @@ export class CalendarService {
   }
 
   removeEvent(id: number) {
-    return this.http.delete(`http://localhost:8090/event/${id}`, {
+    return this.http.delete(`https://workwaveback.onrender.com/event/${id}`, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });

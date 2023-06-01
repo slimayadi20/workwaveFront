@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { EncryptionService } from './encryption.service';
 import { BehaviorSubject } from 'rxjs';
-const baseUrl = 'http://localhost:8090';
+const baseUrl = 'https://workwaveback.onrender.com';
 
 @Injectable({
   providedIn: 'root'

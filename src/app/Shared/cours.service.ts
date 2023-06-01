@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class CoursService {
 
   constructor(private http: HttpClient) { }
-  PATH_OF_API = 'http://localhost:8090';
+  PATH_OF_API = 'https://workwaveback.onrender.com';
 
   public addCours(formData: FormData) {
     return this.http.post(this.PATH_OF_API +'/addCours', formData, {

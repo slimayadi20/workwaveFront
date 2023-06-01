@@ -155,7 +155,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     } catch (err) { }
   }
   connect() {
-    const socket = new SockJS('http://localhost:8090/ws');
+    const socket = new SockJS('https://workwaveback.onrender.com/ws');
     this.stompClient = Stomp.over(socket);
 
     // Add JWT token to the header
@@ -276,7 +276,7 @@ export class DisplayChatComponent implements OnInit, AfterViewChecked {
     ///////WEB-SOCKET
 
 
-    const socket = new SockJS('http://localhost:8090/ws');
+    const socket = new SockJS('https://workwaveback.onrender.com/ws');
     this.connect();
 
 

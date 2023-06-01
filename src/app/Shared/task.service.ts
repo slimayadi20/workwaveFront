@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class TaskService {
 
-  private baseURL = 'http://localhost:8090';
+  private baseURL = 'https://workwaveback.onrender.com';
 
   constructor(private http: HttpClient) { }
 

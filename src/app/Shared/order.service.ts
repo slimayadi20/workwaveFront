@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class OrderService {
-  PATH_OF_API = 'http://localhost:8090';
+  PATH_OF_API = 'https://workwaveback.onrender.com';
  
   public data: any;
   constructor(private http: HttpClient, private router: Router) { }

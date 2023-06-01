@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  PATH_OF_API = 'http://localhost:8090';
+  PATH_OF_API = 'https://workwaveback.onrender.com';
 
   public data: any;
   constructor(private http: HttpClient, private router: Router) { }
